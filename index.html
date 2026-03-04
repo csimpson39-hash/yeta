@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0A0A0B">
     <title>Yeta | Growth engine for B2B companies</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
     <style>
         @font-face { font-family: 'Geist'; font-weight: 100 900; font-style: normal; src: url('https://assets.vercel.com/raw/upload/v1/frameworks/geist/Geist%5Bwght%5D.woff2') format('woff2'); font-display: swap; }
 
@@ -24,11 +25,9 @@
 
             --accent:         #8B8BF5;
             --accent-glow:    rgba(120,100,255,0.12);
-            --green:          #4ADE80;
 
             --serif:  'Instrument Serif', Georgia, serif;
             --sans:   'Geist', -apple-system, 'Segoe UI', sans-serif;
-            --mono:   'JetBrains Mono', monospace;
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -48,7 +47,7 @@
         /* Noise overlay */
         body::after {
             content: '';
-            position: fixed; inset: 0; z-index: 9999;
+            position: fixed; inset: 0; z-index: 99;
             pointer-events: none;
             opacity: 0.025;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -254,7 +253,7 @@
             font-size: 14px; color: var(--text-muted); padding: 4px 0 4px 16px;
             position: relative; transition: color 0.15s;
         }
-        .card ul li::before { content: '·'; position: absolute; left: 0; color: var(--text-faint); font-size: 12px; }
+        .card ul li::before { content: '·'; position: absolute; left: 0; color: var(--text-faint); font-size: 16px; }
         .card ul li:hover { color: var(--text-body); }
 
         .compound-note {
@@ -284,12 +283,12 @@
             font-size: 15px; color: var(--text-body); padding: 6px 0 6px 16px;
             position: relative; line-height: 1.7;
         }
-        .split-col ul li::before { content: '·'; position: absolute; left: 0; color: var(--text-faint); font-size: 12px; top: 8px; }
+        .split-col ul li::before { content: '·'; position: absolute; left: 0; color: var(--text-faint); font-size: 16px; top: 8px; }
 
         /* ================================================================
            COMPARISON TABLE
            ================================================================ */
-        .table-wrap { overflow-x: auto; }
+        /* Table wrap moved to mobile section */
         .ct {
             width: 100%; min-width: 600px;
             border-collapse: collapse; font-size: 15px;
@@ -310,9 +309,9 @@
         .ct tr:last-child td { border-bottom: none; }
         .ct tr:hover td { background: rgba(255,255,255,0.02); }
         .ct tr:hover td:last-child { background: rgba(139,139,245,0.05); }
-        .ty { color: var(--green); font-size: 13px; }
+        .ty { color: rgba(255,255,255,0.85); font-size: 13px; }
         .tn { color: var(--text-faint); font-size: 13px; }
-        .tp { color: var(--text-muted); font-style: italic; font-size: 14px; }
+        .tp { color: var(--text-faint); font-size: 14px; }
 
         /* ================================================================
            PROOF
@@ -360,12 +359,13 @@
             padding: 20px 0; border-bottom: 1px solid var(--border);
             color: var(--text-body); vertical-align: top; font-size: 15px;
         }
-        .ptb td:first-child { color: rgba(255,255,255,0.7); padding-right: 24px; white-space: nowrap; }
+        .ptb td:first-child { color: rgba(255,255,255,0.7); padding-right: 24px; }
         .ptb td:last-child { font-family: var(--sans); font-weight: 600; font-size: 16px; color: var(--text-heading); white-space: nowrap; }
         .ptb .rec td { color: var(--text-body); }
         .ptb .rec td:first-child { color: var(--text-heading); }
         .ptb .rec td:first-child::after { content: ' ✱'; color: var(--accent); font-size: 11px; vertical-align: super; }
         .ptb .rec td:last-child { color: var(--accent); }
+        .ptb tr:last-child td { border-bottom: none; }
         .pricing-note { margin-top: 24px; font-size: 14px; color: var(--text-muted); line-height: 1.8; }
 
         /* ================================================================
@@ -410,7 +410,7 @@
         }
         .fq.open .fq-icon { transform: rotate(45deg); }
         .fq-a { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out, padding 0.3s ease-out; }
-        .fq.open .fq-a { max-height: 240px; padding-bottom: 24px; }
+        .fq.open .fq-a { max-height: 400px; padding-bottom: 24px; }
         .fq-a p { font-size: 16px; color: var(--text-body); line-height: 1.7; max-width: 560px; }
 
         /* ================================================================
@@ -453,6 +453,8 @@
             transition: all 0.2s;
         }
         .btn-primary:hover { background: #7B7BE5; box-shadow: 0 0 40px rgba(139,139,245,0.2); }
+        .btn-primary span { transition: transform 0.2s; display: inline-block; }
+        .btn-primary:hover span { transform: translateX(3px); }
 
         /* ================================================================
            APPENDIX LINKS
@@ -509,13 +511,72 @@
         /* SCROLL FADE */
         .fi { opacity: 0; transform: translateY(12px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .fi.v { opacity: 1; transform: translateY(0); }
+
+        /* ================================================================
+           MOBILE REFINEMENTS
+           ================================================================ */
+        /* M1: Hero padding */
+        @media (max-width: 600px) {
+            .hero { padding: 100px 0 120px; }
+        }
+        /* M2: CTA section padding */
+        @media (max-width: 600px) {
+            .cta-section { padding: 120px 0 140px; }
+        }
+        /* M3: Comparison table scroll indicator */
+        .table-wrap { overflow-x: auto; position: relative; }
+        @media (max-width: 800px) {
+            .table-wrap-outer { position: relative; }
+            .table-wrap-outer::after {
+                content: '';
+                position: absolute;
+                top: 0; right: 0; bottom: 0;
+                width: 40px;
+                background: linear-gradient(to right, transparent, var(--bg));
+                pointer-events: none;
+                z-index: 2;
+            }
+        }
+        /* M4: ROI number overflow */
+        @media (max-width: 600px) {
+            .roi-num { font-size: 26px; }
+        }
+        /* M5: Modal padding */
+        @media (max-width: 600px) {
+            .md { padding: 36px 24px 28px; }
+            .md-close { top: 10px; right: 10px; }
+        }
+        /* M6: Serif text sizes */
+        @media (max-width: 600px) {
+            .compound-note { font-size: 18px; }
+            .proof blockquote { font-size: 18px; }
+        }
+        /* M7: Nav CTA touch target */
+        @media (max-width: 600px) {
+            .nav-cta { padding: 8px 16px; }
+        }
+        /* M8: Pricing table - hide includes column on mobile */
+        @media (max-width: 600px) {
+            .ptb th:nth-child(2),
+            .ptb td:nth-child(2) { display: none; }
+        }
     </style>
 </head>
 <body>
 
     <header>
         <div class="frame-wide">
-            <svg class="logo-svg" viewBox="0 0 657 212" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60.6504 82.921H83.8402V211H60.6504V82.921Z" fill="white"/><path d="M0 8H23.1898V122.879H0V8Z" fill="white"/><path d="M144.49 8H121.301V122.879H144.49V8Z" fill="white"/><path d="M30.3249 69.7205H53.5148V171.756H30.3249V69.7205Z" fill="white"/><path d="M114.165 69.7205H90.9756V171.756H114.165V69.7205Z" fill="white"/><path d="M242.43 211.19C236.795 211.19 228.71 210.945 220.135 210.21V193.305C227.73 193.795 235.815 194.04 240.715 194.04C254.68 193.795 258.845 190.855 263.255 182.28C269.135 170.765 268.155 167.58 266.44 162.925L214.745 36.26H238.02C251.495 71.785 264.97 106.575 278.445 145.53H281.875C294.37 106.575 306.62 71.785 319.115 36.26H341.165L292.165 167.335C279.18 202.125 270.605 210.945 242.43 211.19Z" fill="white"/><path d="M404.829 164.395C367.344 164.395 342.109 137.935 342.109 98.49V96.285C342.109 58.31 366.609 32.585 402.869 32.585C440.844 32.585 462.894 59.045 461.914 103.88H362.934C364.894 132.3 381.309 147.245 404.339 147.245C424.674 147.245 439.619 137.2 442.804 120.54H462.894C459.219 146.755 435.944 164.15 404.829 164.395ZM363.424 87.22H440.354C439.129 63.455 425.164 49.49 403.114 49.49C381.309 49.49 366.609 63.455 363.424 87.22Z" fill="white"/><path d="M519.098 161.21C493.128 161.21 488.963 154.105 488.963 131.075V53.655H468.138V36.26H488.963V0H510.278V36.26H542.863V53.655H510.278V129.36C510.278 143.57 511.503 145.04 541.638 144.06V160.72C534.043 160.965 523.753 161.21 519.098 161.21Z" fill="white"/><path d="M592.656 163.905C565.706 163.905 550.026 149.695 550.026 125.195C550.026 97.02 569.871 84.525 604.661 82.565C615.196 81.83 626.956 81.34 636.021 81.095C635.776 58.31 627.936 51.205 604.171 51.205C591.921 51.205 577.466 52.92 558.846 56.84V38.955C574.771 35.28 587.511 33.32 604.171 33.32C640.676 33.32 656.846 45.08 656.846 81.095V160.475H636.021V142.835H633.326C625.486 155.82 612.991 163.905 592.656 163.905ZM571.096 124.705C571.341 138.425 581.386 147.245 597.311 147.245C616.421 147.245 631.121 135.24 636.021 117.6V97.02C628.181 97.265 618.381 97.755 607.356 98.735C583.836 100.695 571.096 108.78 571.096 124.705Z" fill="white"/></svg>
+            <svg class="logo-svg" viewBox="0 0 592 184" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M56.698 71C56.698 69.3431 57.8518 68 59.2752 68H71.302C72.7254 68 73.8792 69.3431 73.8792 71V181C73.8792 182.657 72.7254 184 71.302 184H59.2752C57.8518 184 56.698 182.657 56.698 181V71Z" fill="white"/>
+<path d="M17.1812 3C17.1812 1.34314 16.0274 0 14.604 0H2.57718C1.15384 0 0 1.34315 0 3V101C0 102.657 1.15384 104 2.57718 104H14.604C16.0274 104 17.1812 102.657 17.1812 101V3Z" fill="white"/>
+<path d="M128 3C128 1.34314 126.846 0 125.423 0H113.396C111.973 0 110.819 1.34315 110.819 3V101C110.819 102.657 111.973 104 113.396 104H125.423C126.846 104 128 102.657 128 101V3Z" fill="white"/>
+<path d="M27.4899 59C27.4899 57.3431 28.6438 56 30.0671 56H42.094C43.5173 56 44.6711 57.3431 44.6711 59V134C44.6711 135.657 43.5173 137 42.094 137H30.0671C28.6438 137 27.4899 135.657 27.4899 134V59Z" fill="white"/>
+<path d="M102.228 59C102.228 57.3431 101.074 56 99.651 56H87.6242C86.2008 56 85.047 57.3431 85.047 59V134C85.047 135.657 86.2008 137 87.6242 137H99.651C101.074 137 102.228 135.657 102.228 134V59Z" fill="white"/>
+<path d="M213.525 180.075C211.075 180.075 209.85 179.177 209.85 177.38C209.85 175.583 210.912 174.603 213.035 174.44L224.06 172.725C227.327 172.235 229.532 171.418 230.675 170.275C231.818 168.968 232.39 166.6 232.39 163.17V105.35C232.39 101.757 231.573 98.245 229.94 94.815L193.925 19.355C192.782 16.5783 191.475 14.455 190.005 12.985C188.535 11.515 186.412 10.4533 183.635 9.79999L181.43 9.31C179.143 8.81999 178 7.75833 178 6.12499C178 4.49166 179.225 3.675 181.675 3.675H223.57C225.857 3.675 227 4.57333 227 6.36999C227 8.16666 225.612 9.14667 222.835 9.31L218.18 9.79999C215.403 9.96333 213.443 10.8617 212.3 12.495C211.157 14.1283 211.402 16.66 213.035 20.09L243.17 84.28C243.823 85.4233 244.64 85.995 245.62 85.995C246.6 85.995 247.417 85.4233 248.07 84.28L276.98 25.235C279.103 20.9883 279.593 17.5583 278.45 14.945C277.47 12.1683 275.102 10.535 271.345 10.045L265.955 9.31C263.178 8.81999 261.79 7.83999 261.79 6.36999C261.79 4.57333 262.933 3.675 265.22 3.675H300.01C302.46 3.675 303.685 4.49166 303.685 6.12499C303.685 7.75833 302.542 8.81999 300.255 9.31L297.805 9.79999C295.518 10.29 293.477 11.6783 291.68 13.965C290.047 16.2517 287.842 20.09 285.065 25.48L252.97 89.915C251.827 92.2017 251.01 94.4067 250.52 96.53C250.03 98.49 249.785 100.777 249.785 103.39V163.17C249.785 166.6 250.357 168.968 251.5 170.275C252.807 171.418 255.012 172.235 258.115 172.725L269.14 174.44C271.263 174.603 272.325 175.583 272.325 177.38C272.325 179.177 271.1 180.075 268.65 180.075H213.525Z" fill="white"/>
+<path d="M289.324 180.075C286.874 180.075 285.649 179.177 285.649 177.38C285.649 175.91 286.71 174.93 288.834 174.44L294.469 173.46C297.899 172.807 300.104 171.908 301.084 170.765C302.227 169.622 302.799 167.335 302.799 163.905V19.845C302.799 16.415 302.227 14.1283 301.084 12.985C300.104 11.8417 297.899 10.9433 294.469 10.29L288.834 9.31C286.71 8.81999 285.649 7.83999 285.649 6.36999C285.649 4.57333 286.874 3.675 289.324 3.675H371.644C375.4 3.675 377.442 5.55333 377.769 9.31L379.729 49.98C380.055 52.7567 378.994 54.145 376.544 54.145C374.584 54.145 373.44 53.0833 373.114 50.96L371.644 41.895C369.847 30.7883 366.172 22.7033 360.619 17.64C355.065 12.4133 347.389 9.79999 337.589 9.79999C331.055 9.79999 326.482 10.78 323.869 12.74C321.419 14.5367 320.194 17.8033 320.194 22.54V81.585C320.194 83.8717 321.337 85.015 323.624 85.015H335.874C343.06 85.015 347.47 81.1767 349.104 73.5L351.554 61.25C352.207 58.8 353.595 57.7383 355.719 58.065C357.515 58.3917 358.414 59.78 358.414 62.23V117.355C358.414 119.805 357.515 121.193 355.719 121.52C353.595 121.847 352.207 120.785 351.554 118.335L349.104 106.33C347.96 100.613 346.327 96.8567 344.204 95.06C342.244 93.2633 339.385 92.365 335.629 92.365H323.624C321.337 92.365 320.194 93.5083 320.194 95.795V157.29C320.194 163.17 321.664 167.417 324.604 170.03C327.707 172.643 333.26 173.95 341.264 173.95C349.43 173.95 356.372 171.908 362.089 167.825C367.969 163.578 372.052 155.738 374.339 144.305L377.279 129.85C377.769 127.727 378.994 126.665 380.954 126.665C383.24 126.665 384.22 128.053 383.894 130.83L381.444 174.44C381.117 178.197 379.075 180.075 375.319 180.075H289.324Z" fill="white"/>
+<path d="M411.119 180.075C408.669 180.075 407.444 179.177 407.444 177.38C407.444 175.583 408.506 174.603 410.629 174.44L421.654 172.725C424.921 172.235 427.126 171.418 428.269 170.275C429.413 168.968 429.984 166.6 429.984 163.17V16.17C429.984 13.8833 429.494 12.25 428.514 11.27C427.534 10.29 425.493 9.79999 422.389 9.79999C416.346 9.79999 410.384 12.4133 404.504 17.64C398.624 22.8667 394.786 31.2783 392.989 42.875L391.764 50.96C391.438 53.0833 390.294 54.145 388.334 54.145C385.884 54.145 384.823 52.7567 385.149 49.98L387.354 5.635C387.681 1.87833 389.151 0 391.764 0C392.908 0 393.969 0.326667 394.949 0.980002C395.929 1.47 397.563 2.04166 399.849 2.69499C402.299 3.34833 406.138 3.675 411.364 3.675H465.999C471.226 3.675 474.983 3.34833 477.269 2.69499C479.719 2.04166 481.434 1.47 482.414 0.980002C483.558 0.326667 484.619 0 485.599 0C488.213 0 489.683 1.87833 490.009 5.635L492.214 49.98C492.541 52.7567 491.479 54.145 489.029 54.145C487.069 54.145 485.926 53.0833 485.599 50.96L484.374 42.875C482.741 31.2783 478.984 22.8667 473.104 17.64C467.224 12.4133 461.181 9.79999 454.974 9.79999C451.871 9.79999 449.829 10.29 448.849 11.27C447.869 12.25 447.379 13.8833 447.379 16.17V163.17C447.379 166.6 447.951 168.968 449.094 170.275C450.401 171.418 452.606 172.235 455.709 172.725L466.734 174.44C468.858 174.603 469.919 175.583 469.919 177.38C469.919 179.177 468.694 180.075 466.244 180.075H411.119Z" fill="white"/>
+<path d="M474.316 180.075C471.866 180.075 470.641 179.258 470.641 177.625C470.641 175.992 471.784 174.93 474.071 174.44L477.746 173.705C481.013 173.052 483.463 171.5 485.096 169.05C486.729 166.437 488.118 162.843 489.261 158.27L527.236 5.14499C527.563 3.51166 528.053 2.44999 528.706 1.95999C529.523 1.47 530.258 1.225 530.911 1.225C531.728 1.225 532.463 1.47 533.116 1.95999C533.933 2.44999 534.504 3.51166 534.831 5.14499L573.541 160.475C574.684 165.048 575.991 168.233 577.461 170.03C578.931 171.827 581.218 173.052 584.321 173.705L587.996 174.44C590.283 174.93 591.426 175.992 591.426 177.625C591.426 179.258 590.201 180.075 587.751 180.075H545.856C543.569 180.075 542.426 179.177 542.426 177.38C542.426 175.583 543.814 174.603 546.591 174.44L551.246 173.95C554.023 173.623 555.738 172.725 556.391 171.255C557.208 169.785 557.208 167.253 556.391 163.66L547.081 125.685C546.101 121.438 543.406 119.315 538.996 119.315H513.271C509.024 119.315 506.329 121.438 505.186 125.685L496.856 158.515C494.406 167.825 496.856 172.97 504.206 173.95L507.881 174.44C510.658 174.93 512.046 175.91 512.046 177.38C512.046 179.177 510.903 180.075 508.616 180.075H474.316ZM512.536 111.965H539.486C542.099 111.965 543.161 110.577 542.671 107.8L526.991 42.14H525.766L509.351 107.8C508.861 110.577 509.923 111.965 512.536 111.965Z" fill="white"/>
+</svg>
             <a href="https://calendly.com/csimpson39/30min" target="_blank" class="nav-cta">Book a call →</a>
         </div>
     </header>
@@ -524,13 +585,13 @@
         <div class="frame">
             <div class="hero-eyebrow" style="color:rgba(255,255,255,0.5)">The growth engine</div>
             <h1>Content, outreach, and ads as <em>one compound system</em></h1>
-            <p class="hero-body">Six services that usually need three separate agencies. One integrated engine where each part makes the others more effective.</p>
-            <a href="https://calendly.com/csimpson39/30min" target="_blank" class="btn">Book a strategy call <span>→</span></a>
+            <p class="hero-body">You're paying three agencies and none of them talk to each other. We replace all of them with one system that actually compounds.</p>
+            <a href="https://calendly.com/csimpson39/30min" target="_blank" class="btn-primary">Book a strategy call <span>→</span></a>
         </div>
     </div>
 
     <div class="section"><div class="frame">
-        <div class="eyebrow fi">01  Problem</div>
+        <div class="eyebrow fi">01 · Problem</div>
         <h2 class="sh fi">The problem with fragmented growth</h2>
         <p class="si fi">Most B2B companies piece together content, outreach, and ads from different vendors. Nothing connects. Nothing compounds. And the agencies promising results often disappear once the invoice clears.</p>
         <ol class="pl">
@@ -542,7 +603,7 @@
 
     <div class="section"><div class="frame-wide">
         <div class="frame" style="padding:0;max-width:760px;">
-            <div class="eyebrow fi">02  System</div>
+            <div class="eyebrow fi">02 · System</div>
             <h2 class="sh fi">Three engines. One compound system.</h2>
             <p class="si fi">Content warms prospects. Outreach captures intent. Ads create surround-sound. Each makes the others more effective.</p>
         </div>
@@ -552,26 +613,28 @@
             <div class="card"><div class="card-label">Pillar 03</div><h3>Paid Amplification</h3><p>Retargets pipeline prospects and accelerates deals through the surround-sound effect.</p><ul><li>LinkedIn ad campaigns</li><li>Retargeting warm prospects</li><li>Ad spend always passthrough</li><li>Boost top organic content</li></ul></div>
         </div>
         <div class="frame" style="padding:0;max-width:760px;">
-            <p class="compound-note fi">Content engagement feeds outreach. Outreach responses inform content. Ads amplify what's working. Everything compounds.</p>
+            <p class="compound-note fi">Content engagement feeds outreach. Outreach responses inform content. Ads amplify what's working. Everything compounds. It's the only way outbound actually works anymore.</p>
         </div>
     </div></div>
 
     <div class="section"><div class="frame">
-        <div class="eyebrow fi">03  Scope</div>
+        <div class="eyebrow fi">03 · Scope</div>
         <h2 class="sh fi">We run the system. You close the deals.</h2>
+        <p class="si fi">Every week you spend managing tools and chasing agencies is a week your pipeline isn't compounding.</p>
         <div class="split fi">
-            <div class="split-col"><h3>What Yeta handles</h3><ul><li>Write and schedule all LinkedIn content</li><li>Design all graphics and creative</li><li>Build and manage enrichment engine</li><li>Write every personalised email and message</li><li>Manage sending infrastructure</li><li>Handle replies and qualify responses</li><li>Book meetings into your calendar</li><li>Run LinkedIn ad campaigns</li><li>Monthly performance reports</li></ul></div>
-            <div class="split-col"><h3>What you do</h3><ul><li>Approve content before publishing</li><li>Attend booked meetings</li><li>Close deals</li><li>Provide brand assets and case studies</li><li>Flag protected relationships</li></ul></div>
+            <div class="split-col"><h3>What leaves your plate</h3><ul><li>Write and schedule all LinkedIn content</li><li>Design all graphics and creative</li><li>Build and manage enrichment engine</li><li>Write every personalised email and message</li><li>Manage sending infrastructure</li><li>Handle replies and qualify responses</li><li>Book meetings into your calendar</li><li>Run LinkedIn ad campaigns</li><li>Monthly performance reports</li></ul></div>
+            <div class="split-col"><h3>What stays on it</h3><ul><li>Approve content before publishing</li><li>Attend booked meetings</li><li>Close deals</li><li>Provide brand assets and case studies</li><li>Flag protected relationships</li></ul></div>
         </div>
     </div></div>
 
     <div class="section"><div class="frame-wide">
         <div class="frame" style="padding:0;max-width:760px;">
-            <div class="eyebrow fi">04  Comparison</div>
+            <div class="eyebrow fi">04 · Comparison</div>
             <h2 class="sh fi">No one else delivers all six</h2>
-            <p class="si fi">Most agencies cover one or two channels. The rest is left to you.</p>
+            <p class="si fi">Most agencies cover one or two channels. The rest is left to you, or it doesn't happen at all. That's pipeline you're leaving on the table.</p>
         </div>
-        <div class="table-wrap fi">
+        <div class="table-wrap-outer fi">
+        <div class="table-wrap">
             <table class="ct">
                 <thead><tr><th></th><th>Outbound agencies</th><th>Claygencies</th><th>Restartt</th><th>Yeta</th></tr></thead>
                 <tbody>
@@ -585,13 +648,15 @@
                 </tbody>
             </table>
         </div>
+        </div>
     </div></div>
 
     <div class="section"><div class="frame">
-        <div class="eyebrow fi">05  Proof</div>
+        <div class="eyebrow fi">05 · Proof</div>
         <h2 class="sh fi">Built from real results. Now productised.</h2>
         <div class="proof fi">
-            <blockquote>We built the outbound engine that grew a 20+ person agency. Same workflows. Same infrastructure. Same content strategy. One person, no sales team. Yeta is the productised version.</blockquote>
+            <blockquote>We built the outbound engine that grew a 20+ person agency. Same workflows. Same infrastructure. Same content strategy. One person, no sales team. That's what Yeta runs for you.</blockquote>
+            <div class="attr">Charlie Simpson, Founder</div>
         </div>
         <div class="stats-grid fi">
             <div class="stat"><div class="stat-num">300%</div><div class="stat-desc">More meetings with multi-channel vs single-channel outreach</div></div>
@@ -600,7 +665,7 @@
     </div></div>
 
     <div class="section" id="pricing"><div class="frame">
-        <div class="eyebrow fi">06  Pricing</div>
+        <div class="eyebrow fi">06 · Pricing</div>
         <h2 class="sh fi">Transparent pricing. No surprises.</h2>
         <p class="pricing-intro fi">Buying separately costs <s>$5,900-18,500/mo</s>. Yeta delivers it as one system from $4,750/mo.</p>
         <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:32px;overflow-x:auto;" class="fi">
@@ -617,7 +682,7 @@
     </div></div>
 
     <div class="section"><div class="frame">
-        <div class="eyebrow fi">07  ROI</div>
+        <div class="eyebrow fi">07 · ROI</div>
         <h2 class="sh fi">One deal pays for the entire year.</h2>
         <div class="roi-grid fi">
             <div class="roi-cell"><div class="roi-num">$5,950</div><div class="roi-label">Monthly<br>investment</div></div>
@@ -625,11 +690,11 @@
             <div class="roi-cell"><div class="roi-num">~20</div><div class="roi-label">Booked<br>calls</div></div>
             <div class="roi-cell"><div class="roi-num">$50-500K+</div><div class="roi-label">Deal<br>value</div></div>
         </div>
-        <p class="roi-note fi">One closed deal from the system covers 6-12 months of investment.</p>
+        <p class="roi-note fi">One closed deal from the system covers 6-12 months of investment. Every month without it is pipeline your competitors are capturing instead.</p>
     </div></div>
 
     <div class="section"><div class="frame">
-        <div class="eyebrow fi">08  FAQ</div>
+        <div class="eyebrow fi">08 · FAQ</div>
         <h2 class="sh fi">Questions</h2>
         <ul class="faq-list" style="margin-top:48px;">
             <li class="fq"><button class="fq-t" onclick="this.parentElement.classList.toggle('open')">Why not just use Clay ourselves?<span class="fq-icon">+</span></button><div class="fq-a"><p>The DIY stack is real. But Clay alone doesn't send emails, manage deliverability, write content, or run ads. You need Clay plus a sending tool, plus warm-up infrastructure, plus verification, plus a copywriter, plus a designer. That's 2-3 full-time people at $15K-25K/mo. We run the entire system so you don't have to.</p></div></li>
@@ -642,7 +707,7 @@
     <div class="cta-section" id="book">
         <div class="frame">
             <h2 class="fi">20 minutes. No commitment.</h2>
-            <p class="fi">We'll walk through the system and show you what it looks like for your business. If it's not a fit, the conversation was free.</p>
+            <p class="fi">We'll show you how the system would work for your specific market. If it's not a fit, the conversation was free.</p>
             <a href="https://calendly.com/csimpson39/30min" target="_blank" class="btn-primary fi">Book a strategy call <span>→</span></a>
         </div>
     </div>
@@ -664,7 +729,17 @@
             <div><div class="fc-label">Contact</div><div class="fc-links"><a href="https://calendly.com/csimpson39/30min" target="_blank">Schedule a conversation</a></div></div>
         </div>
         <div class="fb">
-            <svg class="logo-svg" viewBox="0 0 657 212" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M60.6504 82.921H83.8402V211H60.6504V82.921Z" fill="white"/><path d="M0 8H23.1898V122.879H0V8Z" fill="white"/><path d="M144.49 8H121.301V122.879H144.49V8Z" fill="white"/><path d="M30.3249 69.7205H53.5148V171.756H30.3249V69.7205Z" fill="white"/><path d="M114.165 69.7205H90.9756V171.756H114.165V69.7205Z" fill="white"/><path d="M242.43 211.19C236.795 211.19 228.71 210.945 220.135 210.21V193.305C227.73 193.795 235.815 194.04 240.715 194.04C254.68 193.795 258.845 190.855 263.255 182.28C269.135 170.765 268.155 167.58 266.44 162.925L214.745 36.26H238.02C251.495 71.785 264.97 106.575 278.445 145.53H281.875C294.37 106.575 306.62 71.785 319.115 36.26H341.165L292.165 167.335C279.18 202.125 270.605 210.945 242.43 211.19Z" fill="white"/><path d="M404.829 164.395C367.344 164.395 342.109 137.935 342.109 98.49V96.285C342.109 58.31 366.609 32.585 402.869 32.585C440.844 32.585 462.894 59.045 461.914 103.88H362.934C364.894 132.3 381.309 147.245 404.339 147.245C424.674 147.245 439.619 137.2 442.804 120.54H462.894C459.219 146.755 435.944 164.15 404.829 164.395ZM363.424 87.22H440.354C439.129 63.455 425.164 49.49 403.114 49.49C381.309 49.49 366.609 63.455 363.424 87.22Z" fill="white"/><path d="M519.098 161.21C493.128 161.21 488.963 154.105 488.963 131.075V53.655H468.138V36.26H488.963V0H510.278V36.26H542.863V53.655H510.278V129.36C510.278 143.57 511.503 145.04 541.638 144.06V160.72C534.043 160.965 523.753 161.21 519.098 161.21Z" fill="white"/><path d="M592.656 163.905C565.706 163.905 550.026 149.695 550.026 125.195C550.026 97.02 569.871 84.525 604.661 82.565C615.196 81.83 626.956 81.34 636.021 81.095C635.776 58.31 627.936 51.205 604.171 51.205C591.921 51.205 577.466 52.92 558.846 56.84V38.955C574.771 35.28 587.511 33.32 604.171 33.32C640.676 33.32 656.846 45.08 656.846 81.095V160.475H636.021V142.835H633.326C625.486 155.82 612.991 163.905 592.656 163.905ZM571.096 124.705C571.341 138.425 581.386 147.245 597.311 147.245C616.421 147.245 631.121 135.24 636.021 117.6V97.02C628.181 97.265 618.381 97.755 607.356 98.735C583.836 100.695 571.096 108.78 571.096 124.705Z" fill="white"/></svg>
+            <svg class="logo-svg" viewBox="0 0 592 184" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M56.698 71C56.698 69.3431 57.8518 68 59.2752 68H71.302C72.7254 68 73.8792 69.3431 73.8792 71V181C73.8792 182.657 72.7254 184 71.302 184H59.2752C57.8518 184 56.698 182.657 56.698 181V71Z" fill="white"/>
+<path d="M17.1812 3C17.1812 1.34314 16.0274 0 14.604 0H2.57718C1.15384 0 0 1.34315 0 3V101C0 102.657 1.15384 104 2.57718 104H14.604C16.0274 104 17.1812 102.657 17.1812 101V3Z" fill="white"/>
+<path d="M128 3C128 1.34314 126.846 0 125.423 0H113.396C111.973 0 110.819 1.34315 110.819 3V101C110.819 102.657 111.973 104 113.396 104H125.423C126.846 104 128 102.657 128 101V3Z" fill="white"/>
+<path d="M27.4899 59C27.4899 57.3431 28.6438 56 30.0671 56H42.094C43.5173 56 44.6711 57.3431 44.6711 59V134C44.6711 135.657 43.5173 137 42.094 137H30.0671C28.6438 137 27.4899 135.657 27.4899 134V59Z" fill="white"/>
+<path d="M102.228 59C102.228 57.3431 101.074 56 99.651 56H87.6242C86.2008 56 85.047 57.3431 85.047 59V134C85.047 135.657 86.2008 137 87.6242 137H99.651C101.074 137 102.228 135.657 102.228 134V59Z" fill="white"/>
+<path d="M213.525 180.075C211.075 180.075 209.85 179.177 209.85 177.38C209.85 175.583 210.912 174.603 213.035 174.44L224.06 172.725C227.327 172.235 229.532 171.418 230.675 170.275C231.818 168.968 232.39 166.6 232.39 163.17V105.35C232.39 101.757 231.573 98.245 229.94 94.815L193.925 19.355C192.782 16.5783 191.475 14.455 190.005 12.985C188.535 11.515 186.412 10.4533 183.635 9.79999L181.43 9.31C179.143 8.81999 178 7.75833 178 6.12499C178 4.49166 179.225 3.675 181.675 3.675H223.57C225.857 3.675 227 4.57333 227 6.36999C227 8.16666 225.612 9.14667 222.835 9.31L218.18 9.79999C215.403 9.96333 213.443 10.8617 212.3 12.495C211.157 14.1283 211.402 16.66 213.035 20.09L243.17 84.28C243.823 85.4233 244.64 85.995 245.62 85.995C246.6 85.995 247.417 85.4233 248.07 84.28L276.98 25.235C279.103 20.9883 279.593 17.5583 278.45 14.945C277.47 12.1683 275.102 10.535 271.345 10.045L265.955 9.31C263.178 8.81999 261.79 7.83999 261.79 6.36999C261.79 4.57333 262.933 3.675 265.22 3.675H300.01C302.46 3.675 303.685 4.49166 303.685 6.12499C303.685 7.75833 302.542 8.81999 300.255 9.31L297.805 9.79999C295.518 10.29 293.477 11.6783 291.68 13.965C290.047 16.2517 287.842 20.09 285.065 25.48L252.97 89.915C251.827 92.2017 251.01 94.4067 250.52 96.53C250.03 98.49 249.785 100.777 249.785 103.39V163.17C249.785 166.6 250.357 168.968 251.5 170.275C252.807 171.418 255.012 172.235 258.115 172.725L269.14 174.44C271.263 174.603 272.325 175.583 272.325 177.38C272.325 179.177 271.1 180.075 268.65 180.075H213.525Z" fill="white"/>
+<path d="M289.324 180.075C286.874 180.075 285.649 179.177 285.649 177.38C285.649 175.91 286.71 174.93 288.834 174.44L294.469 173.46C297.899 172.807 300.104 171.908 301.084 170.765C302.227 169.622 302.799 167.335 302.799 163.905V19.845C302.799 16.415 302.227 14.1283 301.084 12.985C300.104 11.8417 297.899 10.9433 294.469 10.29L288.834 9.31C286.71 8.81999 285.649 7.83999 285.649 6.36999C285.649 4.57333 286.874 3.675 289.324 3.675H371.644C375.4 3.675 377.442 5.55333 377.769 9.31L379.729 49.98C380.055 52.7567 378.994 54.145 376.544 54.145C374.584 54.145 373.44 53.0833 373.114 50.96L371.644 41.895C369.847 30.7883 366.172 22.7033 360.619 17.64C355.065 12.4133 347.389 9.79999 337.589 9.79999C331.055 9.79999 326.482 10.78 323.869 12.74C321.419 14.5367 320.194 17.8033 320.194 22.54V81.585C320.194 83.8717 321.337 85.015 323.624 85.015H335.874C343.06 85.015 347.47 81.1767 349.104 73.5L351.554 61.25C352.207 58.8 353.595 57.7383 355.719 58.065C357.515 58.3917 358.414 59.78 358.414 62.23V117.355C358.414 119.805 357.515 121.193 355.719 121.52C353.595 121.847 352.207 120.785 351.554 118.335L349.104 106.33C347.96 100.613 346.327 96.8567 344.204 95.06C342.244 93.2633 339.385 92.365 335.629 92.365H323.624C321.337 92.365 320.194 93.5083 320.194 95.795V157.29C320.194 163.17 321.664 167.417 324.604 170.03C327.707 172.643 333.26 173.95 341.264 173.95C349.43 173.95 356.372 171.908 362.089 167.825C367.969 163.578 372.052 155.738 374.339 144.305L377.279 129.85C377.769 127.727 378.994 126.665 380.954 126.665C383.24 126.665 384.22 128.053 383.894 130.83L381.444 174.44C381.117 178.197 379.075 180.075 375.319 180.075H289.324Z" fill="white"/>
+<path d="M411.119 180.075C408.669 180.075 407.444 179.177 407.444 177.38C407.444 175.583 408.506 174.603 410.629 174.44L421.654 172.725C424.921 172.235 427.126 171.418 428.269 170.275C429.413 168.968 429.984 166.6 429.984 163.17V16.17C429.984 13.8833 429.494 12.25 428.514 11.27C427.534 10.29 425.493 9.79999 422.389 9.79999C416.346 9.79999 410.384 12.4133 404.504 17.64C398.624 22.8667 394.786 31.2783 392.989 42.875L391.764 50.96C391.438 53.0833 390.294 54.145 388.334 54.145C385.884 54.145 384.823 52.7567 385.149 49.98L387.354 5.635C387.681 1.87833 389.151 0 391.764 0C392.908 0 393.969 0.326667 394.949 0.980002C395.929 1.47 397.563 2.04166 399.849 2.69499C402.299 3.34833 406.138 3.675 411.364 3.675H465.999C471.226 3.675 474.983 3.34833 477.269 2.69499C479.719 2.04166 481.434 1.47 482.414 0.980002C483.558 0.326667 484.619 0 485.599 0C488.213 0 489.683 1.87833 490.009 5.635L492.214 49.98C492.541 52.7567 491.479 54.145 489.029 54.145C487.069 54.145 485.926 53.0833 485.599 50.96L484.374 42.875C482.741 31.2783 478.984 22.8667 473.104 17.64C467.224 12.4133 461.181 9.79999 454.974 9.79999C451.871 9.79999 449.829 10.29 448.849 11.27C447.869 12.25 447.379 13.8833 447.379 16.17V163.17C447.379 166.6 447.951 168.968 449.094 170.275C450.401 171.418 452.606 172.235 455.709 172.725L466.734 174.44C468.858 174.603 469.919 175.583 469.919 177.38C469.919 179.177 468.694 180.075 466.244 180.075H411.119Z" fill="white"/>
+<path d="M474.316 180.075C471.866 180.075 470.641 179.258 470.641 177.625C470.641 175.992 471.784 174.93 474.071 174.44L477.746 173.705C481.013 173.052 483.463 171.5 485.096 169.05C486.729 166.437 488.118 162.843 489.261 158.27L527.236 5.14499C527.563 3.51166 528.053 2.44999 528.706 1.95999C529.523 1.47 530.258 1.225 530.911 1.225C531.728 1.225 532.463 1.47 533.116 1.95999C533.933 2.44999 534.504 3.51166 534.831 5.14499L573.541 160.475C574.684 165.048 575.991 168.233 577.461 170.03C578.931 171.827 581.218 173.052 584.321 173.705L587.996 174.44C590.283 174.93 591.426 175.992 591.426 177.625C591.426 179.258 590.201 180.075 587.751 180.075H545.856C543.569 180.075 542.426 179.177 542.426 177.38C542.426 175.583 543.814 174.603 546.591 174.44L551.246 173.95C554.023 173.623 555.738 172.725 556.391 171.255C557.208 169.785 557.208 167.253 556.391 163.66L547.081 125.685C546.101 121.438 543.406 119.315 538.996 119.315H513.271C509.024 119.315 506.329 121.438 505.186 125.685L496.856 158.515C494.406 167.825 496.856 172.97 504.206 173.95L507.881 174.44C510.658 174.93 512.046 175.91 512.046 177.38C512.046 179.177 510.903 180.075 508.616 180.075H474.316ZM512.536 111.965H539.486C542.099 111.965 543.161 110.577 542.671 107.8L526.991 42.14H525.766L509.351 107.8C508.861 110.577 509.923 111.965 512.536 111.965Z" fill="white"/>
+</svg>
             <span class="cp">© 2026</span>
         </div>
     </div></footer>
