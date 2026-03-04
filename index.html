@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Yeta — Growth engine for B2B companies</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        @font-face { font-family: 'Geist'; font-weight: 100 900; font-style: normal; src: url('https://assets.vercel.com/raw/upload/v1/frameworks/geist/Geist%5Bwght%5D.woff2') format('woff2'); font-display: swap; }
+
+        :root {
+            --bg:             #0A0A0C;
+            --bg-hover:       #101012;
+            --bg-elevated:    #131315;
+            --border:         #1E1E21;
+            --border-hover:   #2A2A2E;
+            --text-primary:   #EDEDEF;
+            --text-secondary: #A0A0A3;
+            --text-tertiary:  #6E6E72;
+            --text-quaternary:#4A4A4E;
+            --accent:         #5E6AD2;
+            --accent-dim:     rgba(94, 106, 210, 0.08);
+            --green:          #4ADE80;
+            --serif:  'EB Garamond', Georgia, serif;
+            --sans:   'Geist', -apple-system, 'Segoe UI', sans-serif;
+            --mono:   'JetBrains Mono', 'SF Mono', 'Fira Code', monospace;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        ::selection { background: rgba(94, 106, 210, 0.3); color: var(--text-primary); }
+        html { font-size: 16px; scroll-behavior: smooth; }
+
+        body {
+            background: var(--bg);
+            color: var(--text-primary);
+            font-family: var(--sans);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* ONE WIDTH. EVERYWHERE. */
+        .frame { max-width: 720px; margin: 0 auto; padding: 0 32px; }
+        @media (max-width: 600px) { .frame { padding: 0 20px; } }
+
+        /* ================================================================
+           NAV
+           ================================================================ */
+        header {
+            padding: 18px 0;
+            border-bottom: 1px solid var(--border);
+            position: sticky; top: 0; z-index: 100;
+            background: rgba(10, 10, 12, 0.88);
+            backdrop-filter: blur(16px);
+        }
+        /* Nav gets slightly wider for breathing room */
+        header > .frame { max-width: 720px; }
+        header .frame { display: flex; justify-content: space-between; align-items: center; }
+        .wordmark { font-family: var(--serif); font-size: 1.25rem; font-weight: 500; color: var(--text-primary); letter-spacing: -0.3px; }
+        .nav-cta { font-family: var(--mono); font-size: 0.6875rem; color: var(--text-tertiary); text-decoration: none; letter-spacing: 0.2px; transition: color 0.2s; }
+        .nav-cta:hover { color: var(--text-secondary); }
+
+        /* ================================================================
+           HERO — CENTRED, LIKE LINEAR METHOD
+           ================================================================ */
+        .hero {
+            padding: 100px 0 88px;
+            border-bottom: 1px solid var(--border);
+            text-align: center;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--mono);
+            font-size: 0.6875rem;
+            color: var(--text-tertiary);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 24px;
+        }
+
+        .hero h1 {
+            font-family: var(--serif);
+            font-size: clamp(2.75rem, 5.5vw, 3.75rem);
+            font-weight: 400;
+            line-height: 1.08;
+            letter-spacing: -1.5px;
+            margin: 0 auto 28px;
+            max-width: 600px;
+        }
+        .hero h1 em { font-style: italic; color: var(--accent); }
+
+        .hero-body {
+            font-size: 0.9375rem;
+            color: var(--text-secondary);
+            max-width: 440px;
+            margin: 0 auto 44px;
+            line-height: 1.65;
+            font-weight: 400;
+        }
+
+        .cta-link {
+            display: inline-flex; align-items: center; gap: 10px;
+            font-family: var(--mono); font-size: 0.6875rem; letter-spacing: 0.3px;
+            color: var(--text-secondary); text-decoration: none;
+            padding-bottom: 10px; border-bottom: 1px solid var(--border-hover);
+            transition: all 0.2s;
+        }
+        .cta-link:hover { color: var(--text-primary); border-color: var(--text-tertiary); }
+        .cta-link span { transition: transform 0.2s; display: inline-block; }
+        .cta-link:hover span { transform: translateX(3px); }
+
+        /* ================================================================
+           SECTIONS
+           ================================================================ */
+        .section { padding: 72px 0; border-bottom: 1px solid var(--border); }
+        .sn { font-family: var(--mono); font-size: 0.6875rem; color: var(--text-tertiary); letter-spacing: 0.5px; margin-bottom: 10px; }
+        .sh {
+            font-family: var(--serif);
+            font-size: clamp(1.875rem, 3.5vw, 2.5rem);
+            font-weight: 400; letter-spacing: -0.8px;
+            margin-bottom: 14px; line-height: 1.1;
+        }
+        .si { font-size: 0.875rem; color: var(--text-secondary); max-width: 480px; line-height: 1.7; font-weight: 400; margin-bottom: 44px; }
+
+        /* ================================================================
+           PROBLEM LIST
+           ================================================================ */
+        .pl { list-style: none; counter-reset: p; }
+        .pl li {
+            counter-increment: p; padding: 20px 0; border-top: 1px solid var(--border);
+            display: grid; grid-template-columns: 32px 1fr; gap: 16px; align-items: start;
+            transition: background 0.15s;
+        }
+        .pl li:hover { background: var(--bg-hover); margin: 0 -12px; padding: 20px 12px; }
+        .pl li::before { content: counter(p, decimal-leading-zero); font-family: var(--mono); font-size: 0.625rem; color: var(--text-quaternary); padding-top: 3px; }
+        .pl .pt { font-family: var(--serif); font-size: 1.0625rem; font-weight: 500; margin-bottom: 6px; }
+        .pl .pd { font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.65; font-weight: 400; }
+
+        /* ================================================================
+           PILLARS
+           ================================================================ */
+        .pg { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); }
+        @media (max-width: 700px) { .pg { grid-template-columns: 1fr; } }
+        .pc { background: var(--bg); padding: 28px 24px; transition: background 0.15s; }
+        .pc:hover { background: var(--bg-hover); }
+        .pc-label { font-family: var(--mono); font-size: 0.625rem; color: var(--text-tertiary); text-transform: uppercase; letter-spacing: 1.2px; margin-bottom: 14px; }
+        .pc h3 { font-family: var(--serif); font-size: 1.0625rem; font-weight: 500; margin-bottom: 8px; }
+        .pc > p { font-size: 0.8125rem; color: var(--text-secondary); line-height: 1.65; font-weight: 400; margin-bottom: 16px; }
+        .pc ul { list-style: none; }
+        .pc ul li { font-size: 0.75rem; color: var(--text-tertiary); padding: 3px 0 3px 14px; position: relative; transition: color 0.15s; }
+        .pc ul li::before { content: '–'; position: absolute; left: 0; color: var(--text-quaternary); }
+        .pc ul li:hover { color: var(--text-secondary); }
+        .cl { margin-top: 28px; font-size: 0.875rem; color: var(--text-secondary); font-weight: 400; line-height: 1.65; font-style: italic; font-family: var(--serif); }
+
+        /* ================================================================
+           SPLIT
+           ================================================================ */
+        .sp { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); }
+        @media (max-width: 600px) { .sp { grid-template-columns: 1fr; } }
+        .sp-p { background: var(--bg); padding: 28px 24px; }
+        .sp-p h3 { font-family: var(--mono); font-size: 0.625rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-tertiary); margin-bottom: 20px; }
+        .sp-p ul { list-style: none; }
+        .sp-p ul li { font-size: 0.8125rem; color: var(--text-secondary); padding: 5px 0; font-weight: 400; line-height: 1.5; }
+
+        /* ================================================================
+           COMPARISON TABLE
+           ================================================================ */
+        .cw { overflow-x: auto; }
+        .ct { width: 100%; min-width: 580px; border-collapse: collapse; font-size: 0.8125rem; }
+        .ct th {
+            font-family: var(--mono); font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.8px;
+            color: var(--text-tertiary); text-align: left; padding: 12px 12px;
+            border-bottom: 1px solid var(--border-hover); font-weight: 500; white-space: nowrap;
+        }
+        .ct th:last-child { color: var(--accent); }
+        .ct td { padding: 11px 12px; border-bottom: 1px solid var(--border); color: var(--text-tertiary); font-weight: 400; }
+        .ct td:first-child { color: var(--text-secondary); }
+        .ct td:last-child { color: var(--text-primary); }
+        .ct tr:last-child td { border-bottom: none; }
+        .ct tr:hover td { background: var(--bg-hover); }
+        .ty { color: var(--green); font-family: var(--mono); font-size: 0.625rem; }
+        .tn { color: var(--text-quaternary); font-family: var(--mono); font-size: 0.625rem; }
+        .tp { color: var(--text-tertiary); font-style: italic; }
+
+        /* ================================================================
+           PROOF
+           ================================================================ */
+        .pb { padding: 32px 0; }
+        .pb blockquote {
+            font-family: var(--serif); font-size: 1.125rem; font-weight: 400;
+            line-height: 1.55; font-style: italic; max-width: 520px; margin-bottom: 20px;
+            color: var(--text-secondary);
+        }
+        .pb .attr { font-family: var(--mono); font-size: 0.6875rem; color: var(--text-tertiary); letter-spacing: 0.3px; }
+        .ps { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 32px; }
+        @media (max-width: 600px) { .ps { grid-template-columns: 1fr; } }
+        .psc { background: var(--bg); padding: 24px; }
+        .psc .psn { font-family: var(--serif); font-size: 1.5rem; font-weight: 400; margin-bottom: 4px; }
+        .psc .psd { font-size: 0.75rem; color: var(--text-tertiary); font-weight: 400; line-height: 1.5; }
+
+        /* ================================================================
+           PRICING
+           ================================================================ */
+        .pa { font-size: 0.875rem; color: var(--text-secondary); font-weight: 400; margin-bottom: 32px; line-height: 1.7; }
+        .pa s { color: var(--text-tertiary); text-decoration: line-through; }
+        .ptb { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+        .ptb th { font-family: var(--mono); font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-tertiary); text-align: left; padding: 12px 0; border-bottom: 1px solid var(--border-hover); font-weight: 500; }
+        .ptb td { padding: 16px 0; border-bottom: 1px solid var(--border); font-weight: 400; color: var(--text-tertiary); vertical-align: top; }
+        .ptb td:first-child { color: var(--text-secondary); padding-right: 20px; }
+        .ptb td:last-child { font-family: var(--mono); font-size: 0.8125rem; color: var(--text-primary); font-weight: 500; white-space: nowrap; }
+        .ptb .rec td { color: var(--text-secondary); }
+        .ptb .rec td:first-child { color: var(--text-primary); }
+        .ptb .rec td:first-child::after { content: ' ✱'; font-family: var(--mono); font-size: 0.5rem; color: var(--accent); vertical-align: super; }
+        .ptb .rec td:last-child { color: var(--accent); }
+        .pn { margin-top: 20px; font-size: 0.75rem; color: var(--text-tertiary); line-height: 1.8; }
+
+        /* ================================================================
+           ROI
+           ================================================================ */
+        .roi-grid {
+            display: grid; grid-template-columns: repeat(4, 1fr);
+            gap: 1px; background: var(--border); border: 1px solid var(--border); margin-top: 44px;
+        }
+        @media (max-width: 600px) { .roi-grid { grid-template-columns: repeat(2, 1fr); } }
+        .roi-cell { background: var(--bg); padding: 32px 20px; text-align: center; }
+        .roi-cell .roi-num { font-family: var(--serif); font-size: 1.75rem; font-weight: 400; color: var(--text-primary); margin-bottom: 8px; letter-spacing: -0.5px; }
+        .roi-cell:last-child .roi-num { color: var(--accent); }
+        .roi-cell .roi-label { font-family: var(--mono); font-size: 0.5625rem; text-transform: uppercase; letter-spacing: 0.8px; color: var(--text-tertiary); line-height: 1.6; }
+        .roi-note { margin-top: 24px; font-family: var(--serif); font-size: 1rem; font-style: italic; color: var(--text-secondary); }
+
+        /* ================================================================
+           FAQ
+           ================================================================ */
+        .fl { list-style: none; }
+        .fq { border-top: 1px solid var(--border); }
+        .fq:last-child { border-bottom: 1px solid var(--border); }
+        .fq-t {
+            width: 100%; background: none; border: none; padding: 18px 0;
+            display: flex; justify-content: space-between; align-items: center;
+            cursor: pointer; text-align: left; font-family: var(--serif);
+            font-size: 1rem; font-weight: 500; color: var(--text-secondary); transition: color 0.2s;
+        }
+        .fq-t:hover { color: var(--text-primary); }
+        .fq-i { font-family: var(--mono); font-size: 0.75rem; color: var(--text-tertiary); transition: transform 0.25s; flex-shrink: 0; margin-left: 16px; }
+        .fq.open .fq-i { transform: rotate(45deg); }
+        .fq-a { max-height: 0; overflow: hidden; transition: max-height 0.35s ease, padding 0.35s ease; }
+        .fq.open .fq-a { max-height: 200px; padding-bottom: 20px; }
+        .fq-a p { font-size: 0.875rem; color: var(--text-tertiary); line-height: 1.7; font-weight: 400; max-width: 540px; }
+
+        /* ================================================================
+           CTA
+           ================================================================ */
+        .fcs { padding: 88px 0; border-bottom: 1px solid var(--border); text-align: center; }
+        .fcs h2 {
+            font-family: var(--serif);
+            font-size: clamp(2rem, 3.5vw, 2.75rem);
+            font-weight: 400; letter-spacing: -0.8px; margin-bottom: 14px; line-height: 1.1;
+        }
+        .fcs p { font-size: 0.875rem; color: var(--text-secondary); max-width: 400px; margin: 0 auto 36px; line-height: 1.7; font-weight: 400; }
+
+        /* ================================================================
+           DETAIL LINKS
+           ================================================================ */
+        .dl { margin-top: 24px; }
+        .dl-a {
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 0; border-top: 1px solid var(--border);
+            cursor: pointer; text-decoration: none; color: var(--text-secondary); transition: all 0.15s;
+        }
+        .dl-a:last-child { border-bottom: 1px solid var(--border); }
+        .dl-a:hover { color: var(--text-primary); background: var(--bg-hover); margin: 0 -12px; padding: 16px 12px; }
+        .dl-l { display: flex; align-items: baseline; gap: 16px; }
+        .dl-n { font-family: var(--mono); font-size: 0.625rem; color: var(--text-quaternary); min-width: 24px; }
+        .dl-t { font-family: var(--serif); font-size: 1rem; font-weight: 500; }
+        .dl-r { font-family: var(--mono); font-size: 0.6875rem; color: var(--text-quaternary); transition: transform 0.2s; }
+        .dl-a:hover .dl-r { transform: translateX(3px); color: var(--text-tertiary); }
+
+        /* ================================================================
+           FOOTER
+           ================================================================ */
+        footer { padding: 32px 0 48px; }
+        .fg { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
+        @media (max-width: 600px) { .fg { grid-template-columns: 1fr; gap: 24px; } }
+        .fc-t { font-family: var(--mono); font-size: 0.625rem; text-transform: uppercase; letter-spacing: 1.2px; color: var(--text-quaternary); margin-bottom: 12px; }
+        .fc-c a { display: block; font-size: 0.8125rem; color: var(--text-tertiary); text-decoration: none; padding: 3px 0; font-weight: 400; transition: color 0.15s; }
+        .fc-c a:hover { color: var(--text-secondary); }
+        .fb { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 12px; }
+        .fb .wordmark { font-size: 1rem; }
+        .fb .cp { font-size: 0.6875rem; color: var(--text-quaternary); }
+
+        /* MODAL */
+        .mo { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.6); z-index: 1000; align-items: center; justify-content: center; padding: 24px; backdrop-filter: blur(4px); }
+        .mo.active { display: flex; }
+        .md { background: var(--bg-elevated); border: 1px solid var(--border); max-width: 520px; width: 100%; max-height: 80vh; overflow-y: auto; padding: 40px; }
+        .md h3 { font-family: var(--serif); font-size: 1.25rem; font-weight: 400; margin-bottom: 16px; }
+        .md p { font-size: 0.875rem; color: var(--text-secondary); line-height: 1.7; font-weight: 400; margin-bottom: 12px; }
+        .mc { font-family: var(--mono); font-size: 0.6875rem; color: var(--text-tertiary); background: none; border: none; cursor: pointer; margin-top: 20px; padding: 8px 0; border-bottom: 1px solid var(--border); transition: color 0.15s; }
+        .mc:hover { color: var(--text-secondary); }
+
+        /* FADE */
+        .fi { opacity: 0; transform: translateY(10px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .fi.v { opacity: 1; transform: translateY(0); }
+        .d1 { transition-delay: 0.06s; }
+        .d2 { transition-delay: 0.12s; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="frame">
+            <div class="wordmark">Yeta.</div>
+            <a href="#book" class="nav-cta">Book a call →</a>
+        </div>
+    </header>
+
+    <!-- HERO — CENTRED -->
+    <div class="hero">
+        <div class="frame">
+            <div class="hero-eyebrow">The growth engine</div>
+            <h1>Content, outreach, and ads as <em>one compound system</em></h1>
+            <p class="hero-body">Six services that usually need three separate agencies. One integrated engine where each part makes the others more effective.</p>
+            <a href="#book" class="cta-link">Book a strategy call <span>→</span></a>
+        </div>
+    </div>
+
+    <!-- 1.0 -->
+    <div class="section">
+        <div class="frame">
+            <div class="sn fi">1.0</div>
+            <h2 class="sh fi">The problem with fragmented growth</h2>
+            <p class="si fi">Most B2B companies piece together content, outreach, and ads from different places. Nothing connects. Nothing compounds.</p>
+            <ol class="pl">
+                <li class="fi"><div><div class="pt">Three agencies, zero integration</div><div class="pd">One for content. One for outbound. A freelancer for design. They don't talk to each other and your prospects notice the disconnect.</div></div></li>
+                <li class="fi d1"><div><div class="pt">The tools exist. The execution doesn't.</div><div class="pd">Clay, Apollo, Instantly. The stack costs $500–800/mo in tools. Running it properly takes 2–3 full-time people at $15K–25K/mo.</div></div></li>
+                <li class="fi d2"><div><div class="pt">Cold outbound alone is dying</div><div class="pd">Reply rates have dropped to 3–5%. Without content warming your prospects first, you're adding to the noise.</div></div></li>
+            </ol>
+        </div>
+    </div>
+
+    <!-- 2.0 -->
+    <div class="section">
+        <div class="frame">
+            <div class="sn fi">2.0</div>
+            <h2 class="sh fi">Three engines. One compound system.</h2>
+            <p class="si fi">Content warms prospects. Outreach captures intent. Ads create surround-sound. Each makes the others more effective.</p>
+            <div class="pg fi">
+                <div class="pc"><div class="pc-label">Pillar 01</div><h3>Content Engine</h3><p>Builds authority and warms your market before a single message is sent.</p><ul><li>10–12 LinkedIn posts/mo</li><li>8 custom static graphics</li><li>Your voice, your positioning</li><li>Media packages available</li></ul></div>
+                <div class="pc"><div class="pc-label">Pillar 02</div><h3>Outreach Engine</h3><p>Personalised multi-channel sequences powered by a 20-step enrichment pipeline.</p><ul><li>Clay-powered cold email</li><li>LinkedIn outreach sequences</li><li>Reply management</li><li>Meetings booked to calendar</li></ul></div>
+                <div class="pc"><div class="pc-label">Pillar 03</div><h3>Paid Amplification</h3><p>Retargets pipeline prospects and accelerates deals through the surround-sound effect.</p><ul><li>LinkedIn ad campaigns</li><li>Retargeting warm prospects</li><li>Ad spend always passthrough</li><li>Boost top organic content</li></ul></div>
+            </div>
+            <p class="cl fi">Content engagement feeds outreach. Outreach responses inform content. Ads amplify what's working. Everything compounds.</p>
+        </div>
+    </div>
+
+    <!-- 3.0 -->
+    <div class="section">
+        <div class="frame">
+            <div class="sn fi">3.0</div>
+            <h2 class="sh fi">We run the system. You close the deals.</h2>
+            <div class="sp fi">
+                <div class="sp-p"><h3>What Yeta handles</h3><ul><li>Write and schedule all LinkedIn content</li><li>Design all graphics and creative</li><li>Build and manage enrichment engine</li><li>Write every personalised email and message</li><li>Manage sending infrastructure</li><li>Handle replies and qualify responses</li><li>Book meetings into your calendar</li><li>Run LinkedIn ad campaigns</li><li>Monthly performance reports</li></ul></div>
+                <div class="sp-p"><h3>What you do</h3><ul><li>Approve content before publishing</li><li>Attend booked meetings</li><li>Close deals</li><li>Provide brand assets and case studies</li><li>Flag protected relationships</li></ul></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 4.0 -->
+    <div class="section">
+        <div class="frame">
+            <div class="sn fi">4.0</div>
+            <h2 class="sh fi">No one else delivers all six</h2>
+            <p class="si fi">Most agencies cover one or two channels. The rest is left to you.</p>
+            <div class="cw fi">
+                <table class="ct">
+                    <thead><tr><th></th><th>Outbound agencies</th><th>Claygencies</th><th>Restartt</th><th>Yeta</th></tr></thead>
+                    <tbody>
+                        <tr><td>Clay-powered enrichment</td><td><span class="tn">No</span></td><td><span class="ty">Yes</span></td><td><span class="tp">Partial</span></td><td><span class="ty">Yes</span></td></tr>
+                        <tr><td>Cold email at scale</td><td><span class="ty">Yes</span></td><td><span class="ty">Yes</span></td><td><span class="tn">No</span></td><td><span class="ty">Yes</span></td></tr>
+                        <tr><td>LinkedIn outreach</td><td><span class="tp">Some</span></td><td><span class="tp">Some</span></td><td><span class="ty">Yes</span></td><td><span class="ty">Yes</span></td></tr>
+                        <tr><td>LinkedIn content</td><td><span class="tn">No</span></td><td><span class="tn">No</span></td><td><span class="ty">Yes</span></td><td><span class="ty">Yes</span></td></tr>
+                        <tr><td>LinkedIn ads</td><td><span class="tn">No</span></td><td><span class="tn">No</span></td><td><span class="ty">Yes</span></td><td><span class="ty">Yes</span></td></tr>
+                        <tr><td>Creative and design</td><td><span class="tn">No</span></td><td><span class="tn">No</span></td><td><span class="tp">Partial</span></td><td><span class="ty">Yes</span></td></tr>
+                        <tr><td>Monthly cost</td><td>$5K–15K</td><td>$5K–10K</td><td>$7.5K–15K+</td><td style="color:var(--accent);font-weight:500;">$4,750–8,950</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5.0 -->
+    <div class="section">
+        <div class="frame">
+            <div class="sn fi">5.0</div>
+            <h2 class="sh fi">Built at Proof of Work. Now productised.</h2>
+            <div class="pb fi">
+                <blockquote>I co-founded Proof of Work Studio and built the outbound engine that grew it to a 20+ person agency. Same workflows. Same infrastructure. Same content strategy. One person, no sales team. Yeta is the productised version.</blockquote>
+                <div class="attr">— Charlie Simpson, Founder</div>
+            </div>
+            <div class="ps fi">
+                <div class="psc"><div class="psn">300%</div><div class="psd">More meetings with multi-channel vs single-channel outreach</div></div>
+                <div class="psc"><div class="psn">90%</div><div class="psd">Connection acceptance within 24hrs of content engagement</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 6.0 -->
+    <div class="section" id="pricing">
+        <div class="frame">
+            <div class="sn fi">6.0</div>
+            <h2 class="sh fi">Transparent pricing. No surprises.</h2>
+            <p class="pa fi">Buying separately costs <s>$5,900–18,500/mo</s>. Yeta delivers it as one system from $4,750/mo.</p>
+            <table class="ptb fi">
+                <thead><tr><th>Tier</th><th>Includes</th><th>500 contacts/mo</th></tr></thead>
+                <tbody>
+                    <tr><td>Content + Email</td><td>Content engine, cold email, infrastructure, reply management, meeting booking</td><td>$4,750/mo</td></tr>
+                    <tr class="rec"><td>Content + Email + LinkedIn</td><td>Everything above plus LinkedIn outreach and multi-channel coordination</td><td>$5,950/mo</td></tr>
+                    <tr><td>Full System</td><td>Everything above plus LinkedIn ads and prospect retargeting</td><td>$7,450/mo</td></tr>
+                </tbody>
+            </table>
+            <div class="pn fi">✱ Recommended. All tiers include 10–12 LinkedIn posts and 8 custom graphics/mo. $950 one-time setup. 3-month minimum. 1,000 contact/mo tiers and media packages available.</div>
+        </div>
+    </div>
+
+    <!-- 7.0 -->
+    <div class="section">
+        <div class="frame">
+            <div class="sn fi">7.0</div>
+            <h2 class="sh fi">One deal pays for the entire year.</h2>
+            <div class="roi-grid fi">
+                <div class="roi-cell"><div class="roi-num">$5,950</div><div class="roi-label">Monthly<br>investment</div></div>
+                <div class="roi-cell"><div class="roi-num">1,000</div><div class="roi-label">Contacts<br>reached</div></div>
+                <div class="roi-cell"><div class="roi-num">~20</div><div class="roi-label">Booked<br>calls</div></div>
+                <div class="roi-cell"><div class="roi-num">$50–500K+</div><div class="roi-label">Deal<br>value</div></div>
+            </div>
+            <p class="roi-note fi">One closed deal from the system covers 6–12 months of investment.</p>
+        </div>
+    </div>
+
+    <!-- 8.0 -->
+    <div class="section">
+        <div class="frame">
+            <div class="sn fi">8.0</div>
+            <h2 class="sh fi">Questions</h2>
+            <ul class="fl" style="margin-top: 32px;">
+                <li class="fq"><button class="fq-t" onclick="this.parentElement.classList.toggle('open')">Why not just use Clay ourselves?<span class="fq-i">+</span></button><div class="fq-a"><p>The DIY stack exists. But running 20-step enrichment, managing deliverability, writing content, coordinating ads, and handling creative takes 2–3 people at $15K–25K/mo. The tools aren't the hard part. The execution is.</p></div></li>
+                <li class="fq"><button class="fq-t" onclick="this.parentElement.classList.toggle('open')">How quickly will we see results?<span class="fq-i">+</span></button><div class="fq-a"><p>Month 1 is calibration. Infrastructure warms up, content starts publishing, data flows. Months 2–3 hit benchmark. We set expectations with data, not promises.</p></div></li>
+                <li class="fq"><button class="fq-t" onclick="this.parentElement.classList.toggle('open')">Do we own everything?<span class="fq-i">+</span></button><div class="fq-a"><p>Yes. Lists, inboxes, accounts, content. Full CSV export on exit. You're never locked in to Yeta. You're locked in because it works.</p></div></li>
+                <li class="fq"><button class="fq-t" onclick="this.parentElement.classList.toggle('open')">What's the minimum commitment?<span class="fq-i">+</span></button><div class="fq-a"><p>3 months. No long-term lock-in. The system needs time to calibrate. Most clients stay because the pipeline speaks for itself.</p></div></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- CTA — CENTRED -->
+    <div class="fcs" id="book">
+        <div class="frame">
+            <h2 class="fi">20 minutes. No commitment.</h2>
+            <p class="fi">We'll walk through the system and show you what it looks like for your business. If it's not a fit, the conversation was free.</p>
+            <a href="mailto:charlie@proofofwork.studio?subject=Yeta%20—%20Strategy%20Call" class="cta-link fi">Book a strategy call <span>→</span></a>
+        </div>
+    </div>
+
+    <!-- APPENDIX -->
+    <div class="section" style="padding: 48px 0;">
+        <div class="frame">
+            <div class="dl">
+                <a class="dl-a" onclick="openM('m-sys')"><div class="dl-l"><span class="dl-n">A.1</span><span class="dl-t">The compound system in detail</span></div><span class="dl-r">→</span></a>
+                <a class="dl-a" onclick="openM('m-clay')"><div class="dl-l"><span class="dl-n">A.2</span><span class="dl-t">What we use Clay for</span></div><span class="dl-r">→</span></a>
+                <a class="dl-a" onclick="openM('m-con')"><div class="dl-l"><span class="dl-n">A.3</span><span class="dl-t">How the content engine works</span></div><span class="dl-r">→</span></a>
+                <a class="dl-a" onclick="openM('m-onb')"><div class="dl-l"><span class="dl-n">A.4</span><span class="dl-t">Onboarding and setup</span></div><span class="dl-r">→</span></a>
+                <a class="dl-a" onclick="openM('m-med')"><div class="dl-l"><span class="dl-n">A.5</span><span class="dl-t">Media packages</span></div><span class="dl-r">→</span></a>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <div class="frame">
+            <div class="fg">
+                <div class="fc-c"><div class="fc-t">Yeta</div><a href="#book">Book a call</a><a href="#pricing">Pricing</a></div>
+                <div class="fc-c"><div class="fc-t">Built by</div><a href="https://proofofwork.studio" target="_blank">Proof of Work Studio</a><a href="https://linkedin.com/in/charlie-simpson-1990" target="_blank">Charlie Simpson</a></div>
+                <div class="fc-c"><div class="fc-t">Contact</div><a href="mailto:charlie@proofofwork.studio">charlie@proofofwork.studio</a></div>
+            </div>
+            <div class="fb"><div class="wordmark">Yeta.</div><div class="cp">© 2026</div></div>
+        </div>
+    </footer>
+
+    <!-- MODALS -->
+    <div class="mo" id="m-sys" onclick="if(event.target===this)closeM(this.id)"><div class="md"><h3>The compound system</h3><p>Most growth agencies operate in silos. An outbound agency sends cold emails. A content agency posts on LinkedIn. A paid media agency runs ads. None of them talk to each other.</p><p>Yeta integrates all three into one system where data flows between channels. When a prospect engages with your LinkedIn content, the outreach engine picks that up. When outreach generates replies, the content calendar adapts. When ads run, they retarget people already in the pipeline.</p><p>The result is compound growth. Each channel makes the others more effective. Month over month, the system gets smarter and the cost per meeting drops.</p><button class="mc" onclick="closeM('m-sys')">Close</button></div></div>
+    <div class="mo" id="m-clay" onclick="if(event.target===this)closeM(this.id)"><div class="md"><h3>What we use Clay for</h3><p>Clay is the enrichment backbone of the outreach engine. Before any message is sent, every prospect goes through a 20-step pipeline that pulls data from multiple sources to build a complete picture.</p><p>Every email and LinkedIn message references something specific about the recipient. Not "I noticed your company is growing." Specific enough that it reads like it was written by hand.</p><p>Clay is the enrichment tool, not the differentiator. The differentiator is the integrated system it sits inside.</p><button class="mc" onclick="closeM('m-clay')">Close</button></div></div>
+    <div class="mo" id="m-con" onclick="if(event.target===this)closeM(this.id)"><div class="md"><h3>How the content engine works</h3><p>We write in your voice. Not generic LinkedIn advice. Positioning-led content that builds authority in your specific market.</p><p>Every month: 10–12 LinkedIn posts, 8 custom static graphics, and (with a media package) carousels, video, or motion graphics. You approve everything before it goes live.</p><p>Content builds trust with your broader market and warms the specific prospects targeted by the outreach engine. Cold messages feel far less cold.</p><button class="mc" onclick="closeM('m-con')">Close</button></div></div>
+    <div class="mo" id="m-onb" onclick="if(event.target===this)closeM(this.id)"><div class="md"><h3>Onboarding and setup</h3><p>$950 one-time setup covers sending domain configuration (SPF, DKIM, DMARC), inbox warming, enrichment engine build, ICP definition, content audit, and tone-of-voice extraction.</p><p>You purchase sending domains. We handle all technical configuration. Setup takes approximately one week before the system starts running.</p><p>First month retainer and setup fee due before onboarding begins.</p><button class="mc" onclick="closeM('m-onb')">Close</button></div></div>
+    <div class="mo" id="m-med" onclick="if(event.target===this)closeM(this.id)"><div class="md"><h3>Media packages</h3><p>Every tier includes 8 static graphics as standard. Media packages add premium visual content.</p><p>Essential ($750/mo): 4 carousel posts. Growth ($1,450/mo): 4 carousels plus 4 videos or motion graphics. Premium ($2,250/mo): 4 carousels, 8 videos/motion, plus 1 long-form edit.</p><p>Best for companies with existing visual assets that can be repurposed into LinkedIn-native formats.</p><button class="mc" onclick="closeM('m-med')">Close</button></div></div>
+
+    <script>
+    const obs = new IntersectionObserver(e => { e.forEach(el => { if (el.isIntersecting) el.target.classList.add('v'); }); }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+    document.querySelectorAll('.fi').forEach(el => obs.observe(el));
+    document.querySelectorAll('a[href^="#"]').forEach(a => { a.addEventListener('click', function(e) { e.preventDefault(); const t = document.querySelector(this.getAttribute('href')); if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' }); }); });
+    function openM(id) { document.getElementById(id).classList.add('active'); document.body.style.overflow = 'hidden'; }
+    function closeM(id) { document.getElementById(id).classList.remove('active'); document.body.style.overflow = ''; }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.mo.active').forEach(m => { m.classList.remove('active'); document.body.style.overflow = ''; }); });
+    </script>
+</body>
+</html>
