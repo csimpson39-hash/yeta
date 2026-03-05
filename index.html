@@ -5,18 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0A0A0B">
-    <!-- <link rel="icon" type="image/svg+xml" href="/favicon.svg"> -->
-    <!-- TODO: Add favicon.svg and og.png when ready -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://runyeta.com">
     <meta name="description" content="Yeta integrates content, outreach, and ads into one compounding growth system for B2B companies. Six services, one engine. From $4,750/mo.">
     <meta property="og:title" content="Yeta | B2B Growth Engine — Content, Outreach & Ads in One System">
     <meta property="og:description" content="Content, outreach, and ads. One compounding system. Six services, one integrated engine.">
-    <!-- <meta property="og:image" content="https://runyeta.com/og.png"> -->
+    <meta property="og:image" content="https://runyeta.com/og.png">
     <meta property="og:url" content="https://runyeta.com">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Yeta | B2B Growth Engine — Content, Outreach & Ads in One System">
     <meta name="twitter:description" content="Yeta integrates content, outreach, and ads into one compounding growth system for B2B companies. Six services, one engine. From $4,750/mo.">
+    <meta name="twitter:image" content="https://runyeta.com/og.png">
     <title>Yeta | B2B Growth Engine — Content, Outreach &amp; Ads in One System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -63,7 +63,7 @@
         "offers": [
             {
                 "@type": "Offer",
-                "name": "Content + Email",
+                "name": "Starter",
                 "description": "Content engine, cold email, infrastructure, reply management, and meeting booking. 500 contacts per month.",
                 "price": "4750",
                 "priceCurrency": "USD",
@@ -76,8 +76,8 @@
             },
             {
                 "@type": "Offer",
-                "name": "Content + Email + LinkedIn",
-                "description": "Everything in Content + Email plus LinkedIn outreach and multi-channel coordination. 500 contacts per month.",
+                "name": "Pro",
+                "description": "Everything in Starter plus LinkedIn outreach and multi-channel coordination. 500 contacts per month.",
                 "price": "5950",
                 "priceCurrency": "USD",
                 "priceSpecification": {
@@ -89,8 +89,8 @@
             },
             {
                 "@type": "Offer",
-                "name": "Full System",
-                "description": "Everything in Content + Email + LinkedIn plus LinkedIn ads and prospect retargeting. 500 contacts per month.",
+                "name": "Max",
+                "description": "Everything in Pro plus LinkedIn ads and prospect retargeting. 500 contacts per month.",
                 "price": "7450",
                 "priceCurrency": "USD",
                 "priceSpecification": {
@@ -234,12 +234,12 @@
         .nav-cta { font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
         .nav-cta:hover { color: var(--text-heading); }
 
-        .hero { padding: 140px 0 160px; text-align: center; position: relative; overflow: hidden; }
+        .hero { min-height: calc(100svh - 65px); display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; padding: 60px 0; }
         .hero::before { content: ''; position: absolute; width: 700px; height: 500px; background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%); top: 45%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
         .hero > .frame { position: relative; z-index: 1; }
         .hero-eyebrow { font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 28px; }
-        .hero h1 { font-family: var(--serif); font-size: clamp(44px, 7vw, 76px); font-weight: 400; line-height: 1.05; letter-spacing: -0.03em; color: var(--text-heading); max-width: 700px; margin: 0 auto 32px; }
-        .hero h1 em { font-style: italic; background: linear-gradient(135deg, #8B8BF5, #A78BFA); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero h1 { font-family: var(--serif); font-size: clamp(46px, 9vw, 76px); font-weight: 400; line-height: 1.05; letter-spacing: -0.03em; color: var(--text-heading); max-width: 700px; margin: 0 auto 32px; }
+        .hero h1 em { font-style: italic; display: block; background: linear-gradient(135deg, #8B8BF5, #A78BFA); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .hero-body { font-size: 18px; color: var(--text-body); max-width: 460px; margin: 0 auto 52px; line-height: 1.65; }
 
         .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--text-heading); text-decoration: none; padding: 14px 28px; border: 1px solid var(--border-hover); border-radius: 8px; transition: all 0.2s; background: rgba(255,255,255,0.03); }
@@ -251,7 +251,12 @@
         @media (max-width: 600px) { .section { padding: 100px 0; } }
 
         .eyebrow { font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 28px; display: flex; align-items: center; gap: 10px; }
-        .eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent); opacity: 0.5; flex-shrink: 0; }
+        .eyebrow::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: var(--accent-solid); flex-shrink: 0; opacity: 0; transform: scale(0.5) translateY(-1px); transition: opacity 0.4s ease, transform 0.4s ease; }
+        .eyebrow.v::before { opacity: 1; transform: scale(1) translateY(-1px); animation: eyebrow-pulse 2s ease-in-out 0.4s 1; }
+        @keyframes eyebrow-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(124,107,240,0.4); }
+            50% { box-shadow: 0 0 8px 4px rgba(124,107,240,0.15); }
+        }
 
         .sh { font-family: var(--serif); font-size: clamp(32px, 4.5vw, 48px); font-weight: 400; letter-spacing: -0.03em; color: var(--text-heading); margin-bottom: 24px; line-height: 1.1; }
         .si { font-size: 17px; color: var(--text-body); max-width: 500px; line-height: 1.65; margin-bottom: 56px; }
@@ -310,10 +315,11 @@
         .pricing-intro { font-size: 17px; color: var(--text-body); margin-bottom: 40px; line-height: 1.7; }
         .pricing-intro s { color: var(--text-muted); }
         .ptb { width: 100%; border-collapse: collapse; }
-        .ptb th { font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); text-align: left; padding: 16px 0; border-bottom: 1px solid var(--border); }
-        .ptb td { padding: 20px 0; border-bottom: 1px solid var(--border); color: var(--text-body); vertical-align: top; font-size: 15px; }
-        .ptb td:first-child { color: rgba(255,255,255,0.7); padding-right: 24px; }
-        .ptb td:last-child { font-family: var(--sans); font-weight: 600; font-size: 16px; color: var(--text-heading); white-space: nowrap; }
+        .ptb th { font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); text-align: left; padding: 16px 32px 16px 0; border-bottom: 1px solid var(--border); }
+        .ptb td { padding: 20px 32px 20px 0; border-bottom: 1px solid var(--border); color: var(--text-body); vertical-align: top; font-size: 15px; }
+        .ptb td:first-child { color: rgba(255,255,255,0.7); padding-right: 40px; }
+        .ptb td:last-child { font-family: var(--sans); font-weight: 600; font-size: 16px; color: var(--text-heading); white-space: nowrap; padding-right: 0; }
+        .ptb th:last-child { padding-right: 0; }
         .ptb .rec td { color: var(--text-body); }
         .ptb .rec td:first-child { color: var(--text-heading); }
         .ptb .rec td:first-child::after { content: ' ✱'; color: var(--accent); font-size: 11px; vertical-align: super; }
@@ -343,7 +349,7 @@
         .cta-section::before { content: ''; position: absolute; width: 600px; height: 400px; background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%); top: 40%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
         .cta-section > .frame { position: relative; z-index: 1; }
         .cta-section h2 { font-family: var(--serif); font-size: clamp(36px, 5vw, 56px); font-weight: 400; letter-spacing: -0.03em; color: var(--text-heading); margin-bottom: 20px; line-height: 1.1; }
-        .cta-section p { font-size: 17px; color: var(--text-body); max-width: 440px; margin: 0 auto 44px; line-height: 1.65; }
+        .cta-section p { font-size: 17px; color: var(--text-body); max-width: 420px; margin: 0 auto 44px; line-height: 1.65; }
 
         .btn-primary { display: inline-flex; align-items: center; gap: 8px; font-family: var(--sans); font-size: 15px; font-weight: 500; color: white; text-decoration: none; padding: 16px 32px; background: linear-gradient(135deg, #7C6BF0, #6558D3); border: none; border-radius: 8px; transition: all 0.2s; }
         .btn-primary:hover { background: linear-gradient(135deg, #8B7AF5, #7C6BF0); box-shadow: 0 0 40px rgba(110,93,231,0.25); }
@@ -360,15 +366,26 @@
         .dl-r { font-size: 14px; color: var(--text-faint); transition: transform 0.2s; }
         .dl-a:hover .dl-r { transform: translateX(3px); color: var(--text-muted); }
 
-        footer { padding: 80px 0 48px; border-top: 1px solid var(--border); }
-        .fg { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
-        @media (max-width: 600px) { .fg { grid-template-columns: 1fr; gap: 24px; } }
-        .fc-label { font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 14px; }
-        .fc-links a { display: block; font-size: 14px; color: var(--text-muted); text-decoration: none; padding: 3px 0; transition: color 0.15s; }
-        .fc-links a:hover { color: rgba(255,255,255,0.7); }
-        .fb { margin-top: 64px; padding-top: 24px; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 12px; }
-        .fb .logo-svg { height: 18px; opacity: 0.4; }
-        .fb .cp { font-size: 13px; color: var(--text-faint); }
+        footer { padding: 80px 0 48px; border-top: 1px solid var(--border); position: relative; overflow: hidden; }
+        footer::after {
+            content: '';
+            position: absolute;
+            width: 800px; height: 300px;
+            background: radial-gradient(ellipse, rgba(124,107,240,0.08) 0%, transparent 70%);
+            bottom: -100px; left: 50%;
+            transform: translateX(-50%);
+            pointer-events: none;
+        }
+        .fg { display: grid; grid-template-columns: repeat(5, 1fr); align-items: center; }
+        .fg a, .fg .cp { font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
+        .fg a:hover { color: rgba(255,255,255,0.7); }
+        .fg .cp { text-align: right; white-space: nowrap; }
+        @media (max-width: 600px) {
+            .fg { grid-template-columns: repeat(2, 1fr); gap: 16px; }
+            .fg .cp { grid-column: 1 / -1; text-align: left; margin-top: 8px; }
+        }
+        .footer-wordmark { margin-top: 48px; width: 100%; opacity: 0.08; }
+        .footer-wordmark svg { width: 100%; height: auto; }
 
         .mo { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1000; align-items: center; justify-content: center; padding: 24px; backdrop-filter: blur(6px); }
         .mo.active { display: flex; }
@@ -381,7 +398,10 @@
         .fi { opacity: 0; transform: translateY(12px); transition: opacity 0.6s ease, transform 0.6s ease; }
         .fi.v { opacity: 1; transform: translateY(0); }
 
-        @media (max-width: 600px) { .hero { padding: 100px 0 120px; } }
+        @media (max-width: 600px) {
+            .hero-eyebrow { font-size: 11px; }
+            .hero-body { font-size: 16px; }
+        }
         @media (max-width: 600px) { .cta-section { padding: 120px 0 140px; } }
         @media (max-width: 800px) { .table-wrap-outer { position: relative; } .table-wrap-outer::after { content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 40px; background: linear-gradient(to right, transparent, var(--bg)); pointer-events: none; z-index: 2; } }
         @media (max-width: 600px) { .roi-num { font-size: 26px; } }
@@ -505,9 +525,9 @@
         <table class="ptb">
             <thead><tr><th>Tier</th><th>Includes</th><th>500 contacts/mo</th></tr></thead>
             <tbody>
-                <tr><td>Content + Email</td><td>Content engine, cold email, infrastructure, reply management, meeting booking</td><td>$4,750/mo</td></tr>
-                <tr class="rec"><td>Content + Email + LinkedIn</td><td>Everything above plus LinkedIn outreach and multi-channel coordination</td><td>$5,950/mo</td></tr>
-                <tr><td>Full System</td><td>Everything above plus LinkedIn ads and prospect retargeting</td><td>$7,450/mo</td></tr>
+                <tr><td>Starter</td><td>Content engine, cold email, infrastructure, reply management, meeting booking</td><td>$4,750/mo</td></tr>
+                <tr class="rec"><td>Pro</td><td>Everything above plus LinkedIn outreach and multi-channel coordination</td><td>$5,950/mo</td></tr>
+                <tr><td>Max</td><td>Everything above plus LinkedIn ads and prospect retargeting</td><td>$7,450/mo</td></tr>
             </tbody>
         </table>
         </div>
@@ -544,7 +564,7 @@
     <section class="cta-section" id="book">
         <div class="frame">
             <h2 class="fi">20 minutes. No commitment.</h2>
-            <p class="fi">We'll show you how the system would work for your specific market. If it's not a fit, the conversation was free.</p>
+            <p class="fi">We'll show you how the system would work for your specific market. If it's not a fit, the conversation was&nbsp;free.</p>
             <a href="https://calendly.com/csimpson39/30min" target="_blank" rel="noopener" class="btn-primary fi">Book a strategy call <span>→</span></a>
         </div>
     </section>
@@ -561,27 +581,21 @@
 
     </main>
 
-    <footer><div class="frame">
+    <footer><div class="frame-wide">
         <div class="fg">
-            <div><div class="fc-label">Yeta</div><div class="fc-links"><a href="https://calendly.com/csimpson39/30min" target="_blank" rel="noopener">Book a call</a><a href="#pricing">Pricing</a></div></div>
-            <div><div class="fc-label">Connect</div><div class="fc-links"><a href="https://linkedin.com/company/yeta" target="_blank" rel="noopener">LinkedIn</a></div></div>
-            <div><div class="fc-label">Contact</div><div class="fc-links"><a href="https://calendly.com/csimpson39/30min" target="_blank" rel="noopener">Schedule a conversation</a></div></div>
+            <a href="https://calendly.com/csimpson39/30min" target="_blank" rel="noopener">Book a call</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#comparison">Comparison</a>
+            <a href="#faq">FAQ</a>
+            <span class="cp">© 2026 Yeta Co Ltd</span>
         </div>
-        <div class="fb">
-            <a href="/" aria-label="Yeta home">
-                <svg class="logo-svg" viewBox="0 0 592 184" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Yeta logo">
-<path d="M56.698 71C56.698 69.3431 57.8518 68 59.2752 68H71.302C72.7254 68 73.8792 69.3431 73.8792 71V181C73.8792 182.657 72.7254 184 71.302 184H59.2752C57.8518 184 56.698 182.657 56.698 181V71Z" fill="white"/>
-<path d="M17.1812 3C17.1812 1.34314 16.0274 0 14.604 0H2.57718C1.15384 0 0 1.34315 0 3V101C0 102.657 1.15384 104 2.57718 104H14.604C16.0274 104 17.1812 102.657 17.1812 101V3Z" fill="white"/>
-<path d="M128 3C128 1.34314 126.846 0 125.423 0H113.396C111.973 0 110.819 1.34315 110.819 3V101C110.819 102.657 111.973 104 113.396 104H125.423C126.846 104 128 102.657 128 101V3Z" fill="white"/>
-<path d="M27.4899 59C27.4899 57.3431 28.6438 56 30.0671 56H42.094C43.5173 56 44.6711 57.3431 44.6711 59V134C44.6711 135.657 43.5173 137 42.094 137H30.0671C28.6438 137 27.4899 135.657 27.4899 134V59Z" fill="white"/>
-<path d="M102.228 59C102.228 57.3431 101.074 56 99.651 56H87.6242C86.2008 56 85.047 57.3431 85.047 59V134C85.047 135.657 86.2008 137 87.6242 137H99.651C101.074 137 102.228 135.657 102.228 134V59Z" fill="white"/>
-<path d="M213.525 180.075C211.075 180.075 209.85 179.177 209.85 177.38C209.85 175.583 210.912 174.603 213.035 174.44L224.06 172.725C227.327 172.235 229.532 171.418 230.675 170.275C231.818 168.968 232.39 166.6 232.39 163.17V105.35C232.39 101.757 231.573 98.245 229.94 94.815L193.925 19.355C192.782 16.5783 191.475 14.455 190.005 12.985C188.535 11.515 186.412 10.4533 183.635 9.79999L181.43 9.31C179.143 8.81999 178 7.75833 178 6.12499C178 4.49166 179.225 3.675 181.675 3.675H223.57C225.857 3.675 227 4.57333 227 6.36999C227 8.16666 225.612 9.14667 222.835 9.31L218.18 9.79999C215.403 9.96333 213.443 10.8617 212.3 12.495C211.157 14.1283 211.402 16.66 213.035 20.09L243.17 84.28C243.823 85.4233 244.64 85.995 245.62 85.995C246.6 85.995 247.417 85.4233 248.07 84.28L276.98 25.235C279.103 20.9883 279.593 17.5583 278.45 14.945C277.47 12.1683 275.102 10.535 271.345 10.045L265.955 9.31C263.178 8.81999 261.79 7.83999 261.79 6.36999C261.79 4.57333 262.933 3.675 265.22 3.675H300.01C302.46 3.675 303.685 4.49166 303.685 6.12499C303.685 7.75833 302.542 8.81999 300.255 9.31L297.805 9.79999C295.518 10.29 293.477 11.6783 291.68 13.965C290.047 16.2517 287.842 20.09 285.065 25.48L252.97 89.915C251.827 92.2017 251.01 94.4067 250.52 96.53C250.03 98.49 249.785 100.777 249.785 103.39V163.17C249.785 166.6 250.357 168.968 251.5 170.275C252.807 171.418 255.012 172.235 258.115 172.725L269.14 174.44C271.263 174.603 272.325 175.583 272.325 177.38C272.325 179.177 271.1 180.075 268.65 180.075H213.525Z" fill="white"/>
-<path d="M289.324 180.075C286.874 180.075 285.649 179.177 285.649 177.38C285.649 175.91 286.71 174.93 288.834 174.44L294.469 173.46C297.899 172.807 300.104 171.908 301.084 170.765C302.227 169.622 302.799 167.335 302.799 163.905V19.845C302.799 16.415 302.227 14.1283 301.084 12.985C300.104 11.8417 297.899 10.9433 294.469 10.29L288.834 9.31C286.71 8.81999 285.649 7.83999 285.649 6.36999C285.649 4.57333 286.874 3.675 289.324 3.675H371.644C375.4 3.675 377.442 5.55333 377.769 9.31L379.729 49.98C380.055 52.7567 378.994 54.145 376.544 54.145C374.584 54.145 373.44 53.0833 373.114 50.96L371.644 41.895C369.847 30.7883 366.172 22.7033 360.619 17.64C355.065 12.4133 347.389 9.79999 337.589 9.79999C331.055 9.79999 326.482 10.78 323.869 12.74C321.419 14.5367 320.194 17.8033 320.194 22.54V81.585C320.194 83.8717 321.337 85.015 323.624 85.015H335.874C343.06 85.015 347.47 81.1767 349.104 73.5L351.554 61.25C352.207 58.8 353.595 57.7383 355.719 58.065C357.515 58.3917 358.414 59.78 358.414 62.23V117.355C358.414 119.805 357.515 121.193 355.719 121.52C353.595 121.847 352.207 120.785 351.554 118.335L349.104 106.33C347.96 100.613 346.327 96.8567 344.204 95.06C342.244 93.2633 339.385 92.365 335.629 92.365H323.624C321.337 92.365 320.194 93.5083 320.194 95.795V157.29C320.194 163.17 321.664 167.417 324.604 170.03C327.707 172.643 333.26 173.95 341.264 173.95C349.43 173.95 356.372 171.908 362.089 167.825C367.969 163.578 372.052 155.738 374.339 144.305L377.279 129.85C377.769 127.727 378.994 126.665 380.954 126.665C383.24 126.665 384.22 128.053 383.894 130.83L381.444 174.44C381.117 178.197 379.075 180.075 375.319 180.075H289.324Z" fill="white"/>
-<path d="M411.119 180.075C408.669 180.075 407.444 179.177 407.444 177.38C407.444 175.583 408.506 174.603 410.629 174.44L421.654 172.725C424.921 172.235 427.126 171.418 428.269 170.275C429.413 168.968 429.984 166.6 429.984 163.17V16.17C429.984 13.8833 429.494 12.25 428.514 11.27C427.534 10.29 425.493 9.79999 422.389 9.79999C416.346 9.79999 410.384 12.4133 404.504 17.64C398.624 22.8667 394.786 31.2783 392.989 42.875L391.764 50.96C391.438 53.0833 390.294 54.145 388.334 54.145C385.884 54.145 384.823 52.7567 385.149 49.98L387.354 5.635C387.681 1.87833 389.151 0 391.764 0C392.908 0 393.969 0.326667 394.949 0.980002C395.929 1.47 397.563 2.04166 399.849 2.69499C402.299 3.34833 406.138 3.675 411.364 3.675H465.999C471.226 3.675 474.983 3.34833 477.269 2.69499C479.719 2.04166 481.434 1.47 482.414 0.980002C483.558 0.326667 484.619 0 485.599 0C488.213 0 489.683 1.87833 490.009 5.635L492.214 49.98C492.541 52.7567 491.479 54.145 489.029 54.145C487.069 54.145 485.926 53.0833 485.599 50.96L484.374 42.875C482.741 31.2783 478.984 22.8667 473.104 17.64C467.224 12.4133 461.181 9.79999 454.974 9.79999C451.871 9.79999 449.829 10.29 448.849 11.27C447.869 12.25 447.379 13.8833 447.379 16.17V163.17C447.379 166.6 447.951 168.968 449.094 170.275C450.401 171.418 452.606 172.235 455.709 172.725L466.734 174.44C468.858 174.603 469.919 175.583 469.919 177.38C469.919 179.177 468.694 180.075 466.244 180.075H411.119Z" fill="white"/>
-<path d="M474.316 180.075C471.866 180.075 470.641 179.258 470.641 177.625C470.641 175.992 471.784 174.93 474.071 174.44L477.746 173.705C481.013 173.052 483.463 171.5 485.096 169.05C486.729 166.437 488.118 162.843 489.261 158.27L527.236 5.14499C527.563 3.51166 528.053 2.44999 528.706 1.95999C529.523 1.47 530.258 1.225 530.911 1.225C531.728 1.225 532.463 1.47 533.116 1.95999C533.933 2.44999 534.504 3.51166 534.831 5.14499L573.541 160.475C574.684 165.048 575.991 168.233 577.461 170.03C578.931 171.827 581.218 173.052 584.321 173.705L587.996 174.44C590.283 174.93 591.426 175.992 591.426 177.625C591.426 179.258 590.201 180.075 587.751 180.075H545.856C543.569 180.075 542.426 179.177 542.426 177.38C542.426 175.583 543.814 174.603 546.591 174.44L551.246 173.95C554.023 173.623 555.738 172.725 556.391 171.255C557.208 169.785 557.208 167.253 556.391 163.66L547.081 125.685C546.101 121.438 543.406 119.315 538.996 119.315H513.271C509.024 119.315 506.329 121.438 505.186 125.685L496.856 158.515C494.406 167.825 496.856 172.97 504.206 173.95L507.881 174.44C510.658 174.93 512.046 175.91 512.046 177.38C512.046 179.177 510.903 180.075 508.616 180.075H474.316ZM512.536 111.965H539.486C542.099 111.965 543.161 110.577 542.671 107.8L526.991 42.14H525.766L509.351 107.8C508.861 110.577 509.923 111.965 512.536 111.965Z" fill="white"/>
+        <div class="footer-wordmark">
+            <svg viewBox="0 0 414 181" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M35.525 180.075C33.075 180.075 31.85 179.177 31.85 177.38C31.85 175.583 32.9117 174.603 35.035 174.44L46.06 172.725C49.3267 172.235 51.5317 171.418 52.675 170.275C53.8183 168.968 54.39 166.6 54.39 163.17V105.35C54.39 101.757 53.5733 98.245 51.94 94.815L15.925 19.355C14.7817 16.5783 13.475 14.455 12.005 12.985C10.535 11.515 8.41166 10.4533 5.63499 9.79999L3.42999 9.31C1.14333 8.81999 0 7.75833 0 6.12499C0 4.49166 1.225 3.675 3.675 3.675H45.57C47.8567 3.675 49 4.57333 49 6.36999C49 8.16666 47.6117 9.14667 44.835 9.31L40.18 9.79999C37.4033 9.96333 35.4433 10.8617 34.3 12.495C33.1567 14.1283 33.4017 16.66 35.035 20.09L65.17 84.28C65.8233 85.4233 66.64 85.995 67.62 85.995C68.6 85.995 69.4167 85.4233 70.07 84.28L98.98 25.235C101.103 20.9883 101.593 17.5583 100.45 14.945C99.47 12.1683 97.1017 10.535 93.345 10.045L87.955 9.31C85.1783 8.81999 83.79 7.83999 83.79 6.36999C83.79 4.57333 84.9333 3.675 87.22 3.675H122.01C124.46 3.675 125.685 4.49166 125.685 6.12499C125.685 7.75833 124.542 8.81999 122.255 9.31L119.805 9.79999C117.518 10.29 115.477 11.6783 113.68 13.965C112.047 16.2517 109.842 20.09 107.065 25.48L74.97 89.915C73.8267 92.2017 73.01 94.4067 72.52 96.53C72.03 98.49 71.785 100.777 71.785 103.39V163.17C71.785 166.6 72.3567 168.968 73.5 170.275C74.8067 171.418 77.0117 172.235 80.115 172.725L91.14 174.44C93.2633 174.603 94.325 175.583 94.325 177.38C94.325 179.177 93.1 180.075 90.65 180.075H35.525Z" fill="white"/>
+<path d="M111.324 180.075C108.874 180.075 107.649 179.177 107.649 177.38C107.649 175.91 108.71 174.93 110.834 174.44L116.469 173.46C119.899 172.807 122.104 171.908 123.084 170.765C124.227 169.622 124.799 167.335 124.799 163.905V19.845C124.799 16.415 124.227 14.1283 123.084 12.985C122.104 11.8417 119.899 10.9433 116.469 10.29L110.834 9.31C108.71 8.81999 107.649 7.83999 107.649 6.36999C107.649 4.57333 108.874 3.675 111.324 3.675H193.644C197.4 3.675 199.442 5.55333 199.769 9.31L201.729 49.98C202.055 52.7567 200.994 54.145 198.544 54.145C196.584 54.145 195.44 53.0833 195.114 50.96L193.644 41.895C191.847 30.7883 188.172 22.7033 182.619 17.64C177.065 12.4133 169.389 9.79999 159.589 9.79999C153.055 9.79999 148.482 10.78 145.869 12.74C143.419 14.5367 142.194 17.8033 142.194 22.54V81.585C142.194 83.8717 143.337 85.015 145.624 85.015H157.874C165.06 85.015 169.47 81.1767 171.104 73.5L173.554 61.25C174.207 58.8 175.595 57.7383 177.719 58.065C179.515 58.3917 180.414 59.78 180.414 62.23V117.355C180.414 119.805 179.515 121.193 177.719 121.52C175.595 121.847 174.207 120.785 173.554 118.335L171.104 106.33C169.96 100.613 168.327 96.8567 166.204 95.06C164.244 93.2633 161.385 92.365 157.629 92.365H145.624C143.337 92.365 142.194 93.5083 142.194 95.795V157.29C142.194 163.17 143.664 167.417 146.604 170.03C149.707 172.643 155.26 173.95 163.264 173.95C171.43 173.95 178.372 171.908 184.089 167.825C189.969 163.578 194.052 155.738 196.339 144.305L199.279 129.85C199.769 127.727 200.994 126.665 202.954 126.665C205.24 126.665 206.22 128.053 205.894 130.83L203.444 174.44C203.117 178.197 201.075 180.075 197.319 180.075H111.324Z" fill="white"/>
+<path d="M233.119 180.075C230.669 180.075 229.444 179.177 229.444 177.38C229.444 175.583 230.506 174.603 232.629 174.44L243.654 172.725C246.921 172.235 249.126 171.418 250.269 170.275C251.413 168.968 251.984 166.6 251.984 163.17V16.17C251.984 13.8833 251.494 12.25 250.514 11.27C249.534 10.29 247.493 9.79999 244.389 9.79999C238.346 9.79999 232.384 12.4133 226.504 17.64C220.624 22.8667 216.786 31.2783 214.989 42.875L213.764 50.96C213.438 53.0833 212.294 54.145 210.334 54.145C207.884 54.145 206.823 52.7567 207.149 49.98L209.354 5.635C209.681 1.87833 211.151 0 213.764 0C214.908 0 215.969 0.326667 216.949 0.980002C217.929 1.47 219.563 2.04166 221.849 2.69499C224.299 3.34833 228.138 3.675 233.364 3.675H287.999C293.226 3.675 296.983 3.34833 299.269 2.69499C301.719 2.04166 303.434 1.47 304.414 0.980002C305.558 0.326667 306.619 0 307.599 0C310.213 0 311.683 1.87833 312.009 5.635L314.214 49.98C314.541 52.7567 313.479 54.145 311.029 54.145C309.069 54.145 307.926 53.0833 307.599 50.96L306.374 42.875C304.741 31.2783 300.984 22.8667 295.104 17.64C289.224 12.4133 283.181 9.79999 276.974 9.79999C273.871 9.79999 271.829 10.29 270.849 11.27C269.869 12.25 269.379 13.8833 269.379 16.17V163.17C269.379 166.6 269.951 168.968 271.094 170.275C272.401 171.418 274.606 172.235 277.709 172.725L288.734 174.44C290.858 174.603 291.919 175.583 291.919 177.38C291.919 179.177 290.694 180.075 288.244 180.075H233.119Z" fill="white"/>
+<path d="M296.316 180.075C293.866 180.075 292.641 179.258 292.641 177.625C292.641 175.992 293.784 174.93 296.071 174.44L299.746 173.705C303.013 173.052 305.463 171.5 307.096 169.05C308.729 166.437 310.118 162.843 311.261 158.27L349.236 5.14499C349.563 3.51166 350.053 2.44999 350.706 1.95999C351.523 1.47 352.258 1.225 352.911 1.225C353.728 1.225 354.463 1.47 355.116 1.95999C355.933 2.44999 356.504 3.51166 356.831 5.14499L395.541 160.475C396.684 165.048 397.991 168.233 399.461 170.03C400.931 171.827 403.218 173.052 406.321 173.705L409.996 174.44C412.283 174.93 413.426 175.992 413.426 177.625C413.426 179.258 412.201 180.075 409.751 180.075H367.856C365.569 180.075 364.426 179.177 364.426 177.38C364.426 175.583 365.814 174.603 368.591 174.44L373.246 173.95C376.023 173.623 377.738 172.725 378.391 171.255C379.208 169.785 379.208 167.253 378.391 163.66L369.081 125.685C368.101 121.438 365.406 119.315 360.996 119.315H335.271C331.024 119.315 328.329 121.438 327.186 125.685L318.856 158.515C316.406 167.825 318.856 172.97 326.206 173.95L329.881 174.44C332.658 174.93 334.046 175.91 334.046 177.38C334.046 179.177 332.903 180.075 330.616 180.075H296.316ZM334.536 111.965H361.486C364.099 111.965 365.161 110.577 364.671 107.8L348.991 42.14H347.766L331.351 107.8C330.861 110.577 331.923 111.965 334.536 111.965Z" fill="white"/>
 </svg>
-            </a>
-            <span class="cp">© 2026 Yeta</span>
         </div>
     </div></footer>
 
