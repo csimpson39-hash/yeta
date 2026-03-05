@@ -384,8 +384,8 @@
             .fg { grid-template-columns: repeat(2, 1fr); gap: 16px; }
             .fg .cp { grid-column: 1 / -1; text-align: left; margin-top: 8px; }
         }
-        .footer-wordmark { margin-top: 48px; width: 100%; opacity: 0.08; }
-        .footer-wordmark svg { width: 100%; height: auto; }
+        .footer-wordmark { margin-top: 48px; width: 100vw; margin-left: calc(-50vw + 50%); opacity: 0.08; }
+        .footer-wordmark svg { width: 100%; height: auto; display: block; }
 
         .mo { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1000; align-items: center; justify-content: center; padding: 24px; backdrop-filter: blur(6px); }
         .mo.active { display: flex; }
