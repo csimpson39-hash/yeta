@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Yeta v1.1.0 — SEO + mobile fixes — 2026-03-04 -->
+<!-- Yeta v1.2.0 – Audit fixes: nav, proof, trust, founding partners – 2026-03-06 -->
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -8,16 +8,16 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="canonical" href="https://runyeta.com">
     <meta name="description" content="Yeta integrates content, outreach, and ads into one compounding growth system for B2B companies. Six services, one engine. From $4,750/mo.">
-    <meta property="og:title" content="Yeta | B2B Growth Engine — Content, Outreach & Ads in One System">
+    <meta property="og:title" content="Yeta | B2B Growth Engine – Content, Outreach & Ads in One System">
     <meta property="og:description" content="Content, outreach, and ads. One compounding system. Six services, one integrated engine.">
     <meta property="og:image" content="https://runyeta.com/og.png">
     <meta property="og:url" content="https://runyeta.com">
     <meta property="og:type" content="website">
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Yeta | B2B Growth Engine — Content, Outreach & Ads in One System">
+    <meta name="twitter:title" content="Yeta | B2B Growth Engine – Content, Outreach & Ads in One System">
     <meta name="twitter:description" content="Yeta integrates content, outreach, and ads into one compounding growth system for B2B companies. Six services, one engine. From $4,750/mo.">
     <meta name="twitter:image" content="https://runyeta.com/og.png">
-    <title>Yeta | B2B Growth Engine — Content, Outreach &amp; Ads in One System</title>
+    <title>Yeta | B2B Growth Engine – Content, Outreach &amp; Ads in One System</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
@@ -33,7 +33,7 @@
         "founder": {
             "@type": "Person",
             "name": "Charlie Simpson",
-            "jobTitle": "Founder"
+            "jobTitle": "Co-founder"
         },
         "sameAs": [
             "https://linkedin.com/company/yeta"
@@ -148,7 +148,7 @@
                 "name": "How is Yeta different from hiring in-house?",
                 "acceptedAnswer": {
                     "@type": "Answer",
-                    "text": "Running this system in-house requires 2-3 full-time people — a Clay specialist, a copywriter, and a campaign manager — at $15,000-25,000/mo fully loaded. Plus $500-800/mo in tool subscriptions. Yeta delivers the same output from $4,750/mo with no hiring, no training, and no management overhead."
+                    "text": "Running this system in-house requires 2-3 full-time people (a Clay specialist, a copywriter, and a campaign manager) at $15,000-25,000/mo fully loaded. Plus $500-800/mo in tool subscriptions. Yeta delivers the same output from $4,750/mo with no hiring, no training, and no management overhead."
                 }
             },
             {
@@ -233,13 +233,18 @@
         .logo-svg path { fill: white; }
         .nav-cta { font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
         .nav-cta:hover { color: var(--text-heading); }
+        .nav-links { display: flex; align-items: center; gap: 28px; }
+        .nav-link { font-family: var(--sans); font-size: 14px; font-weight: 400; color: var(--text-faint); text-decoration: none; transition: color 0.2s; }
+        .nav-link:hover { color: var(--text-body); }
+        @media (min-width: 601px) { header .frame-wide { display: grid; grid-template-columns: 1fr auto 1fr; } .nav-links { justify-self: center; } .nav-cta { justify-self: end; } }
+        @media (max-width: 600px) { .nav-links { gap: 16px; } .nav-link { display: none; } }
 
-        .hero { min-height: calc(100svh - 65px); display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: hidden; padding: 60px 0; }
+        .hero { min-height: calc(100svh - 65px); display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: clip; padding: 60px 0; }
         .hero::before { content: ''; position: absolute; width: 700px; height: 500px; background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%); top: 45%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
         .hero > .frame { position: relative; z-index: 1; }
         .hero-eyebrow { font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 28px; }
-        .hero h1 { font-family: var(--serif); font-size: clamp(46px, 9vw, 76px); font-weight: 400; line-height: 1.05; letter-spacing: -0.03em; color: var(--text-heading); max-width: 700px; margin: 0 auto 32px; }
-        .hero h1 em { font-style: italic; display: block; background: linear-gradient(135deg, #8B8BF5, #A78BFA); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .hero h1 { font-family: var(--serif); font-size: clamp(46px, 9vw, 76px); font-weight: 400; line-height: 1.12; letter-spacing: -0.03em; color: var(--text-heading); max-width: 700px; margin: 0 auto 32px; overflow: visible; }
+        .hero h1 em { font-style: italic; background: linear-gradient(135deg, #8B8BF5, #A78BFA); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; padding: 0.05em 0.1em; margin: 0 -0.1em; }
         .hero-body { font-size: 18px; color: var(--text-body); max-width: 460px; margin: 0 auto 52px; line-height: 1.65; }
 
         .btn { display: inline-flex; align-items: center; gap: 8px; font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--text-heading); text-decoration: none; padding: 14px 28px; border: 1px solid var(--border-hover); border-radius: 8px; transition: all 0.2s; background: rgba(255,255,255,0.03); }
@@ -290,21 +295,20 @@
         .split-col ul li::before { content: '·'; position: absolute; left: 0; color: var(--text-faint); font-size: 16px; top: 8px; }
 
         .table-wrap { overflow-x: auto; position: relative; }
-        .ct { width: 100%; min-width: 600px; border-collapse: collapse; font-size: 15px; }
-        .ct th { font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); text-align: left; padding: 16px 24px; border-bottom: 1px solid var(--border); }
+        .ct { width: 100%; min-width: 600px; border-collapse: separate; border-spacing: 0; font-size: 15px; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
+        .ct th { font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); text-align: left; padding: 20px 24px; border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.01); }
         .ct th:last-child { color: var(--accent); }
-        .ct td { padding: 16px 24px; border-bottom: 1px solid var(--border); color: var(--text-body); }
-        .ct td:first-child { color: rgba(255,255,255,0.7); }
+        .ct-logo { height: 14px; width: auto; color: var(--accent); display: block; }
+        .ct td { padding: 16px 24px; border-bottom: 1px solid var(--border); color: var(--text-body); font-size: 14px; }
+        .ct td:first-child { color: rgba(255,255,255,0.7); font-weight: 500; }
         .ct td:last-child { color: var(--text-heading); background: rgba(139,139,245,0.03); }
         .ct tr:last-child td { border-bottom: none; }
-        .ct tr:hover td { background: rgba(255,255,255,0.02); }
+        .ct tr:hover td { background: rgba(255,255,255,0.015); }
         .ct tr:hover td:last-child { background: rgba(139,139,245,0.05); }
-        .ty { color: rgba(255,255,255,0.85); font-size: 13px; }
-        .tn { color: var(--text-faint); font-size: 13px; }
-        .tp { color: var(--text-faint); font-size: 14px; }
+        .ty { color: rgba(255,255,255,0.85); font-size: 14px; }
+        .tn { color: var(--text-faint); font-size: 14px; opacity: 0.5; }
+        .tp { color: var(--text-muted); font-size: 13px; }
 
-        .proof blockquote { font-family: var(--serif); font-size: 20px; font-style: italic; color: var(--text-body); line-height: 1.55; max-width: 540px; margin-bottom: 20px; }
-        .proof .attr { font-family: var(--sans); font-size: 14px; color: var(--text-muted); }
         .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
         @media (max-width: 600px) { .stats-grid { grid-template-columns: 1fr; } }
         .stat { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 28px; position: relative; overflow: hidden; }
@@ -314,18 +318,40 @@
 
         .pricing-intro { font-size: 17px; color: var(--text-body); margin-bottom: 40px; line-height: 1.7; }
         .pricing-intro s { color: var(--text-muted); }
-        .ptb { width: 100%; border-collapse: collapse; }
-        .ptb th { font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); text-align: left; padding: 16px 32px 16px 0; border-bottom: 1px solid var(--border); }
-        .ptb td { padding: 20px 32px 20px 0; border-bottom: 1px solid var(--border); color: var(--text-body); vertical-align: top; font-size: 15px; }
-        .ptb td:first-child { color: rgba(255,255,255,0.7); padding-right: 40px; }
-        .ptb td:last-child { font-family: var(--sans); font-weight: 600; font-size: 16px; color: var(--text-heading); white-space: nowrap; padding-right: 0; }
-        .ptb th:last-child { padding-right: 0; }
-        .ptb .rec td { color: var(--text-body); }
-        .ptb .rec td:first-child { color: var(--text-heading); }
-        .ptb .rec td:first-child::after { content: ' ✱'; color: var(--accent); font-size: 11px; vertical-align: super; }
-        .ptb .rec td:last-child { color: var(--accent); }
-        .ptb tr:last-child td { border-bottom: none; }
+        .pricing-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 48px; margin-bottom: 48px; position: relative; }
+        .pricing-card { background: var(--bg); padding: 36px 32px; display: flex; flex-direction: column; border: 1px solid var(--border); }
+        .pricing-card:first-child { border-radius: 12px 0 0 12px; border-right: none; }
+        .pricing-card:last-child { border-radius: 0 12px 12px 0; border-left: none; }
+        .pricing-card-rec { background: linear-gradient(180deg, rgba(124,107,240,0.06) 0%, rgba(124,107,240,0.02) 100%); border: 1px solid rgba(124,107,240,0.15); position: relative; }
+        .pricing-card-rec::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(139,139,245,0.3), transparent); }
+        @media (min-width: 801px) { .pricing-card-rec { margin: -12px -1px; padding: 48px 32px; border-radius: 12px; box-shadow: 0 0 60px rgba(124,107,240,0.08); z-index: 1; } }
+        .pricing-card-head { margin-bottom: 20px; }
+        .pricing-tier { font-family: var(--sans); font-size: 20px; font-weight: 600; color: var(--text-heading); margin-bottom: 8px; display: flex; align-items: center; gap: 10px; }
+        .pricing-badge { font-size: 11px; font-weight: 500; letter-spacing: 0.05em; text-transform: uppercase; color: var(--accent); background: rgba(139,139,245,0.1); padding: 3px 8px; border-radius: 4px; }
+        .pricing-price { font-family: var(--serif); font-size: 36px; color: var(--text-heading); letter-spacing: -0.02em; }
+        .pricing-period { font-family: var(--sans); font-size: 15px; font-weight: 400; color: var(--text-muted); }
+        .pricing-desc { font-size: 15px; color: var(--text-body); line-height: 1.6; margin-bottom: 20px; }
+        .pricing-divider { height: 1px; background: var(--border); margin-bottom: 20px; }
+        .pricing-features { list-style: none; flex: 1; margin-bottom: 28px; }
+        .pricing-features li { font-size: 14px; color: var(--text-body); padding: 6px 0 6px 22px; position: relative; line-height: 1.5; }
+        .pricing-features li::before { content: '✓'; position: absolute; left: 0; color: var(--text-faint); font-size: 13px; }
+        .pricing-card-rec .pricing-features li::before { color: var(--accent); }
+        .pricing-cta { display: block; text-align: center; font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--text-heading); text-decoration: none; padding: 12px 24px; border: 1px solid var(--border-hover); border-radius: 8px; transition: all 0.2s; background: rgba(255,255,255,0.03); }
+        .pricing-cta:hover { border-color: rgba(255,255,255,0.2); background: rgba(255,255,255,0.06); }
+        .pricing-cta span { transition: transform 0.2s; display: inline-block; }
+        .pricing-cta:hover span { transform: translateX(3px); }
+        .pricing-cta-rec { background: linear-gradient(135deg, #7C6BF0, #6558D3); border-color: transparent; color: white; }
+        .pricing-cta-rec:hover { background: linear-gradient(135deg, #8B7AF5, #7C6BF0); border-color: transparent; box-shadow: 0 0 40px rgba(110,93,231,0.25); }
+        @media (max-width: 800px) { .pricing-cards { grid-template-columns: 1fr; } .pricing-card { border-radius: 0; border-left: 1px solid var(--border); border-right: 1px solid var(--border); border-bottom: none; } .pricing-card:first-child { border-radius: 12px 12px 0 0; border-right: 1px solid var(--border); } .pricing-card:last-child { border-radius: 0 0 12px 12px; border-left: 1px solid var(--border); border-bottom: 1px solid var(--border); } .pricing-card-rec { margin: 0; padding: 36px 32px; border-radius: 0; border: 1px solid rgba(124,107,240,0.15); } }
         .pricing-note { margin-top: 24px; font-size: 14px; color: var(--text-muted); line-height: 1.8; }
+        .trust-bar { margin-top: 32px; display: grid; gap: 12px; }
+        .trust-item { font-family: var(--sans); font-size: 14px; color: var(--text-muted); line-height: 1.6; display: flex; align-items: baseline; gap: 10px; }
+        .trust-icon { color: var(--accent); font-size: 12px; flex-shrink: 0; }
+
+        .founding-slots-col { display: flex; flex-direction: column; align-items: flex-start; }
+        .founding-num { font-family: var(--serif); font-size: 56px; color: var(--accent); line-height: 1; }
+        .founding-label { font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--text-muted); margin-bottom: 16px; }
+        .founding-note { font-size: 15px; color: var(--text-body); line-height: 1.65; }
 
         .roi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 56px; }
         @media (max-width: 600px) { .roi-grid { grid-template-columns: repeat(2, 1fr); } }
@@ -408,7 +434,6 @@
         @media (max-width: 600px) { .md { padding: 36px 24px 28px; } .md-close { top: 10px; right: 10px; } }
         @media (max-width: 600px) { .compound-note { font-size: 18px; } .proof blockquote { font-size: 18px; } }
         @media (max-width: 600px) { .nav-cta { padding: 8px 16px; } }
-        @media (max-width: 600px) { .ptb th:nth-child(2), .ptb td:nth-child(2) { display: none; } }
     </style>
 </head>
 <body>
@@ -428,6 +453,11 @@
 <path d="M474.316 180.075C471.866 180.075 470.641 179.258 470.641 177.625C470.641 175.992 471.784 174.93 474.071 174.44L477.746 173.705C481.013 173.052 483.463 171.5 485.096 169.05C486.729 166.437 488.118 162.843 489.261 158.27L527.236 5.14499C527.563 3.51166 528.053 2.44999 528.706 1.95999C529.523 1.47 530.258 1.225 530.911 1.225C531.728 1.225 532.463 1.47 533.116 1.95999C533.933 2.44999 534.504 3.51166 534.831 5.14499L573.541 160.475C574.684 165.048 575.991 168.233 577.461 170.03C578.931 171.827 581.218 173.052 584.321 173.705L587.996 174.44C590.283 174.93 591.426 175.992 591.426 177.625C591.426 179.258 590.201 180.075 587.751 180.075H545.856C543.569 180.075 542.426 179.177 542.426 177.38C542.426 175.583 543.814 174.603 546.591 174.44L551.246 173.95C554.023 173.623 555.738 172.725 556.391 171.255C557.208 169.785 557.208 167.253 556.391 163.66L547.081 125.685C546.101 121.438 543.406 119.315 538.996 119.315H513.271C509.024 119.315 506.329 121.438 505.186 125.685L496.856 158.515C494.406 167.825 496.856 172.97 504.206 173.95L507.881 174.44C510.658 174.93 512.046 175.91 512.046 177.38C512.046 179.177 510.903 180.075 508.616 180.075H474.316ZM512.536 111.965H539.486C542.099 111.965 543.161 110.577 542.671 107.8L526.991 42.14H525.766L509.351 107.8C508.861 110.577 509.923 111.965 512.536 111.965Z" fill="white"/>
 </svg>
             </a>
+            <div class="nav-links">
+                <a href="#system" class="nav-link">System</a>
+                <a href="#pricing" class="nav-link">Pricing</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+            </div>
             <a href="https://calendly.com/csimpson39/30min" target="_blank" rel="noopener" class="nav-cta">Book a call →</a>
         </nav>
     </header>
@@ -489,14 +519,14 @@
         <div class="table-wrap-outer fi">
         <div class="table-wrap">
             <table class="ct">
-                <thead><tr><th>Capability</th><th>Outbound agencies</th><th>Claygencies</th><th>Restartt</th><th>Yeta</th></tr></thead>
+                <thead><tr><th>Capability</th><th>Outbound agencies</th><th>Claygencies</th><th>Full-stack agencies</th><th><svg class="ct-logo" viewBox="0 0 414 181" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M35.525 180.075C33.075 180.075 31.85 179.177 31.85 177.38C31.85 175.583 32.9117 174.603 35.035 174.44L46.06 172.725C49.3267 172.235 51.5317 171.418 52.675 170.275C53.8183 168.968 54.39 166.6 54.39 163.17V105.35C54.39 101.757 53.5733 98.245 51.94 94.815L15.925 19.355C14.7817 16.5783 13.475 14.455 12.005 12.985C10.535 11.515 8.41166 10.4533 5.63499 9.79999L3.42999 9.31C1.14333 8.81999 0 7.75833 0 6.12499C0 4.49166 1.225 3.675 3.675 3.675H45.57C47.8567 3.675 49 4.57333 49 6.36999C49 8.16666 47.6117 9.14667 44.835 9.31L40.18 9.79999C37.4033 9.96333 35.4433 10.8617 34.3 12.495C33.1567 14.1283 33.4017 16.66 35.035 20.09L65.17 84.28C65.8233 85.4233 66.64 85.995 67.62 85.995C68.6 85.995 69.4167 85.4233 70.07 84.28L98.98 25.235C101.103 20.9883 101.593 17.5583 100.45 14.945C99.47 12.1683 97.1017 10.535 93.345 10.045L87.955 9.31C85.1783 8.81999 83.79 7.83999 83.79 6.36999C83.79 4.57333 84.9333 3.675 87.22 3.675H122.01C124.46 3.675 125.685 4.49166 125.685 6.12499C125.685 7.75833 124.542 8.81999 122.255 9.31L119.805 9.79999C117.518 10.29 115.477 11.6783 113.68 13.965C112.047 16.2517 109.842 20.09 107.065 25.48L74.97 89.915C73.8267 92.2017 73.01 94.4067 72.52 96.53C72.03 98.49 71.785 100.777 71.785 103.39V163.17C71.785 166.6 72.3567 168.968 73.5 170.275C74.8067 171.418 77.0117 172.235 80.115 172.725L91.14 174.44C93.2633 174.603 94.325 175.583 94.325 177.38C94.325 179.177 93.1 180.075 90.65 180.075H35.525Z" fill="currentColor"/><path d="M111.324 180.075C108.874 180.075 107.649 179.177 107.649 177.38C107.649 175.91 108.71 174.93 110.834 174.44L116.469 173.46C119.899 172.807 122.104 171.908 123.084 170.765C124.227 169.622 124.799 167.335 124.799 163.905V19.845C124.799 16.415 124.227 14.1283 123.084 12.985C122.104 11.8417 119.899 10.9433 116.469 10.29L110.834 9.31C108.71 8.81999 107.649 7.83999 107.649 6.36999C107.649 4.57333 108.874 3.675 111.324 3.675H193.644C197.4 3.675 199.442 5.55333 199.769 9.31L201.729 49.98C202.055 52.7567 200.994 54.145 198.544 54.145C196.584 54.145 195.44 53.0833 195.114 50.96L193.644 41.895C191.847 30.7883 188.172 22.7033 182.619 17.64C177.065 12.4133 169.389 9.79999 159.589 9.79999C153.055 9.79999 148.482 10.78 145.869 12.74C143.419 14.5367 142.194 17.8033 142.194 22.54V81.585C142.194 83.8717 143.337 85.015 145.624 85.015H157.874C165.06 85.015 169.47 81.1767 171.104 73.5L173.554 61.25C174.207 58.8 175.595 57.7383 177.719 58.065C179.515 58.3917 180.414 59.78 180.414 62.23V117.355C180.414 119.805 179.515 121.193 177.719 121.52C175.595 121.847 174.207 120.785 173.554 118.335L171.104 106.33C169.96 100.613 168.327 96.8567 166.204 95.06C164.244 93.2633 161.385 92.365 157.629 92.365H145.624C143.337 92.365 142.194 93.5083 142.194 95.795V157.29C142.194 163.17 143.664 167.417 146.604 170.03C149.707 172.643 155.26 173.95 163.264 173.95C171.43 173.95 178.372 171.908 184.089 167.825C189.969 163.578 194.052 155.738 196.339 144.305L199.279 129.85C199.769 127.727 200.994 126.665 202.954 126.665C205.24 126.665 206.22 128.053 205.894 130.83L203.444 174.44C203.117 178.197 201.075 180.075 197.319 180.075H111.324Z" fill="currentColor"/><path d="M233.119 180.075C230.669 180.075 229.444 179.177 229.444 177.38C229.444 175.583 230.506 174.603 232.629 174.44L243.654 172.725C246.921 172.235 249.126 171.418 250.269 170.275C251.413 168.968 251.984 166.6 251.984 163.17V16.17C251.984 13.8833 251.494 12.25 250.514 11.27C249.534 10.29 247.493 9.79999 244.389 9.79999C238.346 9.79999 232.384 12.4133 226.504 17.64C220.624 22.8667 216.786 31.2783 214.989 42.875L213.764 50.96C213.438 53.0833 212.294 54.145 210.334 54.145C207.884 54.145 206.823 52.7567 207.149 49.98L209.354 5.635C209.681 1.87833 211.151 0 213.764 0C214.908 0 215.969 0.326667 216.949 0.980002C217.929 1.47 219.563 2.04166 221.849 2.69499C224.299 3.34833 228.138 3.675 233.364 3.675H287.999C293.226 3.675 296.983 3.34833 299.269 2.69499C301.719 2.04166 303.434 1.47 304.414 0.980002C305.558 0.326667 306.619 0 307.599 0C310.213 0 311.683 1.87833 312.009 5.635L314.214 49.98C314.541 52.7567 313.479 54.145 311.029 54.145C309.069 54.145 307.926 53.0833 307.599 50.96L306.374 42.875C304.741 31.2783 300.984 22.8667 295.104 17.64C289.224 12.4133 283.181 9.79999 276.974 9.79999C273.871 9.79999 271.829 10.29 270.849 11.27C269.869 12.25 269.379 13.8833 269.379 16.17V163.17C269.379 166.6 269.951 168.968 271.094 170.275C272.401 171.418 274.606 172.235 277.709 172.725L288.734 174.44C290.858 174.603 291.919 175.583 291.919 177.38C291.919 179.177 290.694 180.075 288.244 180.075H233.119Z" fill="currentColor"/><path d="M296.316 180.075C293.866 180.075 292.641 179.258 292.641 177.625C292.641 175.992 293.784 174.93 296.071 174.44L299.746 173.705C303.013 173.052 305.463 171.5 307.096 169.05C308.729 166.437 310.118 162.843 311.261 158.27L349.236 5.14499C349.563 3.51166 350.053 2.44999 350.706 1.95999C351.523 1.47 352.258 1.225 352.911 1.225C353.728 1.225 354.463 1.47 355.116 1.95999C355.933 2.44999 356.504 3.51166 356.831 5.14499L395.541 160.475C396.684 165.048 397.991 168.233 399.461 170.03C400.931 171.827 403.218 173.052 406.321 173.705L409.996 174.44C412.283 174.93 413.426 175.992 413.426 177.625C413.426 179.258 412.201 180.075 409.751 180.075H367.856C365.569 180.075 364.426 179.177 364.426 177.38C364.426 175.583 365.814 174.603 368.591 174.44L373.246 173.95C376.023 173.623 377.738 172.725 378.391 171.255C379.208 169.785 379.208 167.253 378.391 163.66L369.081 125.685C368.101 121.438 365.406 119.315 360.996 119.315H335.271C331.024 119.315 328.329 121.438 327.186 125.685L318.856 158.515C316.406 167.825 318.856 172.97 326.206 173.95L329.881 174.44C332.658 174.93 334.046 175.91 334.046 177.38C334.046 179.177 332.903 180.075 330.616 180.075H296.316ZM334.536 111.965H361.486C364.099 111.965 365.161 110.577 364.671 107.8L348.991 42.14H347.766L331.351 107.8C330.861 110.577 331.923 111.965 334.536 111.965Z" fill="currentColor"/></svg></th></tr></thead>
                 <tbody>
-                    <tr><td>Clay-powered enrichment</td><td><span class="tn">No</span></td><td><span class="ty">Yes</span></td><td><span class="tp">Partial</span></td><td><span class="ty">Yes</span></td></tr>
-                    <tr><td>Cold email at scale</td><td><span class="ty">Yes</span></td><td><span class="ty">Yes</span></td><td><span class="tn">No</span></td><td><span class="ty">Yes</span></td></tr>
-                    <tr><td>LinkedIn outreach</td><td><span class="tp">Some</span></td><td><span class="tp">Some</span></td><td><span class="ty">Yes</span></td><td><span class="ty">Yes</span></td></tr>
-                    <tr><td>LinkedIn content</td><td><span class="tn">No</span></td><td><span class="tn">No</span></td><td><span class="ty">Yes</span></td><td><span class="ty">Yes</span></td></tr>
-                    <tr><td>LinkedIn ads</td><td><span class="tn">No</span></td><td><span class="tn">No</span></td><td><span class="ty">Yes</span></td><td><span class="ty">Yes</span></td></tr>
-                    <tr><td>Creative and design</td><td><span class="tn">No</span></td><td><span class="tn">No</span></td><td><span class="tp">Partial</span></td><td><span class="ty">Yes</span></td></tr>
+                    <tr><td>Clay-powered enrichment</td><td><span class="tn">✗</span></td><td><span class="ty">✓</span></td><td><span class="tp">Partial</span></td><td><span class="ty">✓</span></td></tr>
+                    <tr><td>Cold email at scale</td><td><span class="ty">✓</span></td><td><span class="ty">✓</span></td><td><span class="tn">✗</span></td><td><span class="ty">✓</span></td></tr>
+                    <tr><td>LinkedIn outreach</td><td><span class="tp">Partial</span></td><td><span class="tp">Partial</span></td><td><span class="ty">✓</span></td><td><span class="ty">✓</span></td></tr>
+                    <tr><td>LinkedIn content</td><td><span class="tn">✗</span></td><td><span class="tn">✗</span></td><td><span class="ty">✓</span></td><td><span class="ty">✓</span></td></tr>
+                    <tr><td>LinkedIn ads</td><td><span class="tn">✗</span></td><td><span class="tn">✗</span></td><td><span class="ty">✓</span></td><td><span class="ty">✓</span></td></tr>
+                    <tr><td>Creative and design</td><td><span class="tn">✗</span></td><td><span class="tn">✗</span></td><td><span class="tp">Partial</span></td><td><span class="ty">✓</span></td></tr>
                     <tr><td>Monthly cost</td><td>$5K-15K</td><td>$5K-10K</td><td>$6.5K-15.5K+</td><td style="color:var(--accent);font-weight:600;">$4,750-8,950</td></tr>
                 </tbody>
             </table>
@@ -507,31 +537,77 @@
     <section class="section" id="proof"><div class="frame">
         <div class="eyebrow fi">05 · Proof</div>
         <h2 class="sh fi">Built from real results. Now productised.</h2>
-        <div class="proof fi">
-            <blockquote>We built the outbound engine that grew a 20+ person agency. Same workflows. Same infrastructure. Same content strategy. One person, no sales team. That's what Yeta runs for you.</blockquote>
-            <p class="attr">— Charlie Simpson, Founder</p>
-        </div>
+        <p class="si fi">This system was built and proven inside POW Studio before it became Yeta. Same workflows. Same infrastructure. Same content strategy. Now available as a service.</p>
         <div class="stats-grid fi">
+            <div class="stat"><div class="stat-num">£1.5M</div><div class="stat-desc">New business generated in 15 months using this exact system</div></div>
             <div class="stat"><div class="stat-num">300%</div><div class="stat-desc">More meetings with multi-channel vs single-channel outreach</div></div>
-            <div class="stat"><div class="stat-num">90%</div><div class="stat-desc">Connection acceptance within 24hrs of content engagement</div></div>
         </div>
     </div></section>
 
-    <section class="section" id="pricing"><div class="frame">
-        <div class="eyebrow fi">06 · Pricing</div>
-        <h2 class="sh fi">Transparent pricing. No surprises.</h2>
-        <p class="pricing-intro fi">Buying separately costs <s>$5,900-18,500/mo</s>. Yeta delivers it as one system from $4,750/mo.</p>
-        <div style="background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:32px;overflow-x:auto;" class="fi">
-        <table class="ptb">
-            <thead><tr><th>Tier</th><th>Includes</th><th>500 contacts/mo</th></tr></thead>
-            <tbody>
-                <tr><td>Starter</td><td>Content engine, cold email, infrastructure, reply management, meeting booking</td><td>$4,750/mo</td></tr>
-                <tr class="rec"><td>Pro</td><td>Everything above plus LinkedIn outreach and multi-channel coordination</td><td>$5,950/mo</td></tr>
-                <tr><td>Max</td><td>Everything above plus LinkedIn ads and prospect retargeting</td><td>$7,450/mo</td></tr>
-            </tbody>
-        </table>
+    <section class="section" id="pricing"><div class="frame-wide">
+        <div class="frame" style="padding:0;max-width:760px;">
+            <div class="eyebrow fi">06 · Pricing</div>
+            <h2 class="sh fi">Transparent pricing. No surprises.</h2>
+            <p class="pricing-intro fi">Buying separately costs <s>$5,900-18,500/mo</s>. Yeta delivers it as one system from $4,750/mo.</p>
         </div>
-        <p class="pricing-note fi">✱ Recommended. All tiers include 10-12 LinkedIn posts and 8 custom graphics/mo. $950 one-time setup. 3-month minimum. 1,000 contact/mo tiers and media packages available.</p>
+        <div class="pricing-cards fi">
+            <div class="pricing-card">
+                <div class="pricing-card-head">
+                    <h3 class="pricing-tier">Starter</h3>
+                    <div class="pricing-price">$4,750<span class="pricing-period">/mo</span></div>
+                </div>
+                <p class="pricing-desc">Content engine and cold email. The foundation.</p>
+                <div class="pricing-divider"></div>
+                <ul class="pricing-features">
+                    <li>10-12 LinkedIn posts/mo</li>
+                    <li>8 custom static graphics</li>
+                    <li>Clay-powered cold email</li>
+                    <li>Sending infrastructure</li>
+                    <li>Reply management</li>
+                    <li>Meeting booking</li>
+                </ul>
+                <a href="https://calendly.com/csimpson39/30min" target="_blank" rel="noopener" class="pricing-cta">Talk to us</a>
+            </div>
+            <div class="pricing-card pricing-card-rec">
+                <div class="pricing-card-head">
+                    <h3 class="pricing-tier">Pro <span class="pricing-badge">Recommended</span></h3>
+                    <div class="pricing-price">$5,950<span class="pricing-period">/mo</span></div>
+                </div>
+                <p class="pricing-desc">Content, email, and LinkedIn outreach. Multi-channel.</p>
+                <div class="pricing-divider"></div>
+                <ul class="pricing-features">
+                    <li>Everything in Starter</li>
+                    <li>LinkedIn outreach sequences</li>
+                    <li>Multi-channel coordination</li>
+                    <li>500 enriched contacts/mo</li>
+                </ul>
+                <a href="https://calendly.com/csimpson39/30min" target="_blank" rel="noopener" class="pricing-cta pricing-cta-rec">Get started</a>
+            </div>
+            <div class="pricing-card">
+                <div class="pricing-card-head">
+                    <h3 class="pricing-tier">Max</h3>
+                    <div class="pricing-price">$7,450<span class="pricing-period">/mo</span></div>
+                </div>
+                <p class="pricing-desc">The full system. Content, outreach, and paid ads.</p>
+                <div class="pricing-divider"></div>
+                <ul class="pricing-features">
+                    <li>Everything in Pro</li>
+                    <li>LinkedIn ad campaigns</li>
+                    <li>Prospect retargeting</li>
+                    <li>Surround-sound effect</li>
+                    <li>Boost top organic content</li>
+                </ul>
+                <a href="https://calendly.com/csimpson39/30min" target="_blank" rel="noopener" class="pricing-cta">Talk to us</a>
+            </div>
+        </div>
+        <div class="frame" style="padding:0;max-width:760px;">
+            <p class="pricing-note fi">All tiers include 10-12 LinkedIn posts and 8 custom graphics/mo. $950 one-time setup. 3-month minimum. 1,000 contact/mo tiers and media packages available.</p>
+            <div class="trust-bar fi">
+                <div class="trust-item"><span class="trust-icon">✓</span> You own everything: lists, inboxes, domains, content, creative. Full export on exit.</div>
+                <div class="trust-item"><span class="trust-icon">✓</span> No lock-in: 3-month minimum, then month-to-month. Stay because it works.</div>
+                <div class="trust-item"><span class="trust-icon">✓</span> GDPR compliant: legitimate interest only, professional emails, clear opt-out.</div>
+            </div>
+        </div>
     </div></section>
 
     <section class="section" id="roi"><div class="frame">
@@ -554,16 +630,39 @@
             <li class="fq"><button class="fq-t" onclick="this.parentElement.classList.toggle('open')">How quickly will we see results?<span class="fq-icon">+</span></button><div class="fq-a"><p>Month 1 is infrastructure and calibration. Domains warm up, content starts publishing, data starts flowing. Months 2-3 hit benchmark. We don't promise "15 guaranteed meetings" because that's how agencies scam you. We set expectations with data, not hype.</p></div></li>
             <li class="fq"><button class="fq-t" onclick="this.parentElement.classList.toggle('open')">Do we own everything?<span class="fq-icon">+</span></button><div class="fq-a"><p>Yes. Lists, inboxes, domains, accounts, content, creative assets. Full CSV export on exit. Unlike agencies that lock you into their infrastructure, everything we build is yours from day one. You stay because it works, not because you're trapped.</p></div></li>
             <li class="fq"><button class="fq-t" onclick="this.parentElement.classList.toggle('open')">What's the minimum commitment?<span class="fq-icon">+</span></button><div class="fq-a"><p>3 months. No long-term lock-in. The system needs time to calibrate. Most clients stay because the pipeline speaks for itself.</p></div></li>
-            <li class="fq"><button class="fq-t" onclick="this.parentElement.classList.toggle('open')">How is Yeta different from hiring in-house?<span class="fq-icon">+</span></button><div class="fq-a"><p>Running this system in-house requires 2-3 full-time people — a Clay specialist, a copywriter, and a campaign manager — at $15,000-25,000/mo fully loaded. Plus $500-800/mo in tool subscriptions. Yeta delivers the same output from $4,750/mo with no hiring, no training, and no management overhead.</p></div></li>
+            <li class="fq"><button class="fq-t" onclick="this.parentElement.classList.toggle('open')">How is Yeta different from hiring in-house?<span class="fq-icon">+</span></button><div class="fq-a"><p>Running this system in-house requires 2-3 full-time people (a Clay specialist, a copywriter, and a campaign manager) at $15,000-25,000/mo fully loaded. Plus $500-800/mo in tool subscriptions. Yeta delivers the same output from $4,750/mo with no hiring, no training, and no management overhead.</p></div></li>
             <li class="fq"><button class="fq-t" onclick="this.parentElement.classList.toggle('open')">How is Yeta different from using multiple agencies?<span class="fq-icon">+</span></button><div class="fq-a"><p>Most B2B companies end up with one agency for content, another for outbound, and a freelancer for design. They don't talk to each other, nothing compounds, and you're managing three relationships. Yeta replaces all of them with one integrated system where content feeds outreach, outreach informs content, and ads amplify what's working.</p></div></li>
             <li class="fq"><button class="fq-t" onclick="this.parentElement.classList.toggle('open')">Does Yeta comply with GDPR?<span class="fq-icon">+</span></button><div class="fq-a"><p>Yes. All outreach is conducted under legitimate interest provisions of GDPR. We only contact business professionals at their professional email addresses regarding services relevant to their role. Every message includes a clear opt-out mechanism. We do not purchase consumer data or contact personal email addresses.</p></div></li>
             <li class="fq"><button class="fq-t" onclick="this.parentElement.classList.toggle('open')">What industries does Yeta work with?<span class="fq-icon">+</span></button><div class="fq-a"><p>Yeta works best with B2B companies in SaaS, professional services, recruitment, fintech, Web3, PropTech, B2B events, managed service providers, and agencies or consultancies. The system is built for companies with 5-150 employees and a clear ICP who need a predictable pipeline.</p></div></li>
         </ul>
     </div></section>
 
+    <section class="section" id="founding"><div class="frame">
+        <div class="eyebrow fi">Founding Partners</div>
+        <h2 class="sh fi" style="font-size:clamp(32px, 5vw, 52px);">Five slots. Launch pricing. Then it closes.</h2>
+        <p class="si fi">Before this opens up more broadly, there are five founding partner slots available. Setup fee waived and 15-20% off the monthly retainer for the first three months. In return, a 30-minute case study interview at 90&nbsp;days.</p>
+        <div class="split fi">
+            <div class="split-col">
+                <h3>What you get</h3>
+                <ul>
+                    <li>Setup fee waived ($950 saving)</li>
+                    <li>15-20% off standard monthly rate</li>
+                    <li>Founding partner rate locked for 3 months</li>
+                    <li>Same system. Same output. Earlier access.</li>
+                </ul>
+            </div>
+            <div class="split-col founding-slots-col">
+                <div class="founding-num">5</div>
+                <div class="founding-label">slots remaining</div>
+                <p class="founding-note">Offer closes in 60 days or when slots fill. This isn't a discount. It's a founding rate. It has an end&nbsp;date.</p>
+                <a href="https://calendly.com/csimpson39/30min" target="_blank" rel="noopener" class="btn-primary" style="width:100%;justify-content:center;margin-top:20px;">Claim a founding slot <span>→</span></a>
+            </div>
+        </div>
+    </div></section>
+
     <section class="cta-section" id="book">
         <div class="frame">
-            <h2 class="fi">20 minutes. No commitment.</h2>
+            <h2 class="fi">30 minutes. No commitment.</h2>
             <p class="fi">We'll show you how the system would work for your specific market. If it's not a fit, the conversation was&nbsp;free.</p>
             <a href="https://calendly.com/csimpson39/30min" target="_blank" rel="noopener" class="btn-primary fi">Book a strategy call <span>→</span></a>
         </div>
@@ -585,7 +684,7 @@
         <div class="fg">
             <a href="https://calendly.com/csimpson39/30min" target="_blank" rel="noopener">Book a call</a>
             <a href="#pricing">Pricing</a>
-            <a href="#comparison">Comparison</a>
+            <a href="#founding">Founding partners</a>
             <a href="#faq">FAQ</a>
             <span class="cp">© 2026 Yeta Co Ltd</span>
         </div>
