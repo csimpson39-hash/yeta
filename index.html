@@ -315,6 +315,15 @@
         .card ul li::before { content: '✓'; position: absolute; left: 0; color: var(--text-faint); font-size: 12px; }
         .card ul li:hover { color: var(--text-body); }
         .compound-note { margin-top: 40px; font-family: var(--serif); font-size: 21px; font-style: italic; color: var(--text-body); line-height: 1.6; }
+        .method-preview { border: 1px solid var(--border); border-radius: 12px; padding: 28px 32px; }
+        .method-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+        .method-tag { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+        .method-title { font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--text-heading); }
+        .method-desc { font-size: 14px; color: var(--text-body); line-height: 1.7; margin-bottom: 16px; }
+        .method-link { font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--text-muted); text-decoration: none; cursor: pointer; transition: color 0.2s; }
+        .method-link:hover { color: var(--text-heading); }
+        .method-link span { margin-left: 4px; }
+        @media (max-width: 600px) { .method-preview { padding: 20px; } }
 
         .split { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
         @media (max-width: 600px) { .split { grid-template-columns: 1fr; } }
@@ -514,17 +523,14 @@
         .dl-a:hover .dl-r { transform: translateX(3px); color: var(--text-muted); }
 
         footer { padding: 0 0 48px; position: relative; overflow-x: clip; overflow-y: visible; }
-        .footer-wordmark { width: 100vw; margin-left: calc(-50vw + 50%); padding-top: 40px; -webkit-mask-image: linear-gradient(to bottom, white 0%, white 50%, transparent 100%); mask-image: linear-gradient(to bottom, white 0%, white 50%, transparent 100%); }
+        .footer-wordmark { width: 100vw; margin-left: calc(-50vw + 50%); padding-top: 40px; position: relative; -webkit-mask-image: linear-gradient(to bottom, white 0%, white 50%, transparent 100%); mask-image: linear-gradient(to bottom, white 0%, white 50%, transparent 100%); }
+        .footer-wordmark::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 70% at 50% 30%, rgba(255,255,255,0.015) 0%, rgba(255,255,255,0.01) 30%, rgba(255,255,255,0.005) 55%, transparent 80%); pointer-events: none; }
         .footer-wordmark svg { width: 100%; height: auto; display: block; opacity: 0.3; }
         .footer-wordmark svg path { fill: #000000; }
-        .fg { display: grid; grid-template-columns: repeat(5, 1fr); align-items: center; margin-top: 24px; }
+        .fg { display: flex; justify-content: space-between; align-items: center; margin-top: 24px; }
         .fg a, .fg .cp { font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
         .fg a:hover { color: rgba(255,255,255,0.7); }
-        .fg .cp { text-align: right; white-space: nowrap; }
-        @media (max-width: 600px) {
-            .fg { grid-template-columns: repeat(2, 1fr); gap: 16px; }
-            .fg .cp { grid-column: 1 / -1; text-align: left; margin-top: 8px; }
-        }
+        .fg .cp { white-space: nowrap; }
 
         .mo { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1000; align-items: center; justify-content: center; padding: 24px; backdrop-filter: blur(6px); }
         .mo.active { display: flex; }
@@ -611,6 +617,16 @@
         </div>
         <div class="frame" style="padding:0;max-width:760px;">
             <p class="compound-note fi">Content engagement feeds outreach. Outreach responses inform content. Ads amplify what's working. Everything compounds.</p>
+        </div>
+        <div class="frame fi" style="padding:0;max-width:760px;margin-top:48px;">
+            <div class="method-preview">
+                <div class="method-header">
+                    <span class="method-tag">Under the hood</span>
+                    <span class="method-title">20-step enrichment pipeline</span>
+                </div>
+                <p class="method-desc">Before any message is sent, every prospect passes through a Clay-powered enrichment pipeline. Company deep dives, tech stack analysis, hiring signals, funding events, thought leadership mapping. Every email and LinkedIn message references something specific about the recipient. Not "I noticed your company is growing." Specific enough that it reads like it was written by hand.</p>
+                <a class="method-link" onclick="openM('m-clay')">How the enrichment engine works <span>→</span></a>
+            </div>
         </div>
     </div></section>
 
@@ -795,7 +811,7 @@
                     <li>Reply management</li>
                     <li>Meeting booking</li>
                 </ul>
-                <a href="https://cal.com/run-yeta/30min" target="_blank" rel="noopener" class="pricing-cta">Talk to us</a>
+                <a href="https://cal.com/run-yeta/30min" target="_blank" rel="noopener" class="pricing-cta">Book a call</a>
             </div>
             <div class="pricing-card pricing-card-rec">
                 <div class="pricing-card-head">
@@ -826,7 +842,7 @@
                     <li>Surround-sound effect</li>
                     <li>Boost top organic content</li>
                 </ul>
-                <a href="https://cal.com/run-yeta/30min" target="_blank" rel="noopener" class="pricing-cta">Talk to us</a>
+                <a href="https://cal.com/run-yeta/30min" target="_blank" rel="noopener" class="pricing-cta">Book a call</a>
             </div>
         </div>
         <div class="frame" style="padding:0;max-width:760px;">
@@ -943,10 +959,7 @@
 </svg>
         </div>
         <div class="fg">
-            <a href="https://cal.com/run-yeta/30min" target="_blank" rel="noopener">Book a call</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#founding">Founding partners</a>
-            <a href="#faq">Questions</a>
+            <a href="/privacy">Privacy policy</a>
             <span class="cp">© 2026 Yeta</span>
         </div>
     </div></footer>
