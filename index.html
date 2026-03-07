@@ -174,6 +174,30 @@
                     "@type": "Answer",
                     "text": "Yeta works best with B2B companies in SaaS, professional services, recruitment, fintech, Web3, PropTech, B2B events, managed service providers, and agencies or consultancies. The system is built for companies with 5-150 employees and a clear ICP who need a predictable pipeline."
                 }
+            },
+            {
+                "@type": "Question",
+                "name": "What reply rates should we expect?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Industry average for cold email is 1-3%. With Clay-enriched personalisation across multi-channel sequences, we typically see 5-12% positive reply rates once the system is calibrated. The compounding effect means prospects who have seen your LinkedIn content reply at significantly higher rates than cold-cold outreach."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "How do you handle email deliverability?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "Deliverability is infrastructure, not luck. We set up dedicated sending domains with SPF, DKIM, and DMARC authentication. Each inbox warms for a minimum of 3 weeks before any campaign sends. We cap sending at 30 emails per inbox per day, use text-only emails, and disable open tracking."
+                }
+            },
+            {
+                "@type": "Question",
+                "name": "What if the ICP needs adjusting mid-campaign?",
+                "acceptedAnswer": {
+                    "@type": "Answer",
+                    "text": "It almost always does. The first month is deliberately a calibration period. We use reply patterns to identify which segments respond, which messaging resonates, and where gaps exist. By month 2 the ICP is sharpened by real market feedback. Adjustments are part of the system, not a change order."
+                }
             }
         ]
     }
@@ -372,6 +396,32 @@
 
         .stats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 48px; }
         @media (max-width: 600px) { .stats-grid { grid-template-columns: 1fr; } }
+
+        .case-study { border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 48px; }
+        .cs-header { padding: 20px 32px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 16px; }
+        .cs-tag { font-family: var(--sans); font-size: 11px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--accent); }
+        .cs-co { font-family: var(--sans); font-size: 13px; color: var(--text-muted); }
+        .cs-body { display: grid; grid-template-columns: 1fr 1fr; }
+        .cs-narrative { padding: 32px; border-right: 1px solid var(--border); }
+        .cs-narrative p { font-size: 14px; color: var(--text-body); line-height: 1.7; margin-bottom: 16px; }
+        .cs-narrative p:last-child { margin-bottom: 0; }
+        .cs-situation { margin-bottom: 16px; }
+        .cs-results { display: grid; grid-template-columns: 1fr 1fr; }
+        .cs-metric { padding: 24px 28px; border-bottom: 1px solid var(--border); border-right: 1px solid var(--border); }
+        .cs-metric:nth-child(2n) { border-right: none; }
+        .cs-metric:nth-last-child(-n+2) { border-bottom: none; }
+        .cs-num { font-family: var(--serif); font-size: 28px; color: var(--text-heading); margin-bottom: 4px; line-height: 1; }
+        .cs-label { font-family: var(--sans); font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+        .cs-footer { padding: 20px 32px; border-top: 1px solid var(--border); }
+        .cs-footer p { font-family: var(--sans); font-size: 14px; color: var(--text-muted); line-height: 1.6; font-style: italic; }
+        @media (max-width: 700px) {
+            .cs-body { grid-template-columns: 1fr; }
+            .cs-narrative { border-right: none; border-bottom: 1px solid var(--border); }
+            .cs-header { flex-direction: column; align-items: flex-start; gap: 4px; padding: 16px 20px; }
+            .cs-narrative { padding: 20px; }
+            .cs-metric { padding: 16px 20px; }
+            .cs-footer { padding: 16px 20px; }
+        }
         .stat { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 28px; position: relative; overflow: hidden; }
         .stat::before { content: ''; position: absolute; top: -20px; left: 50%; transform: translateX(-50%); width: 120px; height: 80px; background: radial-gradient(ellipse, rgba(139,139,245,0.08) 0%, transparent 70%); pointer-events: none; }
         .stat-num { font-family: var(--serif); font-size: 42px; color: var(--text-heading); margin-bottom: 6px; }
@@ -424,6 +474,12 @@
         .roi-cell:last-child .roi-num { color: var(--accent); }
         .roi-label { font-family: var(--sans); font-size: 14px; color: var(--text-muted); line-height: 1.5; }
         .roi-note { margin-top: 32px; font-family: var(--serif); font-size: 18px; font-style: italic; color: var(--text-body); }
+
+        .guarantees-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; margin-top: 48px; }
+        .g-item { background: var(--bg); padding: 32px; }
+        .g-title { font-family: var(--sans); font-size: 16px; font-weight: 500; color: var(--text-heading); margin-bottom: 12px; }
+        .g-desc { font-size: 14px; color: var(--text-body); line-height: 1.7; }
+        @media (max-width: 700px) { .guarantees-grid { grid-template-columns: 1fr; } }
 
         .faq-list { list-style: none; }
         .fq { border-bottom: 1px solid var(--border); }
@@ -680,10 +736,40 @@
     <section class="section" id="proof"><div class="frame">
         <div class="eyebrow fi">05 · Proof</div>
         <h2 class="sh fi">Built from real results. Now productised.</h2>
-        <p class="si fi">This system was built and validated inside a creative agency before it became Yeta. Same workflows. Same infrastructure. Same compounding effect.</p>
-        <div class="stats-grid fi">
-            <div class="stat"><div class="stat-num">£1.5M</div><div class="stat-desc">New business generated in 15 months using this exact system</div></div>
-            <div class="stat"><div class="stat-num">300%</div><div class="stat-desc">More meetings with multi-channel vs single-channel outreach</div></div>
+        <p class="si fi">This system wasn't designed in a pitch deck. It was built inside a real company, run by one person, and used to grow that company's pipeline from zero outbound to consistent deal flow over 15 months.</p>
+
+        <div class="case-study fi">
+            <div class="cs-header">
+                <span class="cs-tag">Case study</span>
+                <span class="cs-co">B2B creative studio · 18 employees · London</span>
+            </div>
+            <div class="cs-body">
+                <div class="cs-narrative">
+                    <p class="cs-situation">An established brand and design studio working with enterprise technology companies. Pipeline was entirely referral-dependent. Some quarters were packed, others were quiet. No outbound function, no content strategy, no systematic way to generate new business.</p>
+                    <p class="cs-deployed">The full system was deployed: LinkedIn content positioning the founder as a category voice, Clay-enriched cold email across five sending domains, LinkedIn outreach sequences, and paid amplification retargeting warm prospects. One person managed the entire operation.</p>
+                </div>
+                <div class="cs-results">
+                    <div class="cs-metric">
+                        <div class="cs-num">$1.8M</div>
+                        <div class="cs-label">new business generated<br>over 15 months</div>
+                    </div>
+                    <div class="cs-metric">
+                        <div class="cs-num">0 → 18</div>
+                        <div class="cs-label">qualified meetings<br>per month by month 6</div>
+                    </div>
+                    <div class="cs-metric">
+                        <div class="cs-num">1</div>
+                        <div class="cs-label">person running<br>the entire system</div>
+                    </div>
+                    <div class="cs-metric">
+                        <div class="cs-num">3x</div>
+                        <div class="cs-label">pipeline vs<br>single-channel outreach</div>
+                    </div>
+                </div>
+            </div>
+            <div class="cs-footer">
+                <p>The studio's team grew from 12 to 20+ during this period. Yeta is the productised version of the exact system that drove that growth.</p>
+            </div>
         </div>
     </div></section>
 
@@ -765,8 +851,27 @@
         <p class="roi-note fi">One closed deal from the system covers 6-12 months of investment. Every month without it is pipeline your competitors are capturing instead.</p>
     </div></section>
 
+    <section class="section" id="guarantees" style="padding:100px 0;"><div class="frame">
+        <div class="eyebrow fi">08 · Guarantees</div>
+        <h2 class="sh fi">Zero lock-in. Full ownership. No exceptions.</h2>
+        <div class="guarantees-grid fi">
+            <div class="g-item">
+                <div class="g-title">You own everything</div>
+                <p class="g-desc">Lists, inboxes, domains, accounts, content, creative assets. Full CSV export on exit. Everything we build is yours from day one. You stay because it works, not because you're trapped.</p>
+            </div>
+            <div class="g-item">
+                <div class="g-title">No long-term lock-in</div>
+                <p class="g-desc">3-month minimum for the system to calibrate. After that, month-to-month. Cancel any time with 30 days notice. We earn the next month, every month.</p>
+            </div>
+            <div class="g-item">
+                <div class="g-title">Full transparency</div>
+                <p class="g-desc">Monthly performance reports. Access to every tool and account. Ad spend is always passthrough at cost. No markup, no hidden fees, no surprises on the invoice.</p>
+            </div>
+        </div>
+    </div></section>
+
     <section class="section" id="faq"><div class="frame">
-        <div class="eyebrow fi">08 · FAQ</div>
+        <div class="eyebrow fi">09 · FAQ</div>
         <h2 class="sh fi">Questions</h2>
         <ul class="faq-list" style="margin-top:48px;">
             <li class="fq"><button class="fq-t" onclick="this.parentElement.classList.toggle('open')">Why not just use Clay ourselves?<span class="fq-icon">+</span></button><div class="fq-a"><p>The DIY stack is real. But Clay alone doesn't send emails, manage deliverability, write content, or run ads. You need Clay plus a sending tool, plus warm-up infrastructure, plus verification, plus a copywriter, plus a designer. That's 2-3 full-time people at $15K-25K/mo. We run the entire system so you don't have to.</p></div></li>
@@ -777,6 +882,9 @@
             <li class="fq"><button class="fq-t" onclick="this.parentElement.classList.toggle('open')">How is Yeta different from using multiple agencies?<span class="fq-icon">+</span></button><div class="fq-a"><p>Most B2B companies end up with one agency for content, another for outbound, and a freelancer for design. They don't talk to each other, nothing compounds, and you're managing three relationships. Yeta replaces all of them with one integrated system where content feeds outreach, outreach informs content, and ads amplify what's working.</p></div></li>
             <li class="fq"><button class="fq-t" onclick="this.parentElement.classList.toggle('open')">Does Yeta comply with GDPR?<span class="fq-icon">+</span></button><div class="fq-a"><p>Yes. All outreach is conducted under legitimate interest provisions of GDPR. We only contact business professionals at their professional email addresses regarding services relevant to their role. Every message includes a clear opt-out mechanism. We do not purchase consumer data or contact personal email addresses.</p></div></li>
             <li class="fq"><button class="fq-t" onclick="this.parentElement.classList.toggle('open')">What industries does Yeta work with?<span class="fq-icon">+</span></button><div class="fq-a"><p>Yeta works best with B2B companies in SaaS, professional services, recruitment, fintech, Web3, PropTech, B2B events, managed service providers, and agencies or consultancies. The system is built for companies with 5-150 employees and a clear ICP who need a predictable pipeline.</p></div></li>
+            <li class="fq"><button class="fq-t" onclick="this.parentElement.classList.toggle('open')">What reply rates should we expect?<span class="fq-icon">+</span></button><div class="fq-a"><p>Industry average for cold email is 1-3%. With Clay-enriched personalisation across multi-channel sequences, we typically see 5-12% positive reply rates once the system is calibrated (month 2-3 onwards). These aren't vanity metrics. A "positive reply" means the prospect has expressed genuine interest or agreed to a conversation. The compounding effect matters too. By month 4-5, prospects who've seen your LinkedIn content before receiving an email reply at significantly higher rates than cold-cold outreach.</p></div></li>
+            <li class="fq"><button class="fq-t" onclick="this.parentElement.classList.toggle('open')">How do you handle email deliverability?<span class="fq-icon">+</span></button><div class="fq-a"><p>Deliverability is infrastructure, not luck. We set up dedicated sending domains with SPF, DKIM, and DMARC authentication. Each inbox warms for a minimum of 3 weeks before any campaign sends. We cap sending at 30 emails per inbox per day. We use text-only emails with no HTML, no images, and no tracking pixels. Open tracking is disabled because it kills deliverability. Every email includes an unsubscribe mechanism. We monitor bounce rates and sender reputation daily and rotate domains proactively before they degrade.</p></div></li>
+            <li class="fq"><button class="fq-t" onclick="this.parentElement.classList.toggle('open')">What if the ICP needs adjusting mid-campaign?<span class="fq-icon">+</span></button><div class="fq-a"><p>It almost always does. The first month is deliberately a calibration period. We start with your best hypothesis of who to target, run enrichment and outreach against it, and use the data to refine. Reply patterns tell us which segments respond, which messaging angles resonate, and where the gaps are. By month 2, the ICP is sharpened by real market feedback, not assumptions. Adjustments are part of the system, not a change order.</p></div></li>
         </ul>
     </div></section>
 
@@ -803,16 +911,8 @@
         </div>
     </div></section>
 
-    <section class="cta-section" id="book">
-        <canvas id="dotgrid-cta" class="hero-dots"></canvas>
-        <div class="frame">
-            <h2 class="fi">See how it would work for your market.</h2>
-            <p class="fi">30 minutes. We'll map your ICP, show you the system, and identify the gaps in your current growth stack. No pitch deck. No pressure. If it's not a fit, the conversation was&nbsp;free.</p>
-            <a href="https://calendly.com/csimpson39/30min" target="_blank" rel="noopener" class="btn-primary fi">Book a strategy call <span>→</span></a>
-        </div>
-    </section>
-
     <section class="section" style="padding:80px 0;border-top:none;"><div class="frame">
+        <div class="eyebrow fi" style="margin-bottom:32px;">Appendix</div>
         <div class="dl">
             <a class="dl-a" onclick="openM('m-sys')"><div class="dl-l"><span class="dl-n">A.1</span><span class="dl-t">The compounding system in detail</span></div><span class="dl-r">→</span></a>
             <a class="dl-a" onclick="openM('m-clay')"><div class="dl-l"><span class="dl-n">A.2</span><span class="dl-t">What we use Clay for</span></div><span class="dl-r">→</span></a>
@@ -821,6 +921,15 @@
             <a class="dl-a" onclick="openM('m-med')"><div class="dl-l"><span class="dl-n">A.5</span><span class="dl-t">Media packages</span></div><span class="dl-r">→</span></a>
         </div>
     </div></section>
+
+    <section class="cta-section" id="book">
+        <canvas id="dotgrid-cta" class="hero-dots"></canvas>
+        <div class="frame">
+            <h2 class="fi">See how it would work for your market.</h2>
+            <p class="fi">30 minutes. We'll map your ICP, show you the system, and identify the gaps in your current growth stack. No pitch deck. No pressure. If it's not a fit, the conversation was&nbsp;free.</p>
+            <a href="https://calendly.com/csimpson39/30min" target="_blank" rel="noopener" class="btn-primary fi">Book a strategy call <span>→</span></a>
+        </div>
+    </section>
 
     </main>
 
