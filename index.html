@@ -240,7 +240,10 @@
         @media (max-width: 600px) { .nav-links { gap: 16px; } .nav-link { display: none; } }
 
         .hero { min-height: calc(100svh - 65px); display: flex; align-items: center; justify-content: center; text-align: center; position: relative; overflow: clip; padding: 60px 0; }
-        .hero::before { content: ''; position: absolute; width: 700px; height: 500px; background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%); top: 45%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+        .hero-dots { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .hero::before { content: ''; position: absolute; width: 800px; height: 600px; background: radial-gradient(ellipse, rgba(139,139,245,0.04) 0%, rgba(120,100,255,0.02) 40%, transparent 70%); top: 42%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; z-index: 0; animation: glow-drift 10s ease-in-out infinite; }
+        .hero::after { content: ''; position: absolute; width: 500px; height: 400px; background: radial-gradient(ellipse, rgba(167,139,250,0.03) 0%, transparent 65%); top: 55%; left: 42%; transform: translate(-50%, -50%); pointer-events: none; z-index: 0; animation: glow-drift 10s ease-in-out 5s infinite; }
+        @keyframes glow-drift { 0%,100% { transform: translate(-50%, -50%) scale(1); opacity: 1; } 50% { transform: translate(-50%, -50%) scale(1.06); opacity: 0.7; } }
         .hero > .frame { position: relative; z-index: 1; }
         .hero-eyebrow { font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 28px; }
         .hero h1 { font-family: var(--serif); font-size: clamp(46px, 9vw, 76px); font-weight: 400; line-height: 1.12; letter-spacing: -0.03em; color: var(--text-heading); max-width: 700px; margin: 0 auto 32px; overflow: visible; }
@@ -272,17 +275,20 @@
         .pl .pt { font-family: var(--serif); font-size: 22px; color: var(--text-heading); margin-bottom: 8px; line-height: 1.3; }
         .pl .pd { font-size: 15px; color: var(--text-body); line-height: 1.7; }
 
-        .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+        .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; transition: border-color 0.3s ease; }
+        .cards:hover { border-color: rgba(255,255,255,0.1); }
         @media (max-width: 800px) { .cards { grid-template-columns: 1fr; } }
-        .card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 32px; transition: background 0.2s, border-color 0.2s; position: relative; overflow: hidden; }
-        .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(139,139,245,0.15), transparent); }
-        .card:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
+        .card { background: var(--bg); padding: 40px 32px; position: relative; }
+        .card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(255,255,255,0.04) 0%, transparent 60%); opacity: 0; transition: opacity 0.35s ease; pointer-events: none; }
+        .card:hover::after { opacity: 1; }
+        .card:hover .card-num { color: rgba(255,255,255,0.95); }
+        .card-num { font-family: var(--serif); font-size: 64px; color: rgba(255,255,255,0.04); line-height: 1; margin-bottom: 20px; letter-spacing: -0.03em; transition: color 0.3s ease; }
         .card-label { font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-faint); margin-bottom: 16px; }
         .card h3 { font-family: var(--sans); font-size: 18px; font-weight: 500; color: var(--text-heading); margin-bottom: 10px; }
-        .card > p { font-size: 15px; color: var(--text-body); line-height: 1.65; margin-bottom: 20px; }
+        .card > p { font-size: 15px; color: var(--text-body); line-height: 1.65; margin-bottom: 24px; }
         .card ul { list-style: none; }
-        .card ul li { font-size: 14px; color: var(--text-muted); padding: 4px 0 4px 16px; position: relative; transition: color 0.15s; }
-        .card ul li::before { content: '·'; position: absolute; left: 0; color: var(--text-faint); font-size: 16px; }
+        .card ul li { font-size: 14px; color: var(--text-muted); padding: 5px 0 5px 20px; position: relative; transition: color 0.15s; }
+        .card ul li::before { content: '✓'; position: absolute; left: 0; color: var(--text-faint); font-size: 12px; }
         .card ul li:hover { color: var(--text-body); }
         .compound-note { margin-top: 40px; font-family: var(--serif); font-size: 21px; font-style: italic; color: var(--text-body); line-height: 1.6; }
 
@@ -294,11 +300,66 @@
         .split-col ul li { font-size: 15px; color: var(--text-body); padding: 6px 0 6px 16px; position: relative; line-height: 1.7; }
         .split-col ul li::before { content: '·'; position: absolute; left: 0; color: var(--text-faint); font-size: 16px; top: 8px; }
 
+        .iso-section { margin-top: 64px; margin-bottom: 56px; }
+        .iso-stack { max-width: 760px; margin: 0 auto; }
+        .iso-unit { display: flex; align-items: center; }
+        .iso-unit + .iso-unit { margin-top: -140px; }
+        .iso-dia { flex-shrink: 0; }
+        .iso-dia svg { width: 380px; height: auto; display: block; }
+        .iso-arm { display: flex; align-items: center; flex-shrink: 0; width: 72px; margin-left: -24px; }
+        .iso-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+        .iso-line { flex: 1; height: 0.75px; background: #232323; }
+        .iso-text { padding-left: 16px; min-width: 0; }
+        .iso-text strong { display: block; font-family: var(--sans); font-size: 15px; font-weight: 500; color: var(--text-heading); margin-bottom: 3px; }
+        .iso-text span { font-family: var(--sans); font-size: 14px; color: var(--text-muted); line-height: 1.5; display: block; max-width: 280px; }
+        .iso-unit-1 { animation: iso-bob 5s ease-in-out infinite; z-index: 3; position: relative; }
+        .iso-unit-2 { animation: iso-bob 5s ease-in-out 0.2s infinite; z-index: 2; position: relative; }
+        .iso-unit-3 { animation: iso-bob 5s ease-in-out 0.4s infinite; z-index: 1; position: relative; }
+        @keyframes iso-bob { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+        @media (max-width: 900px) {
+            .iso-dia svg { width: 320px; }
+            .iso-arm { width: 56px; margin-left: -20px; }
+            .iso-unit + .iso-unit { margin-top: -105px; }
+            .iso-text span { max-width: 200px; font-size: 12px; line-height: 1.4; }
+            .iso-text strong { font-size: 13px; }
+        }
+        @media (max-width: 700px) {
+            .iso-stack { display: flex; flex-direction: column; }
+            .iso-unit { display: contents; }
+            .iso-dia { order: 0; position: relative; }
+            .iso-unit-1 .iso-dia { order: 1; z-index: 3; }
+            .iso-unit-2 .iso-dia { order: 2; z-index: 2; margin-top: -155px; }
+            .iso-unit-3 .iso-dia { order: 3; z-index: 1; margin-top: -155px; }
+            .iso-dia svg { width: 85%; max-width: 400px; }
+            .iso-arm { display: none; }
+            .iso-text { padding: 0 0 0 20px; }
+            .iso-text strong { font-size: 16px; }
+            .iso-text span { max-width: 100%; font-size: 14px; }
+            .iso-unit-1 .iso-text { order: 4; margin-top: 16px; }
+            .iso-unit-2 .iso-text { order: 5; margin-top: 16px; }
+            .iso-unit-3 .iso-text { order: 6; margin-top: 16px; }
+            .iso-unit + .iso-unit { margin-top: 0; }
+            .iso-unit-1, .iso-unit-2, .iso-unit-3 { animation: none; }
+        }
+        @media (max-width: 480px) {
+            .iso-dia svg { width: 80%; }
+            .iso-unit-2 .iso-dia, .iso-unit-3 .iso-dia { margin-top: -125px; }
+        }
+
+        .scope-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; border-top: 1px solid var(--border); padding: 48px 0 0; max-width: 760px; margin: 0 auto; }
+        @media (max-width: 700px) { .scope-grid { grid-template-columns: 1fr; gap: 32px; padding: 48px 20px 0; } }
+        .scope-heading { font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; }
+        .scope-items { display: flex; flex-wrap: wrap; gap: 8px; }
+        .scope-chip { font-family: var(--sans); font-size: 13px; color: var(--text-body); background: var(--bg-card); border: 1px solid var(--border); border-radius: 6px; padding: 8px 14px; transition: border-color 0.2s; }
+        .scope-chip:hover { border-color: var(--border-hover); }
+        .scope-chip-you { color: var(--text-muted); background: transparent; border-color: rgba(255,255,255,0.04); }
+
         .table-wrap { overflow-x: auto; position: relative; }
         .ct { width: 100%; min-width: 600px; border-collapse: separate; border-spacing: 0; font-size: 15px; background: var(--bg); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; }
         .ct th { font-family: var(--sans); font-size: 13px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); text-align: left; padding: 20px 24px; border-bottom: 1px solid var(--border); background: rgba(255,255,255,0.01); }
         .ct th:last-child { color: var(--accent); }
-        .ct-logo { height: 14px; width: auto; color: var(--accent); display: block; }
+        .ct-logo { height: 18px; width: auto; color: rgba(255,255,255,0.95); display: block; }
         .ct td { padding: 16px 24px; border-bottom: 1px solid var(--border); color: var(--text-body); font-size: 14px; }
         .ct td:first-child { color: rgba(255,255,255,0.7); font-weight: 500; }
         .ct td:last-child { color: var(--text-heading); background: rgba(139,139,245,0.03); }
@@ -353,12 +414,15 @@
         .founding-label { font-family: var(--sans); font-size: 14px; font-weight: 500; color: var(--text-muted); margin-bottom: 16px; }
         .founding-note { font-size: 15px; color: var(--text-body); line-height: 1.65; }
 
-        .roi-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 56px; }
-        @media (max-width: 600px) { .roi-grid { grid-template-columns: repeat(2, 1fr); } }
-        .roi-cell { background: var(--bg-card); border: 1px solid var(--border); border-radius: 12px; padding: 28px 20px; text-align: center; }
-        .roi-num { font-family: var(--serif); font-size: 32px; color: var(--text-heading); margin-bottom: 8px; }
+        .roi-grid { display: grid; grid-template-columns: 2fr 3fr; margin-top: 56px; }
+        .roi-cell { padding: 28px 0; position: relative; }
+        .roi-cell:nth-child(n+3) { border-top: 1px solid var(--border); }
+        .roi-cell:nth-child(2n) { padding-left: 40px; }
+        .roi-cell:nth-child(2n-1) { padding-right: 24px; }
+        .roi-cell:nth-child(2n)::before { content: ''; position: absolute; left: 0; top: 10px; bottom: 10px; width: 1px; background: var(--border); }
+        .roi-num { font-family: var(--serif); font-size: 42px; color: var(--text-heading); margin-bottom: 6px; line-height: 1; }
         .roi-cell:last-child .roi-num { color: var(--accent); }
-        .roi-label { font-family: var(--sans); font-size: 12px; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-muted); line-height: 1.5; }
+        .roi-label { font-family: var(--sans); font-size: 14px; color: var(--text-muted); line-height: 1.5; }
         .roi-note { margin-top: 32px; font-family: var(--serif); font-size: 18px; font-style: italic; color: var(--text-body); }
 
         .faq-list { list-style: none; }
@@ -372,7 +436,8 @@
         .fq-a p { font-size: 16px; color: var(--text-body); line-height: 1.7; max-width: 560px; }
 
         .cta-section { padding: 200px 0; text-align: center; position: relative; border-top: 1px solid var(--border); overflow: hidden; }
-        .cta-section::before { content: ''; position: absolute; width: 600px; height: 400px; background: radial-gradient(ellipse, var(--accent-glow) 0%, transparent 70%); top: 40%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; }
+        .cta-section .hero-dots { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+        .cta-section::before { content: ''; position: absolute; width: 600px; height: 400px; background: radial-gradient(ellipse, rgba(139,139,245,0.04) 0%, transparent 70%); top: 40%; left: 50%; transform: translate(-50%, -50%); pointer-events: none; z-index: 0; }
         .cta-section > .frame { position: relative; z-index: 1; }
         .cta-section h2 { font-family: var(--serif); font-size: clamp(36px, 5vw, 56px); font-weight: 400; letter-spacing: -0.03em; color: var(--text-heading); margin-bottom: 20px; line-height: 1.1; }
         .cta-section p { font-size: 17px; color: var(--text-body); max-width: 420px; margin: 0 auto 44px; line-height: 1.65; }
@@ -392,17 +457,11 @@
         .dl-r { font-size: 14px; color: var(--text-faint); transition: transform 0.2s; }
         .dl-a:hover .dl-r { transform: translateX(3px); color: var(--text-muted); }
 
-        footer { padding: 80px 0 48px; border-top: 1px solid var(--border); position: relative; overflow: hidden; }
-        footer::after {
-            content: '';
-            position: absolute;
-            width: 800px; height: 300px;
-            background: radial-gradient(ellipse, rgba(124,107,240,0.08) 0%, transparent 70%);
-            bottom: -100px; left: 50%;
-            transform: translateX(-50%);
-            pointer-events: none;
-        }
-        .fg { display: grid; grid-template-columns: repeat(5, 1fr); align-items: center; }
+        footer { padding: 0 0 48px; position: relative; overflow-x: clip; overflow-y: visible; }
+        .footer-wordmark { width: 100vw; margin-left: calc(-50vw + 50%); padding-top: 40px; -webkit-mask-image: linear-gradient(to bottom, white 0%, white 50%, transparent 100%); mask-image: linear-gradient(to bottom, white 0%, white 50%, transparent 100%); }
+        .footer-wordmark svg { width: 100%; height: auto; display: block; opacity: 0.3; }
+        .footer-wordmark svg path { fill: #000000; }
+        .fg { display: grid; grid-template-columns: repeat(5, 1fr); align-items: center; margin-top: 24px; }
         .fg a, .fg .cp { font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color 0.15s; }
         .fg a:hover { color: rgba(255,255,255,0.7); }
         .fg .cp { text-align: right; white-space: nowrap; }
@@ -410,8 +469,6 @@
             .fg { grid-template-columns: repeat(2, 1fr); gap: 16px; }
             .fg .cp { grid-column: 1 / -1; text-align: left; margin-top: 8px; }
         }
-        .footer-wordmark { margin-top: 48px; width: 100vw; margin-left: calc(-50vw + 50%); opacity: 0.08; }
-        .footer-wordmark svg { width: 100%; height: auto; display: block; }
 
         .mo { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.65); z-index: 1000; align-items: center; justify-content: center; padding: 24px; backdrop-filter: blur(6px); }
         .mo.active { display: flex; }
@@ -430,7 +487,7 @@
         }
         @media (max-width: 600px) { .cta-section { padding: 120px 0 140px; } }
         @media (max-width: 800px) { .table-wrap-outer { position: relative; } .table-wrap-outer::after { content: ''; position: absolute; top: 0; right: 0; bottom: 0; width: 40px; background: linear-gradient(to right, transparent, var(--bg)); pointer-events: none; z-index: 2; } }
-        @media (max-width: 600px) { .roi-num { font-size: 26px; } }
+        @media (max-width: 600px) { .roi-num { font-size: 32px; } .roi-cell:nth-child(2n) { padding-left: 20px; } .roi-cell:nth-child(2n-1) { padding-right: 20px; } }
         @media (max-width: 600px) { .md { padding: 36px 24px 28px; } .md-close { top: 10px; right: 10px; } }
         @media (max-width: 600px) { .compound-note { font-size: 18px; } .proof blockquote { font-size: 18px; } }
         @media (max-width: 600px) { .nav-cta { padding: 8px 16px; } }
@@ -456,7 +513,7 @@
             <div class="nav-links">
                 <a href="#system" class="nav-link">System</a>
                 <a href="#pricing" class="nav-link">Pricing</a>
-                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="#faq" class="nav-link">Questions</a>
             </div>
             <a href="https://calendly.com/csimpson39/30min" target="_blank" rel="noopener" class="nav-cta">Book a call →</a>
         </nav>
@@ -465,6 +522,7 @@
     <main>
 
     <section class="hero">
+        <canvas id="dotgrid" class="hero-dots"></canvas>
         <div class="frame">
             <p class="hero-eyebrow" style="color:rgba(255,255,255,0.5)">The growth engine for B2B companies</p>
             <h1>Content, outreach, and ads. <em>One compounding system.</em></h1>
@@ -491,22 +549,107 @@
             <p class="si fi">Content warms prospects. Outreach captures intent. Ads create surround-sound. Each makes the others more effective.</p>
         </div>
         <div class="cards fi">
-            <article class="card"><div class="card-label">Pillar 01</div><h3>Content Engine</h3><p>Builds authority and warms your market before a single message is sent.</p><ul><li>10-12 LinkedIn posts/mo</li><li>8 custom static graphics</li><li>Your voice, your positioning</li><li>Media packages available</li></ul></article>
-            <article class="card"><div class="card-label">Pillar 02</div><h3>Outreach Engine</h3><p>Personalised multi-channel sequences powered by a 20-step enrichment pipeline.</p><ul><li>Clay-powered cold email</li><li>LinkedIn outreach sequences</li><li>Reply management</li><li>Meetings booked to calendar</li></ul></article>
-            <article class="card"><div class="card-label">Pillar 03</div><h3>Paid Amplification</h3><p>Retargets pipeline prospects and accelerates deals through the surround-sound effect.</p><ul><li>LinkedIn ad campaigns</li><li>Retargeting warm prospects</li><li>Ad spend always passthrough</li><li>Boost top organic content</li></ul></article>
+            <article class="card"><div class="card-num">01</div><h3>Content Engine</h3><p>Builds authority and warms your market before a single message is sent.</p><ul><li>10-12 LinkedIn posts/mo</li><li>8 custom static graphics</li><li>Your voice, your positioning</li><li>Media packages available</li></ul></article>
+            <article class="card"><div class="card-num">02</div><h3>Outreach Engine</h3><p>Personalised multi-channel sequences powered by a 20-step enrichment pipeline.</p><ul><li>Clay-powered cold email</li><li>LinkedIn outreach sequences</li><li>Reply management</li><li>Meetings booked to calendar</li></ul></article>
+            <article class="card"><div class="card-num">03</div><h3>Paid Amplification</h3><p>Retargets pipeline prospects and accelerates deals through the surround-sound effect.</p><ul><li>LinkedIn ad campaigns</li><li>Retargeting warm prospects</li><li>Ad spend always passthrough</li><li>Boost top organic content</li></ul></article>
         </div>
         <div class="frame" style="padding:0;max-width:760px;">
-            <p class="compound-note fi">Content engagement feeds outreach. Outreach responses inform content. Ads amplify what's working. Everything compounds. It's the only way outbound actually works anymore.</p>
+            <p class="compound-note fi">Content engagement feeds outreach. Outreach responses inform content. Ads amplify what's working. Everything compounds.</p>
         </div>
     </div></section>
 
-    <section class="section" id="scope"><div class="frame">
-        <div class="eyebrow fi">03 · Scope</div>
-        <h2 class="sh fi">We run the system. You close the deals.</h2>
-        <p class="si fi">Every week you spend managing tools and chasing agencies is a week your pipeline isn't compounding.</p>
-        <div class="split fi">
-            <div class="split-col"><h3>What leaves your plate</h3><ul><li>Write and schedule all LinkedIn content</li><li>Design all graphics and creative</li><li>Build and manage enrichment engine</li><li>Write every personalised email and message</li><li>Manage sending infrastructure</li><li>Handle replies and qualify responses</li><li>Book meetings into your calendar</li><li>Run LinkedIn ad campaigns</li><li>Monthly performance reports</li></ul></div>
-            <div class="split-col"><h3>What stays on it</h3><ul><li>Approve content before publishing</li><li>Attend booked meetings</li><li>Close deals</li><li>Provide brand assets and case studies</li><li>Flag protected relationships</li></ul></div>
+    <section class="section" id="scope"><div class="frame-wide">
+        <div class="frame" style="padding:0;max-width:760px;">
+            <div class="eyebrow fi">03 · Scope</div>
+            <h2 class="sh fi">We run the system. You close the deals.</h2>
+            <p class="si fi">Every week you spend managing tools and chasing agencies is a week your pipeline isn't compounding.</p>
+        </div>
+
+        <div class="iso-section fi">
+            <div class="iso-stack">
+                <div class="iso-unit iso-unit-1">
+                    <div class="iso-dia"><svg width="438" height="254" viewBox="0 0 438 254" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="layer-content">
+<g id="Group 2147224486">
+<g id="Group">
+<path id="Rectangle 34648919" d="M23.6031 115.726C23.5843 114.797 24.3101 113.916 25.5695 113.338L215.609 26.1638C217.505 25.294 220.189 25.294 222.085 26.1638L412.114 113.353C413.357 113.923 414.081 114.79 414.082 115.706V137.051C414.082 137.84 413.543 138.598 412.584 139.16L222.556 250.488C220.516 251.683 217.178 251.682 215.139 250.488L25.5356 139.352C24.5914 138.798 24.0553 138.055 24.0395 137.278L23.6031 115.726Z" fill="#090A0B" stroke="#2F2F30" stroke-width="1.5"/>
+</g>
+<g id="Group_2">
+<rect id="Rectangle 34648919_2" x="1.29907" width="227.931" height="227.931" rx="4.25" transform="matrix(0.866044 -0.499967 0.866044 0.499967 20.3234 115.357)" fill="#131415" stroke="#2F2F30" stroke-width="1.5"/>
+</g>
+</g>
+<g id="YETA-logo-isometric" opacity="0.75">
+<path d="M169.03 132.706C168.713 132.523 168.675 132.249 168.945 132.093L171.225 130.779C171.494 130.623 171.97 130.645 172.287 130.828L193.343 142.969C193.661 143.152 193.699 143.426 193.429 143.582L191.149 144.896C190.879 145.052 190.403 145.03 190.086 144.847L169.03 132.706Z" fill="white"/>
+<path d="M148.523 129.521C148.205 129.338 147.73 129.316 147.46 129.471L145.18 130.786C144.91 130.941 144.948 131.216 145.265 131.399L164.024 142.215C164.341 142.398 164.817 142.42 165.087 142.264L167.367 140.95C167.637 140.794 167.599 140.52 167.281 140.337L148.523 129.521Z" fill="white"/>
+<path d="M169.531 117.407C169.214 117.224 168.738 117.202 168.468 117.358L166.188 118.673C165.918 118.828 165.957 119.102 166.274 119.285L185.033 130.102C185.35 130.284 185.826 130.307 186.096 130.151L188.376 128.836C188.645 128.681 188.607 128.406 188.29 128.224L169.531 117.407Z" fill="white"/>
+<path d="M161.196 134.575C160.879 134.392 160.841 134.117 161.111 133.962L163.391 132.647C163.66 132.491 164.136 132.514 164.453 132.696L178.81 140.974C179.127 141.157 179.165 141.431 178.895 141.587L176.615 142.902C176.346 143.057 175.87 143.035 175.553 142.852L161.196 134.575Z" fill="white"/>
+<path d="M175.365 126.405C175.048 126.222 174.572 126.2 174.302 126.356L172.022 127.67C171.752 127.826 171.79 128.1 172.108 128.283L186.464 136.561C186.781 136.744 187.257 136.766 187.527 136.61L189.807 135.296C190.077 135.14 190.038 134.866 189.721 134.683L175.365 126.405Z" fill="white"/>
+<path d="M219.64 127.603C219.175 127.87 218.771 127.905 218.427 127.707C218.083 127.508 218.097 127.284 218.468 127.034L220.23 125.64C220.755 125.229 221.017 124.897 221.015 124.646C220.982 124.377 220.637 124.053 219.98 123.675L208.912 117.293C208.225 116.896 207.398 116.598 206.431 116.398L185.159 112.006C184.411 111.825 183.757 111.733 183.197 111.732C182.637 111.73 182.031 111.845 181.38 112.077L180.868 112.263C180.341 112.459 179.921 112.467 179.608 112.287C179.295 112.107 179.371 111.883 179.836 111.615L187.778 107.035C188.211 106.785 188.6 106.76 188.944 106.958C189.288 107.156 189.212 107.416 188.717 107.738L187.929 108.3C187.433 108.622 187.234 108.935 187.33 109.241C187.426 109.546 187.957 109.799 188.923 109.999L206.923 113.789C207.265 113.844 207.53 113.818 207.716 113.711C207.901 113.604 207.947 113.451 207.852 113.254L202.03 103.577C201.62 102.876 201.056 102.444 200.339 102.28C199.622 102.081 198.86 102.16 198.054 102.516L196.892 103.024C196.272 103.274 195.821 103.317 195.539 103.155C195.195 102.957 195.24 102.733 195.674 102.483L202.269 98.6798C202.733 98.412 203.122 98.3683 203.435 98.5485C203.747 98.7288 203.734 98.971 203.394 99.275L203.023 99.5969C202.684 99.9009 202.562 100.277 202.66 100.726C202.788 101.157 203.104 101.822 203.61 102.72L209.859 113.34C210.08 113.717 210.347 114.05 210.661 114.338C210.943 114.608 211.335 114.887 211.835 115.175L223.278 121.773C223.934 122.152 224.496 122.351 224.963 122.37C225.429 122.353 226.004 122.202 226.686 121.917L229.104 120.901C229.538 120.687 229.927 120.679 230.271 120.878C230.615 121.076 230.554 121.309 230.09 121.577L219.64 127.603Z" fill="white"/>
+<path d="M234.009 119.317C233.545 119.585 233.141 119.62 232.797 119.421C232.515 119.259 232.529 119.035 232.838 118.749L233.718 118.025C234.244 117.578 234.49 117.237 234.457 117.004C234.454 116.753 234.125 116.438 233.469 116.06L205.893 100.16C205.236 99.7811 204.69 99.5912 204.255 99.59C203.85 99.5709 203.26 99.7128 202.485 100.016L201.229 100.523C200.733 100.701 200.344 100.709 200.062 100.547C199.718 100.349 199.779 100.116 200.243 99.8479L215.849 90.8497C216.561 90.4391 217.308 90.4232 218.089 90.8022L226.245 95.0767C226.839 95.3474 226.903 95.6167 226.439 95.8845C226.067 96.0987 225.647 96.1065 225.179 95.9079L223.165 95.0681C220.698 94.0386 218.454 93.548 216.432 93.5962C214.379 93.6263 212.423 94.177 210.565 95.2482C209.327 95.9623 208.647 96.5704 208.527 97.0724C208.407 97.5385 208.8 98.0329 209.706 98.5557L221.009 105.073C221.446 105.325 221.882 105.326 222.316 105.076L224.638 103.737C226 102.952 226.102 102.046 224.942 101.02L223.061 99.4003C222.716 99.0584 222.776 98.7895 223.241 98.5935C223.644 98.4331 224.08 98.4882 224.549 98.7586L235.101 104.843C235.57 105.113 235.666 105.365 235.388 105.597C235.048 105.865 234.581 105.9 233.988 105.701L231.226 104.644C229.915 104.138 228.886 103.901 228.14 103.935C227.424 103.951 226.71 104.165 225.998 104.575L223.722 105.887C223.289 106.137 223.291 106.388 223.729 106.641L235.5 113.428C236.626 114.077 237.717 114.385 238.775 114.352C239.863 114.301 241.166 113.839 242.683 112.964C244.232 112.071 245.157 111.087 245.459 110.011C245.761 108.9 245.034 107.588 243.279 106.076L241.069 104.16C240.756 103.872 240.785 103.621 241.156 103.406C241.59 103.157 242.041 103.203 242.511 103.545L250.394 108.626C251.051 109.076 251.024 109.507 250.312 109.917L234.009 119.317Z" fill="white"/>
+<path d="M257.099 106.004C256.634 106.272 256.23 106.307 255.886 106.108C255.542 105.91 255.556 105.686 255.927 105.436L257.689 104.041C258.214 103.63 258.476 103.299 258.474 103.048C258.441 102.779 258.096 102.455 257.439 102.076L229.301 85.8517C228.863 85.5994 228.457 85.4727 228.084 85.4716C227.711 85.4706 227.23 85.6397 226.642 85.9789C225.496 86.6395 224.866 87.5795 224.752 88.7991C224.637 90.0187 225.52 91.3667 227.399 92.843L228.715 93.8692C229.059 94.1393 229.046 94.3814 228.674 94.5957C228.21 94.8635 227.742 94.8263 227.273 94.4841L219.203 89.3488C218.545 88.8984 218.464 88.5304 218.96 88.2448C219.177 88.1198 219.44 88.0398 219.751 88.0048C220.031 87.9518 220.45 87.8363 221.009 87.6585C221.598 87.4628 222.388 87.0793 223.379 86.508L233.736 80.536C234.727 79.9646 235.377 79.518 235.685 79.1959C236.025 78.856 236.24 78.6054 236.332 78.4442C236.424 78.2472 236.563 78.095 236.749 77.9879C237.244 77.7023 237.882 77.7489 238.663 78.1278L247.57 82.7811C248.163 83.0519 248.228 83.3212 247.763 83.589C247.392 83.8032 246.972 83.811 246.503 83.6124L244.723 82.8539C242.194 81.7525 239.872 81.2348 237.757 81.3006C235.641 81.3665 233.995 81.7387 232.819 82.4171C232.231 82.7563 231.937 83.0336 231.939 83.2488C231.941 83.4641 232.161 83.698 232.598 83.9503L260.737 100.175C261.393 100.553 261.955 100.752 262.422 100.771C262.888 100.755 263.463 100.604 264.145 100.319L266.563 99.3029C266.997 99.0888 267.386 99.081 267.73 99.2793C268.074 99.4776 268.013 99.7106 267.549 99.9784L257.099 106.004Z" fill="white"/>
+<path d="M269.079 99.0961C268.615 99.3639 268.226 99.4077 267.913 99.2274C267.601 99.0472 267.614 98.805 267.954 98.501L268.51 98.0181C269.004 97.589 269.172 97.1499 269.012 96.701C268.822 96.234 268.397 95.6856 267.738 95.0559L245.627 74.0046C245.376 73.7886 245.266 73.6179 245.296 73.4924C245.357 73.349 245.449 73.2417 245.573 73.1702C245.728 73.081 245.914 73.0277 246.132 73.0103C246.38 72.9751 246.692 73.0298 247.067 73.1744L284.138 86.0868C285.23 86.4666 286.087 86.6753 286.71 86.7129C287.333 86.7506 288.001 86.6358 288.714 86.3687L289.551 86.0481C290.079 85.8523 290.499 85.8445 290.811 86.0247C291.124 86.205 291.048 86.429 290.584 86.6968L282.641 91.2763C282.208 91.5262 281.819 91.552 281.475 91.3537C281.131 91.1554 281.207 90.8955 281.702 90.574L282.491 90.0111C282.955 89.6715 283.108 89.3849 282.95 89.1513C282.824 88.8997 282.339 88.6203 281.496 88.313L272.462 85.1394C271.464 84.7778 270.546 84.838 269.71 85.32L264.834 88.132C264.028 88.5962 263.924 89.1251 264.52 89.7188L269.225 94.2528C270.543 95.5481 271.992 95.8482 273.573 95.1529L274.364 94.8053C274.984 94.5559 275.435 94.5123 275.716 94.6745C276.06 94.8728 276.015 95.0969 275.582 95.3469L269.079 99.0961ZM263.287 87.4011L268.396 84.4553C268.892 84.1696 268.827 83.9003 268.203 83.6474L252.662 78.1145L252.43 78.2484L261.886 87.2896C262.325 87.6496 262.792 87.6868 263.287 87.4011Z" fill="white"/>
+</g>
+</g>
+</svg></div>
+                    <div class="iso-arm"><span class="iso-dot"></span><span class="iso-line"></span></div>
+                    <div class="iso-text"><strong>Content</strong><span>10-12 LinkedIn posts/mo in your voice. 8 custom graphics.</span></div>
+                </div>
+                <div class="iso-unit iso-unit-2">
+                    <div class="iso-dia"><svg width="438" height="254" viewBox="0 0 438 254" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="layer-outreach">
+<g id="Group">
+<path id="Rectangle 34648919" d="M23.6031 115.726C23.5843 114.797 24.3101 113.916 25.5695 113.338L215.594 26.1702C217.496 25.2979 220.19 25.3007 222.086 26.177L411.779 113.853C413.012 114.423 413.731 115.286 413.731 116.198V137.26C413.731 138.049 413.192 138.806 412.233 139.368L222.556 250.488C220.516 251.683 217.178 251.682 215.139 250.488L25.5356 139.352C24.5914 138.798 24.0553 138.055 24.0395 137.278L23.6031 115.726Z" fill="#090A0B" stroke="#2F2F30" stroke-width="1.5"/>
+</g>
+<g id="Group_2">
+<rect id="Rectangle 34648919_2" x="1.29907" width="227.931" height="227.931" rx="4.25" transform="matrix(0.866044 -0.499967 0.866044 0.499967 20.3234 115.357)" fill="#131415" stroke="#2F2F30" stroke-width="1.5"/>
+</g>
+</g>
+</svg></div>
+                    <div class="iso-arm"><span class="iso-dot"></span><span class="iso-line"></span></div>
+                    <div class="iso-text"><strong>Outreach</strong><span>Personalised email and LinkedIn sequences. Meetings booked to calendar.</span></div>
+                </div>
+                <div class="iso-unit iso-unit-3">
+                    <div class="iso-dia"><svg width="438" height="254" viewBox="0 0 438 254" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="layer-amplify">
+<g id="Group">
+<path id="Rectangle 34648919" d="M23.6031 115.726C23.5843 114.797 24.3101 113.916 25.5695 113.338L215.594 26.1702C217.496 25.2979 220.19 25.3007 222.086 26.177L411.779 113.853C413.012 114.423 413.731 115.286 413.731 116.198V137.26C413.731 138.049 413.192 138.806 412.233 139.368L222.556 250.488C220.516 251.683 217.178 251.682 215.139 250.488L25.5356 139.352C24.5914 138.798 24.0553 138.055 24.0395 137.278L23.6031 115.726Z" fill="#090A0B" stroke="#2F2F30" stroke-width="1.5"/>
+</g>
+<g id="Group_2">
+<rect id="Rectangle 34648919_2" x="1.29907" width="227.931" height="227.931" rx="4.25" transform="matrix(0.866044 -0.499967 0.866044 0.499967 20.3234 115.357)" fill="#131415" stroke="#2F2F30" stroke-width="1.5"/>
+</g>
+</g>
+</svg></div>
+                    <div class="iso-arm"><span class="iso-dot"></span><span class="iso-line"></span></div>
+                    <div class="iso-text"><strong>Amplify</strong><span>LinkedIn ads retargeting prospects already in your pipeline.</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="scope-grid fi">
+            <div class="scope-block">
+                <h3 class="scope-heading">What we run</h3>
+                <div class="scope-items">
+                    <span class="scope-chip">LinkedIn content</span>
+                    <span class="scope-chip">Graphics and creative</span>
+                    <span class="scope-chip">Data enrichment</span>
+                    <span class="scope-chip">Email sequences</span>
+                    <span class="scope-chip">Sending infrastructure</span>
+                    <span class="scope-chip">Reply management</span>
+                    <span class="scope-chip">Meeting booking</span>
+                    <span class="scope-chip">LinkedIn ads</span>
+                    <span class="scope-chip">Performance reports</span>
+                </div>
+            </div>
+            <div class="scope-block scope-block-you">
+                <h3 class="scope-heading">What you do</h3>
+                <div class="scope-items">
+                    <span class="scope-chip scope-chip-you">Approve content</span>
+                    <span class="scope-chip scope-chip-you">Attend meetings</span>
+                    <span class="scope-chip scope-chip-you">Close deals</span>
+                    <span class="scope-chip scope-chip-you">Share brand assets</span>
+                    <span class="scope-chip scope-chip-you">Flag protected contacts</span>
+                </div>
+            </div>
         </div>
     </div></section>
 
@@ -537,7 +680,7 @@
     <section class="section" id="proof"><div class="frame">
         <div class="eyebrow fi">05 · Proof</div>
         <h2 class="sh fi">Built from real results. Now productised.</h2>
-        <p class="si fi">This system was built and proven inside POW Studio before it became Yeta. Same workflows. Same infrastructure. Same content strategy. Now available as a service.</p>
+        <p class="si fi">This system was built and validated inside a creative agency before it became Yeta. Same workflows. Same infrastructure. Same compounding effect.</p>
         <div class="stats-grid fi">
             <div class="stat"><div class="stat-num">£1.5M</div><div class="stat-desc">New business generated in 15 months using this exact system</div></div>
             <div class="stat"><div class="stat-num">300%</div><div class="stat-desc">More meetings with multi-channel vs single-channel outreach</div></div>
@@ -547,7 +690,7 @@
     <section class="section" id="pricing"><div class="frame-wide">
         <div class="frame" style="padding:0;max-width:760px;">
             <div class="eyebrow fi">06 · Pricing</div>
-            <h2 class="sh fi">Transparent pricing. No surprises.</h2>
+            <h2 class="sh fi">Transparent pricing.</h2>
             <p class="pricing-intro fi">Buying separately costs <s>$5,900-18,500/mo</s>. Yeta delivers it as one system from $4,750/mo.</p>
         </div>
         <div class="pricing-cards fi">
@@ -614,10 +757,10 @@
         <div class="eyebrow fi">07 · ROI</div>
         <h2 class="sh fi">One deal pays for the entire year.</h2>
         <div class="roi-grid fi">
-            <div class="roi-cell"><div class="roi-num">$5,950</div><div class="roi-label">Monthly<br>investment</div></div>
-            <div class="roi-cell"><div class="roi-num">1,000</div><div class="roi-label">Contacts<br>reached</div></div>
-            <div class="roi-cell"><div class="roi-num">~20</div><div class="roi-label">Booked<br>calls</div></div>
-            <div class="roi-cell"><div class="roi-num">$50-500K+</div><div class="roi-label">Deal<br>value</div></div>
+            <div class="roi-cell"><div class="roi-num">$5,950</div><div class="roi-label">Monthly investment</div></div>
+            <div class="roi-cell"><div class="roi-num">1,000</div><div class="roi-label">Contacts reached</div></div>
+            <div class="roi-cell"><div class="roi-num">~20</div><div class="roi-label">Booked calls</div></div>
+            <div class="roi-cell"><div class="roi-num">$50–500K+</div><div class="roi-label">Deal value</div></div>
         </div>
         <p class="roi-note fi">One closed deal from the system covers 6-12 months of investment. Every month without it is pipeline your competitors are capturing instead.</p>
     </div></section>
@@ -661,9 +804,10 @@
     </div></section>
 
     <section class="cta-section" id="book">
+        <canvas id="dotgrid-cta" class="hero-dots"></canvas>
         <div class="frame">
-            <h2 class="fi">30 minutes. No commitment.</h2>
-            <p class="fi">We'll show you how the system would work for your specific market. If it's not a fit, the conversation was&nbsp;free.</p>
+            <h2 class="fi">See how it would work for your market.</h2>
+            <p class="fi">30 minutes. We'll map your ICP, show you the system, and identify the gaps in your current growth stack. No pitch deck. No pressure. If it's not a fit, the conversation was&nbsp;free.</p>
             <a href="https://calendly.com/csimpson39/30min" target="_blank" rel="noopener" class="btn-primary fi">Book a strategy call <span>→</span></a>
         </div>
     </section>
@@ -681,13 +825,6 @@
     </main>
 
     <footer><div class="frame-wide">
-        <div class="fg">
-            <a href="https://calendly.com/csimpson39/30min" target="_blank" rel="noopener">Book a call</a>
-            <a href="#pricing">Pricing</a>
-            <a href="#founding">Founding partners</a>
-            <a href="#faq">FAQ</a>
-            <span class="cp">© 2026 Yeta Co Ltd</span>
-        </div>
         <div class="footer-wordmark">
             <svg viewBox="0 0 414 181" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path d="M35.525 180.075C33.075 180.075 31.85 179.177 31.85 177.38C31.85 175.583 32.9117 174.603 35.035 174.44L46.06 172.725C49.3267 172.235 51.5317 171.418 52.675 170.275C53.8183 168.968 54.39 166.6 54.39 163.17V105.35C54.39 101.757 53.5733 98.245 51.94 94.815L15.925 19.355C14.7817 16.5783 13.475 14.455 12.005 12.985C10.535 11.515 8.41166 10.4533 5.63499 9.79999L3.42999 9.31C1.14333 8.81999 0 7.75833 0 6.12499C0 4.49166 1.225 3.675 3.675 3.675H45.57C47.8567 3.675 49 4.57333 49 6.36999C49 8.16666 47.6117 9.14667 44.835 9.31L40.18 9.79999C37.4033 9.96333 35.4433 10.8617 34.3 12.495C33.1567 14.1283 33.4017 16.66 35.035 20.09L65.17 84.28C65.8233 85.4233 66.64 85.995 67.62 85.995C68.6 85.995 69.4167 85.4233 70.07 84.28L98.98 25.235C101.103 20.9883 101.593 17.5583 100.45 14.945C99.47 12.1683 97.1017 10.535 93.345 10.045L87.955 9.31C85.1783 8.81999 83.79 7.83999 83.79 6.36999C83.79 4.57333 84.9333 3.675 87.22 3.675H122.01C124.46 3.675 125.685 4.49166 125.685 6.12499C125.685 7.75833 124.542 8.81999 122.255 9.31L119.805 9.79999C117.518 10.29 115.477 11.6783 113.68 13.965C112.047 16.2517 109.842 20.09 107.065 25.48L74.97 89.915C73.8267 92.2017 73.01 94.4067 72.52 96.53C72.03 98.49 71.785 100.777 71.785 103.39V163.17C71.785 166.6 72.3567 168.968 73.5 170.275C74.8067 171.418 77.0117 172.235 80.115 172.725L91.14 174.44C93.2633 174.603 94.325 175.583 94.325 177.38C94.325 179.177 93.1 180.075 90.65 180.075H35.525Z" fill="white"/>
@@ -695,6 +832,13 @@
 <path d="M233.119 180.075C230.669 180.075 229.444 179.177 229.444 177.38C229.444 175.583 230.506 174.603 232.629 174.44L243.654 172.725C246.921 172.235 249.126 171.418 250.269 170.275C251.413 168.968 251.984 166.6 251.984 163.17V16.17C251.984 13.8833 251.494 12.25 250.514 11.27C249.534 10.29 247.493 9.79999 244.389 9.79999C238.346 9.79999 232.384 12.4133 226.504 17.64C220.624 22.8667 216.786 31.2783 214.989 42.875L213.764 50.96C213.438 53.0833 212.294 54.145 210.334 54.145C207.884 54.145 206.823 52.7567 207.149 49.98L209.354 5.635C209.681 1.87833 211.151 0 213.764 0C214.908 0 215.969 0.326667 216.949 0.980002C217.929 1.47 219.563 2.04166 221.849 2.69499C224.299 3.34833 228.138 3.675 233.364 3.675H287.999C293.226 3.675 296.983 3.34833 299.269 2.69499C301.719 2.04166 303.434 1.47 304.414 0.980002C305.558 0.326667 306.619 0 307.599 0C310.213 0 311.683 1.87833 312.009 5.635L314.214 49.98C314.541 52.7567 313.479 54.145 311.029 54.145C309.069 54.145 307.926 53.0833 307.599 50.96L306.374 42.875C304.741 31.2783 300.984 22.8667 295.104 17.64C289.224 12.4133 283.181 9.79999 276.974 9.79999C273.871 9.79999 271.829 10.29 270.849 11.27C269.869 12.25 269.379 13.8833 269.379 16.17V163.17C269.379 166.6 269.951 168.968 271.094 170.275C272.401 171.418 274.606 172.235 277.709 172.725L288.734 174.44C290.858 174.603 291.919 175.583 291.919 177.38C291.919 179.177 290.694 180.075 288.244 180.075H233.119Z" fill="white"/>
 <path d="M296.316 180.075C293.866 180.075 292.641 179.258 292.641 177.625C292.641 175.992 293.784 174.93 296.071 174.44L299.746 173.705C303.013 173.052 305.463 171.5 307.096 169.05C308.729 166.437 310.118 162.843 311.261 158.27L349.236 5.14499C349.563 3.51166 350.053 2.44999 350.706 1.95999C351.523 1.47 352.258 1.225 352.911 1.225C353.728 1.225 354.463 1.47 355.116 1.95999C355.933 2.44999 356.504 3.51166 356.831 5.14499L395.541 160.475C396.684 165.048 397.991 168.233 399.461 170.03C400.931 171.827 403.218 173.052 406.321 173.705L409.996 174.44C412.283 174.93 413.426 175.992 413.426 177.625C413.426 179.258 412.201 180.075 409.751 180.075H367.856C365.569 180.075 364.426 179.177 364.426 177.38C364.426 175.583 365.814 174.603 368.591 174.44L373.246 173.95C376.023 173.623 377.738 172.725 378.391 171.255C379.208 169.785 379.208 167.253 378.391 163.66L369.081 125.685C368.101 121.438 365.406 119.315 360.996 119.315H335.271C331.024 119.315 328.329 121.438 327.186 125.685L318.856 158.515C316.406 167.825 318.856 172.97 326.206 173.95L329.881 174.44C332.658 174.93 334.046 175.91 334.046 177.38C334.046 179.177 332.903 180.075 330.616 180.075H296.316ZM334.536 111.965H361.486C364.099 111.965 365.161 110.577 364.671 107.8L348.991 42.14H347.766L331.351 107.8C330.861 110.577 331.923 111.965 334.536 111.965Z" fill="white"/>
 </svg>
+        </div>
+        <div class="fg">
+            <a href="https://calendly.com/csimpson39/30min" target="_blank" rel="noopener">Book a call</a>
+            <a href="#pricing">Pricing</a>
+            <a href="#founding">Founding partners</a>
+            <a href="#faq">Questions</a>
+            <span class="cp">© 2026 Yeta</span>
         </div>
     </div></footer>
 
@@ -713,5 +857,122 @@
     function closeM(id) { document.getElementById(id).classList.remove('active'); document.body.style.overflow = ''; }
     document.addEventListener('keydown', e => { if (e.key === 'Escape') document.querySelectorAll('.mo.active').forEach(m => { m.classList.remove('active'); document.body.style.overflow = ''; }); });
     </script>
+<script>
+(function() {
+    var GAP = 24;
+    var DOT_R = 0.8;
+    var BASE_ALPHA = 0.06;
+    var LIT_ALPHA = 0.35;
+    var TOUCH_RADIUS = 120;
+    var FADE_SPEED = 0.008;
+
+    function initGrid(canvasId) {
+        var canvas = document.getElementById(canvasId);
+        if (!canvas) return null;
+        var ctx = canvas.getContext('2d');
+        var parent = canvas.parentElement;
+        var state = { canvas: canvas, ctx: ctx, parent: parent, w: 0, h: 0, dots: [], mouse: { x: -1000, y: -1000 } };
+
+        function resize() {
+            var dpr = Math.min(window.devicePixelRatio || 1, 2);
+            state.w = parent.offsetWidth;
+            state.h = parent.offsetHeight;
+            canvas.width = state.w * dpr;
+            canvas.height = state.h * dpr;
+            canvas.style.width = state.w + 'px';
+            canvas.style.height = state.h + 'px';
+            ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+
+            var cols = Math.ceil(state.w / GAP) + 1;
+            var rows = Math.ceil(state.h / GAP) + 1;
+            var offsetX = (state.w - (cols - 1) * GAP) / 2;
+            var offsetY = (state.h - (rows - 1) * GAP) / 2;
+
+            state.dots = [];
+            for (var r = 0; r < rows; r++) {
+                for (var c = 0; c < cols; c++) {
+                    state.dots.push({
+                        x: offsetX + c * GAP,
+                        y: offsetY + r * GAP,
+                        alpha: BASE_ALPHA
+                    });
+                }
+            }
+        }
+
+        parent.addEventListener('mousemove', function(e) {
+            var rect = parent.getBoundingClientRect();
+            state.mouse.x = e.clientX - rect.left;
+            state.mouse.y = e.clientY - rect.top;
+        });
+        parent.addEventListener('mouseleave', function() {
+            state.mouse.x = -1000;
+            state.mouse.y = -1000;
+        });
+
+        state.resize = resize;
+        resize();
+        return state;
+    }
+
+    var grids = [initGrid('dotgrid'), initGrid('dotgrid-cta')].filter(Boolean);
+
+    function draw() {
+        for (var g = 0; g < grids.length; g++) {
+            var s = grids[g];
+            s.ctx.clearRect(0, 0, s.w, s.h);
+
+            for (var i = 0; i < s.dots.length; i++) {
+                var d = s.dots[i];
+                var dx = d.x - s.mouse.x;
+                var dy = d.y - s.mouse.y;
+                var dist = Math.sqrt(dx * dx + dy * dy);
+
+                if (dist < TOUCH_RADIUS) {
+                    var t = 1 - dist / TOUCH_RADIUS;
+                    var boost = BASE_ALPHA + (LIT_ALPHA - BASE_ALPHA) * t * t;
+                    if (boost > d.alpha) d.alpha = boost;
+                }
+
+                if (d.alpha > BASE_ALPHA) {
+                    d.alpha -= FADE_SPEED;
+                    if (d.alpha < BASE_ALPHA) d.alpha = BASE_ALPHA;
+                }
+
+                var litAmount = (d.alpha - BASE_ALPHA) / (LIT_ALPHA - BASE_ALPHA);
+                var r = DOT_R + litAmount * 0.6;
+
+                s.ctx.beginPath();
+                s.ctx.arc(d.x, d.y, r, 0, Math.PI * 2);
+
+                if (litAmount > 0.3) {
+                    var pb = (litAmount - 0.3) / 0.7;
+                    var rr = Math.round(255 - pb * 116);
+                    var gg = Math.round(255 - pb * 116);
+                    var bb = Math.round(255 - pb * 10);
+                    s.ctx.fillStyle = 'rgba(' + rr + ',' + gg + ',' + bb + ',' + d.alpha + ')';
+                } else {
+                    s.ctx.fillStyle = 'rgba(255,255,255,' + d.alpha + ')';
+                }
+                s.ctx.fill();
+            }
+        }
+        requestAnimationFrame(draw);
+    }
+
+    var resizeTimer;
+    window.addEventListener('resize', function() {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function() {
+            for (var i = 0; i < grids.length; i++) grids[i].resize();
+        }, 200);
+    });
+
+    requestAnimationFrame(draw);
+
+
+
+})();
+</script>
 </body>
 </html>
